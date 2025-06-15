@@ -16,17 +16,30 @@ function login() {
 function saveEmployee() {
   const name = document.getElementById("empName").value;
   const dept = document.getElementById("empDept").value;
-  if (!name || !dept) return;
+  const dob = document.getElementById("empDob").value;
+  const gender = document.getElementById("empGender").value;
+
+  const techCheckboxes = document.querySelectorAll(".techCheck");
+  const technologies = Array.from(techCheckboxes)
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+
+  const country = document.querySelector("input[name='country']:checked").value;
+
+  if (!name || !dept || !dob) return;
 
   let employees = JSON.parse(localStorage.getItem("employees")) || [];
-  employees.unshift({ name, dept }); // add to beginning
-  employees = employees.slice(0, 10); // keep only latest 10
+  employees.unshift({ name, dept, dob, gender, technologies, country });
+  employees = employees.slice(0, 10);
   localStorage.setItem("employees", JSON.stringify(employees));
   loadEmployees();
 
-  // Clear form
   document.getElementById("empName").value = "";
   document.getElementById("empDept").value = "";
+  document.getElementById("empDob").value = "";
+  document.getElementById("empGender").value = "Male";
+  techCheckboxes.forEach(cb => cb.checked = false);
+  document.querySelector("input[name='country'][value='India']").checked = true;
 }
 
 function loadEmployees() {
@@ -34,7 +47,14 @@ function loadEmployees() {
   const tbody = document.getElementById("empTableBody");
   tbody.innerHTML = "";
   employees.forEach(emp => {
-    const row = `<tr><td>${emp.name}</td><td>${emp.dept}</td></tr>`;
+    const row = `<tr>
+      <td>${emp.name}</td>
+      <td>${emp.dept}</td>
+      <td>${emp.dob}</td>
+      <td>${emp.gender}</td>
+      <td>${emp.technologies.join(", ")}</td>
+      <td>${emp.country}</td>
+    </tr>`;
     tbody.innerHTML += row;
   });
 }
