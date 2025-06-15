@@ -1,4 +1,4 @@
-const DUMMY_USER = "Testers Talk";
+const DUMMY_USER = "TestersTalk";
 const DUMMY_PASS = "TestersTalk";
 
 function login() {
