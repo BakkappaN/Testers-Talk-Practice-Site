@@ -60,6 +60,17 @@ button {
   font-weight: normal;
   white-space: nowrap;
 }
+.checkbox-group {
+  margin-bottom: 1em;
+}
+
+.radio-group {
+  margin-bottom: 1em;
+}
+
+.form-group {
+  margin-bottom: 1em; /* or any value you want */
+}
 
 /* Table styles */
 table {
