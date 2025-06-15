@@ -1,5 +1,5 @@
-const DUMMY_USER = "admin";
-const DUMMY_PASS = "password";
+const DUMMY_USER = "Testers Talk";
+const DUMMY_PASS = "TestersTalk";
 
 function login() {
   const user = document.getElementById("username").value;
