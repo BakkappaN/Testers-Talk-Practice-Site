@@ -20,7 +20,7 @@
   <div id="appDiv" style="display:none;">
     <div class="tab-container">
       <div class="tab-buttons">
-        <button class="tab-button active" data-tab="employeeDetails">Employee Details</button>
+        <button class="tab-button active">Employee Details</button>
       </div>
 
       <div class="tab-content active" id="employeeDetails">
@@ -76,23 +76,16 @@
         <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a>
 
         <h3>Iframes</h3>
-        <iframe id="1122" name="testers" src="video-demo.html" width="800" height="500" frameborder="0"></iframe>
+        <iframe id="1122" name="testers" src="video-demo.html" width="800" height="280" frameborder="0"></iframe>
 
-        <!-- Upload section -->
+        <!-- Upload functionality here -->
+        <h3>Upload File</h3>
         <div class="form-group">
-          <label for="fileInput">Upload File:</label>
+          <label for="fileInput">Select file:</label>
           <input type="file" id="fileInput" />
         </div>
-
-        <div class="form-group">
-          <label>&nbsp;</label>
-          <span id="fileName" style="flex: 1; font-style: italic;">No file selected</span>
-        </div>
-
-        <div class="form-group">
-          <label>&nbsp;</label>
-          <a id="downloadLink" href="#" style="display: none;">Download File</a>
-        </div>
+        <p id="fileName">No file selected</p>
+        <a id="downloadLink" href="#" style="display:none;" download>Download File</a>
 
         <button onclick="saveEmployee()">Save</button>
 
@@ -113,7 +106,6 @@
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
