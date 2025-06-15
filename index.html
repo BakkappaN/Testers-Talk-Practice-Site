@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Testers Talk Demo Page</title>
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="loginDiv">
@@ -15,58 +16,69 @@
   </div>
 
   <div id="appDiv" style="display:none;">
-    <h2>Enter Employee Details</h2>
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-button active">Employee Details</button>
+      </div>
 
-    <label>Name:</label>
-    <input type="text" id="empName" placeholder="Employee Name" />
-    
-    <label>Department:</label>
-    <input type="text" id="empDept" placeholder="Department" />
-    
-    <label>Date of Birth:</label>
-    <input type="date" id="empDob" /><br>
+      <div class="tab-content active">
+        <h2>Enter Employee Details</h2>
 
-    <label>Gender:</label>
-    <select id="empGender">
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select><br><br>
+        <label>Name:</label>
+        <input type="text" id="empName" placeholder="Employee Name" />
 
-    <label>Technologies Known:</label><br>
-    <input type="checkbox" value="Playwright" class="techCheck"> Playwright by Testers Talk<br>
-    <input type="checkbox" value="Cypress" class="techCheck"> Cypress by Testers Talk<br>
-    <input type="checkbox" value="JavaScript" class="techCheck"> JavaScript by Testers Talk<br>
-    <input type="checkbox" value="API Testing" class="techCheck"> API Testing by Testers Talk<br><br>
+        <label>Department:</label>
+        <input type="text" id="empDept" placeholder="Department" />
 
-    <label>Country:</label><br>
-    <input type="radio" name="country" value="India" checked> India<br>
-    <input type="radio" name="country" value="United States"> United States<br>
-    <input type="radio" name="country" value="Japan"> Japan<br>
-    <input type="radio" name="country" value="Russia"> Russia<br><br>
+        <label>Date of Birth:</label>
+        <input type="date" id="empDob" /><br>
 
-    <button onclick="saveEmployee()">Save</button>
+        <label>Gender:</label>
+        <select id="empGender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select><br><br>
 
-    <h3>Latest 10 Employees</h3>
-    <table id="empTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Department</th>
-          <th>DOB</th>
-          <th>Gender</th>
-          <th>Technologies</th>
-          <th>Country</th>
-        </tr>
-      </thead>
-      <tbody id="empTableBody"></tbody>
-    </table>
+        <label>Technologies Known:</label><br>
+        <input type="checkbox" value="Playwright" class="techCheck"> Playwright by Testers Talk<br>
+        <input type="checkbox" value="Cypress" class="techCheck"> Cypress by Testers Talk<br>
+        <input type="checkbox" value="JavaScript" class="techCheck"> JavaScript by Testers Talk<br>
+        <input type="checkbox" value="API Testing" class="techCheck"> API Testing by Testers Talk<br><br>
 
-    <h3>Testers Talk Channel</h3>
-    <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a>
+        <label>Country:</label><br>
+        <input type="radio" name="country" value="India" checked> India<br>
+        <input type="radio" name="country" value="United States"> United States<br>
+        <input type="radio" name="country" value="Japan"> Japan<br>
+        <input type="radio" name="country" value="Russia"> Russia<br><br>
 
-    <h3>Video Tutorials</h3>
-    <iframe width="360" height="215" src="https://www.youtube.com/embed/2poXBtifpzA" frameborder="0" allowfullscreen></iframe>
-    <iframe width="360" height="215" src="https://www.youtube.com/embed/788GvvcfwTY" frameborder="0" allowfullscreen></iframe>
+        
+        <h3>Testers Talk Channel</h3><br>
+        <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a><br><br>
+
+        <h3>Video Tutorials</h3><br>
+        <iframe width="360" height="215" src="https://www.youtube.com/embed/2poXBtifpzA" frameborder="0" allowfullscreen></iframe>
+        <iframe width="360" height="215" src="https://www.youtube.com/embed/788GvvcfwTY" frameborder="0" allowfullscreen></iframe><br><br>
+        
+
+        <button onclick="saveEmployee()">Save</button>
+
+        <h3>Latest 10 Employees</h3>
+        <table id="empTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Department</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Technologies</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody id="empTableBody"></tbody>
+        </table>
+
+      </div>
+    </div>
   </div>
 </body>
 </html>
