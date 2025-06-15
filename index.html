@@ -26,27 +26,30 @@
       <div class="tab-content active" id="employeeDetails">
         <h2>Enter Employee Details</h2>
 
-        <div class="form-group">
-          <label for="empName">Name:</label>
-          <input type="text" id="empName" placeholder="Employee Name" />
-        </div>
+        <!-- Horizontal form container -->
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="empName">Name:</label>
+            <input type="text" id="empName" placeholder="Employee Name" />
+          </div>
 
-        <div class="form-group">
-          <label for="empDept">Department:</label>
-          <input type="text" id="empDept" placeholder="Department" />
-        </div>
+          <div class="form-group">
+            <label for="empDept">Department:</label>
+            <input type="text" id="empDept" placeholder="Department" />
+          </div>
 
-        <div class="form-group">
-          <label for="empDob">Date of Birth:</label>
-          <input type="date" id="empDob" />
-        </div>
+          <div class="form-group">
+            <label for="empDob">Date of Birth:</label>
+            <input type="date" id="empDob" />
+          </div>
 
-        <div class="form-group">
-          <label for="empGender">Gender:</label>
-          <select id="empGender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
+          <div class="form-group">
+            <label for="empGender">Gender:</label>
+            <select id="empGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group">
@@ -78,14 +81,16 @@
         <h3>Iframes</h3>
         <iframe id="1122" name="testers" src="video-demo.html" width="800" height="280" frameborder="0"></iframe>
 
-        <!-- Upload functionality here -->
+        <!-- Upload functionality after iframes -->
         <h3>Upload File</h3>
-        <div class="form-group">
-          <label for="fileInput">Select file:</label>
-          <input type="file" id="fileInput" />
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="fileInput">Select file:</label>
+            <input type="file" id="fileInput" />
+            <p id="fileName" style="margin-top:5px;">No file selected</p>
+            <a id="downloadLink" href="#" style="display:none;" download>Download File</a>
+          </div>
         </div>
-        <p id="fileName">No file selected</p>
-        <a id="downloadLink" href="#" style="display:none;" download>Download File</a>
 
         <button onclick="saveEmployee()">Save</button>
 
