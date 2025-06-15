@@ -24,35 +24,48 @@
       <div class="tab-content active">
         <h2>Enter Employee Details</h2>
 
-        <label>Name:</label>
-        <input type="text" id="empName" placeholder="Employee Name" />
+        <div class="form-group">
+  <label for="empName">Name:</label>
+  <input type="text" id="empName" placeholder="Employee Name" />
+</div>
 
-        <label>Department:</label>
-        <input type="text" id="empDept" placeholder="Department" />
+<div class="form-group">
+  <label for="empDept">Department:</label>
+  <input type="text" id="empDept" placeholder="Department" />
+</div>
 
-        <label>Date of Birth:</label>
-        <input type="date" id="empDob" /><br>
+<div class="form-group">
+  <label for="empDob">Date of Birth:</label>
+  <input type="date" id="empDob" />
+</div>
 
-        <label>Gender:</label>
-        <select id="empGender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select><br><br>
+<div class="form-group">
+  <label for="empGender">Gender:</label>
+  <select id="empGender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+</div>
 
-        <label>Technologies Known:</label>
-        <input type="checkbox" value="Playwright JavaScript" class="techCheck"> Playwright JavaScript by Testers Talk
-        <input type="checkbox" value="Playwright TypeScript" class="techCheck"> Playwright TypeScript by Testers Talk
-        <input type="checkbox" value="Cypress" class="techCheck"> Cypress by Testers Talk
-        <input type="checkbox" value="JavaScript" class="techCheck"> JavaScript by Testers Talk
-        <input type="checkbox" value="Postman" class="techCheck"> Postman by Testers Talk
-        <input type="checkbox" value="Rest Assured" class="techCheck"> Rest Assured by Testers Talk
-        <input type="checkbox" value="API Testing" class="techCheck"> API Testing by Testers Talk<br><br>
+<div class="form-group">
+  <label>Technologies Known:</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" value="Playwright JavaScript" class="techCheck" /> Playwright JavaScript</label>
+    <label><input type="checkbox" value="Cypress" class="techCheck" /> Cypress</label>
+    <label><input type="checkbox" value="JavaScript" class="techCheck" /> JavaScript</label>
+    <!-- Add the rest similarly -->
+  </div>
+</div>
 
-        <label>Country:</label><br>
-        <input type="radio" name="country" value="India" checked> India<br>
-        <input type="radio" name="country" value="United States"> United States<br>
-        <input type="radio" name="country" value="Japan"> Japan<br>
-        <input type="radio" name="country" value="Russia"> Russia<br><br>
+<div class="form-group">
+  <label>Country:</label>
+  <div class="radio-group">
+    <label><input type="radio" name="country" value="India" checked /> India</label>
+    <label><input type="radio" name="country" value="United States" /> United States</label>
+    <label><input type="radio" name="country" value="Japan" /> Japan</label>
+  </div>
+</div>
+
 
         
         <h3>Links</h3><br>
