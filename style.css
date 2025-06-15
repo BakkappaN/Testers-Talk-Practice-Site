@@ -26,15 +26,35 @@ button {
 }
 
 .form-group {
+  display: flex;
+  align-items: center;
   margin-bottom: 15px;
+}
+
+.form-group label {
+  width: 150px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  flex: 1;
+}
+
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 160px; /* aligns with label width */
 }
 
 .checkbox-group label,
 .radio-group label {
-  display: block;
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
+/* Table styles */
 table {
   width: 100%;
   border-collapse: collapse;
