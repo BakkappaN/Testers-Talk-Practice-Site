@@ -22,76 +22,87 @@
       </div>
 
       <div class="tab-content active">
-        <h2>Enter Employee Details</h2>
+        <div class="tab-layout">
+          <div class="form-panel">
+            <h2>Enter Employee Details</h2>
 
-        <div class="form-group">
-          <label for="empName">Name:</label>
-          <input type="text" id="empName" placeholder="Employee Name" />
-        </div>
+            <div class="form-group">
+              <label for="empName">Name:</label>
+              <input type="text" id="empName" placeholder="Employee Name" />
+            </div>
 
-        <div class="form-group">
-          <label for="empDept">Department:</label>
-          <input type="text" id="empDept" placeholder="Department" />
-        </div>
+            <div class="form-group">
+              <label for="empDept">Department:</label>
+              <input type="text" id="empDept" placeholder="Department" />
+            </div>
 
-        <div class="form-group">
-          <label for="empDob">Date of Birth:</label>
-          <input type="date" id="empDob" />
-        </div>
+            <div class="form-group">
+              <label for="empDob">Date of Birth:</label>
+              <input type="date" id="empDob" />
+            </div>
 
-        <div class="form-group">
-          <label for="empGender">Gender:</label>
-          <select id="empGender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="empGender">Gender:</label>
+              <select id="empGender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
 
-        <div class="form-group">
-          <label>Technologies Known:</label>
-          <div class="checkbox-group">
-            <label><input type="checkbox" value="Playwright" class="techCheck" /> Playwright</label>
-            <label><input type="checkbox" value="Cypress" class="techCheck" /> Cypress</label>
-            <label><input type="checkbox" value="Selenium" class="techCheck" /> Selenium</label>
-            <label><input type="checkbox" value="JavaScript" class="techCheck" /> JavaScript</label>
-            <label><input type="checkbox" value="Postman" class="techCheck" /> Postman</label>
-            <label><input type="checkbox" value="Rest Assured" class="techCheck" /> Rest Assured</label>
-            <label><input type="checkbox" value="API Testing" class="techCheck" /> API Testing</label>
+            <div class="form-group">
+              <label>Technologies Known:</label>
+              <div class="checkbox-group">
+                <label><input type="checkbox" value="Playwright" class="techCheck" /> Playwright</label>
+                <label><input type="checkbox" value="Cypress" class="techCheck" /> Cypress</label>
+                <label><input type="checkbox" value="Selenium" class="techCheck" /> Selenium</label>
+                <label><input type="checkbox" value="JavaScript" class="techCheck" /> JavaScript</label>
+                <label><input type="checkbox" value="Postman" class="techCheck" /> Postman</label>
+                <label><input type="checkbox" value="Rest Assured" class="techCheck" /> Rest Assured</label>
+                <label><input type="checkbox" value="API Testing" class="techCheck" /> API Testing</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Country:</label>
+              <div class="radio-group">
+                <label><input type="radio" name="country" value="India" checked /> India</label>
+                <label><input type="radio" name="country" value="United States" /> United States</label>
+                <label><input type="radio" name="country" value="Japan" /> Japan</label>
+                <label><input type="radio" name="country" value="Russia" /> Russia</label>
+              </div>
+            </div>
+
+            <h3>Links</h3>
+            <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a>
+
+            <h3>Iframes</h3>
+            <iframe id="1122" name="testers" src="video-demo.html" width="800" height="500" frameborder="0"></iframe>
+
+            <button onclick="saveEmployee()">Save</button>
+
+            <h3>Latest 10 Employees</h3>
+            <table id="empTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  <th>Technologies</th>
+                  <th>Country</th>
+                </tr>
+              </thead>
+              <tbody id="empTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="upload-panel">
+            <h3>Upload File</h3>
+            <input type="file" id="fileInput" />
+            <p id="fileName">No file selected</p>
+            <a id="downloadLink" href="#" style="display:none;" download>Download File</a>
           </div>
         </div>
-
-        <div class="form-group">
-          <label>Country:</label>
-          <div class="radio-group">
-            <label><input type="radio" name="country" value="India" checked /> India</label>
-            <label><input type="radio" name="country" value="United States" /> United States</label>
-            <label><input type="radio" name="country" value="Japan" /> Japan</label>
-            <label><input type="radio" name="country" value="Russia" /> Russia</label>
-          </div>
-        </div>
-
-        <h3>Links</h3>
-        <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a>
-
-        <h3>Iframes</h3>
-        <iframe id="1122" name="testers" src="video-demo.html" width="800" height="500" frameborder="0"></iframe>
-
-        <button onclick="saveEmployee()">Save</button>
-
-        <h3>Latest 10 Employees</h3>
-        <table id="empTable">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Department</th>
-              <th>DOB</th>
-              <th>Gender</th>
-              <th>Technologies</th>
-              <th>Country</th>
-            </tr>
-          </thead>
-          <tbody id="empTableBody"></tbody>
-        </table>
       </div>
     </div>
   </div>

@@ -58,3 +58,23 @@ function loadEmployees() {
     tbody.innerHTML += row;
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fileInput = document.getElementById("fileInput");
+  const fileName = document.getElementById("fileName");
+  const downloadLink = document.getElementById("downloadLink");
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (file) {
+      fileName.textContent = "Selected: " + file.name;
+      const fileURL = URL.createObjectURL(file);
+      downloadLink.href = fileURL;
+      downloadLink.download = file.name;
+      downloadLink.style.display = "inline-block";
+    } else {
+      fileName.textContent = "No file selected";
+      downloadLink.style.display = "none";
+    }
+  });
+});

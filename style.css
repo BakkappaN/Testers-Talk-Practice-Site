@@ -106,3 +106,49 @@ iframe {
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+/* ===== New styles for layout with upload panel ===== */
+.tab-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.form-panel {
+  flex: 2;
+}
+
+.upload-panel {
+  flex: 1;
+  border-left: 1px solid #ccc;
+  padding-left: 20px;
+  max-width: 300px;
+  font-size: 14px;
+}
+
+.upload-panel h3 {
+  margin-top: 0;
+}
+
+#fileInput {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#fileName {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#downloadLink {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+#downloadLink:hover {
+  background-color: #45a049;
+}
