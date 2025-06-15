@@ -46,7 +46,7 @@ button {
 .radio-group {
   display: flex;
   flex-direction: column;
-  padding-left: 160px; /* aligns with label width */
+  padding-left: 160px;
 }
 
 .checkbox-group label,
@@ -83,6 +83,9 @@ td {
   padding: 10px 20px;
   cursor: pointer;
   font-weight: bold;
+  margin-right: 5px;
+  border-radius: 4px 4px 0 0;
+  transition: background-color 0.3s ease;
 }
 
 .tab-button.active {
@@ -90,11 +93,17 @@ td {
   color: white;
 }
 
+.tab-button:hover:not(.active) {
+  background-color: #bbb;
+}
+
 .tab-content {
   display: none;
   padding: 15px;
   border: 1px solid #ccc;
+  border-top: none;
   background-color: #f9f9f9;
+  border-radius: 0 4px 4px 4px;
 }
 
 .tab-content.active {
@@ -107,46 +116,31 @@ iframe {
   margin-bottom: 10px;
 }
 
-/* ===== New styles for layout with upload panel ===== */
-.tab-layout {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.form-panel {
-  flex: 2;
-}
-
-.upload-panel {
-  flex: 1;
-  border-left: 1px solid #ccc;
-  padding-left: 20px;
-  max-width: 300px;
-  font-size: 14px;
-}
-
-.upload-panel h3 {
-  margin-top: 0;
-}
-
+/* File upload section inside employee tab */
 #fileInput {
-  width: 100%;
-  margin-bottom: 10px;
+  padding: 6px 8px;
+  box-sizing: border-box;
 }
 
 #fileName {
+  flex: 1;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
   font-style: italic;
-  margin-bottom: 10px;
+  color: #555;
 }
 
 #downloadLink {
-  display: inline-block;
+  padding: 8px 16px;
   background-color: #4CAF50;
   color: white;
   text-decoration: none;
-  padding: 6px 12px;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 #downloadLink:hover {

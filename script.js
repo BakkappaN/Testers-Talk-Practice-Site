@@ -34,6 +34,7 @@ function saveEmployee() {
   localStorage.setItem("employees", JSON.stringify(employees));
   loadEmployees();
 
+  // Reset form
   document.getElementById("empName").value = "";
   document.getElementById("empDept").value = "";
   document.getElementById("empDob").value = "";
@@ -60,6 +61,7 @@ function loadEmployees() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // File upload handling
   const fileInput = document.getElementById("fileInput");
   const fileName = document.getElementById("fileName");
   const downloadLink = document.getElementById("downloadLink");
@@ -76,5 +78,21 @@ document.addEventListener("DOMContentLoaded", () => {
       fileName.textContent = "No file selected";
       downloadLink.style.display = "none";
     }
+  });
+
+  // Tab switching logic
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabButtons.forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      // Remove active from all buttons and contents
+      tabButtons.forEach(b => b.classList.remove("active"));
+      tabContents.forEach(c => c.classList.remove("active"));
+
+      // Add active to clicked button and corresponding content
+      btn.classList.add("active");
+      tabContents[idx].classList.add("active");
+    });
   });
 });
