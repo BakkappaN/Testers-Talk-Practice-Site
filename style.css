@@ -97,7 +97,8 @@ td {
 }
 
 .tab-button {
-  background-color: #4caf50; /* Green for all tabs */
+  background-color: #4caf50;
+  /* Green for all tabs */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -109,12 +110,14 @@ td {
 }
 
 .tab-button.active {
-  background-color: #6a1b9a; /* Dark purple for active tab */
+  background-color: #6a1b9a;
+  /* Dark purple for active tab */
   color: white;
 }
 
 .tab-button:hover:not(.active) {
-  background-color: #388e3c; /* Darker green on hover */
+  background-color: #388e3c;
+  /* Darker green on hover */
 }
 
 .tab-content {
@@ -172,6 +175,12 @@ iframe {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
+}
+
+h4.highlighted-header {
+  color: #5B21B6;
+  /* Purple-800 */
+  font-weight: bold;
 }
 
 /* ✅ Drag and Drop Styles */
