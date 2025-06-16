@@ -163,6 +163,12 @@ iframe {
   background-color: #45a049;
 }
 
+#playwrightCourse ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
 /* ✅ Drag and Drop Styles */
 #draggable {
   width: 120px;
