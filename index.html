@@ -4,11 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>Testers Talk Demo Page</title>
+
+  <!-- jQuery and jQuery UI for drag and drop -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
   <div id="loginDiv">
     <h2>Login</h2>
     <input type="text" id="username" placeholder="Username" />
@@ -26,7 +33,6 @@
       <div class="tab-content active" id="employeeDetails">
         <h2>Enter Employee Details</h2>
 
-        <!-- Horizontal form container -->
         <div class="form-horizontal">
           <div class="form-group">
             <label for="empName">Name:</label>
@@ -75,7 +81,6 @@
           </div>
         </div>
 
-
         <div class="form-group">
           <label>Links:</label>
           <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a>
@@ -86,7 +91,7 @@
           <iframe id="1122" name="testers" src="video-demo.html" width="800" height="280" frameborder="0"></iframe>
         </div>
 
-        <!-- Upload functionality after iframes -->
+        <!-- Upload functionality -->
         <h3>Upload File</h3>
         <div class="form-horizontal">
           <div class="form-group">
@@ -96,6 +101,11 @@
             <a id="downloadLink" href="#" style="display:none;" download>Download File</a>
           </div>
         </div>
+
+        <!-- ✅ Drag and Drop section added below -->
+        <h3>Drag and Drop Demo</h3>
+        <div id="draggable">Drag me</div>
+        <div id="droppable">Drop here</div>
 
         <button onclick="saveEmployee()">Save</button>
 
@@ -116,6 +126,7 @@
       </div>
     </div>
   </div>
+
 </body>
 
 </html>

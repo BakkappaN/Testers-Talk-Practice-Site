@@ -86,13 +86,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabButtons.forEach((btn, idx) => {
     btn.addEventListener("click", () => {
-      // Remove active from all buttons and contents
       tabButtons.forEach(b => b.classList.remove("active"));
       tabContents.forEach(c => c.classList.remove("active"));
-
-      // Add active to clicked button and corresponding content
       btn.classList.add("active");
       tabContents[idx].classList.add("active");
     });
   });
+
+  // ✅ Drag and Drop functionality using jQuery UI
+  if (typeof $ !== "undefined" && typeof $.ui !== "undefined") {
+    $("#draggable").draggable();
+    $("#droppable").droppable({
+      drop: function (event, ui) {
+        $(this)
+          .addClass("ui-state-highlight")
+          .html("Dropped!");
+      }
+    });
+  } else {
+    console.error("jQuery UI not loaded. Drag and Drop won't work.");
+  }
 });
