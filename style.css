@@ -165,8 +165,10 @@ iframe {
 }
 
 /* Remove bullets from ul inside course tabs */
-#playwrightCourse ul,
-#playwrightjavascriptCourse ul {
+#PlaywrightTypeScriptCourse ul,
+#CypressCourse ul,
+#JavaScriptCourse ul,
+#PlaywrightJavaScriptCourse ul {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
