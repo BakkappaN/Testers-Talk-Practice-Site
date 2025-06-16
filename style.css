@@ -185,6 +185,30 @@ h4.highlighted-header {
   font-weight: bold;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#saveBtn {
+  padding: 14px 28px;
+  font-size: 16px;
+  background-color: #28a745;
+  /* Green */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+#saveBtn:hover {
+  background-color: #218838;
+  /* Darker green */
+}
+
 /* ✅ Drag and Drop Styles */
 #draggable {
   width: 120px;
