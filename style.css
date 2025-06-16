@@ -172,6 +172,7 @@ iframe {
 #CypressCourse ul,
 #JavaScriptCourse ul,
 #PostmanCourse ul,
+#RestAssuredCourse ul,
 #PlaywrightJavaScriptCourse ul {
   list-style: none;
   padding-left: 0;
