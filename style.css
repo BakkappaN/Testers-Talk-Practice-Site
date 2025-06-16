@@ -97,7 +97,8 @@ td {
 }
 
 .tab-button {
-  background-color: #ddd;
+  background-color: #4caf50; /* Green for all tabs */
+  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -108,12 +109,12 @@ td {
 }
 
 .tab-button.active {
-  background-color: #4caf50;
+  background-color: #6a1b9a; /* Dark purple for active tab */
   color: white;
 }
 
 .tab-button:hover:not(.active) {
-  background-color: #bbb;
+  background-color: #388e3c; /* Darker green on hover */
 }
 
 .tab-content {
@@ -163,7 +164,9 @@ iframe {
   background-color: #45a049;
 }
 
-#playwrightCourse ul {
+/* Remove bullets from ul inside course tabs */
+#playwrightCourse ul,
+#playwrightjavascriptCourse ul {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
