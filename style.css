@@ -345,3 +345,56 @@ h4.highlighted-header {
   color: red;
   margin-top: 10px;
 }
+
+/* Search box styles */
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  /* Increased from 350px */
+  margin: 20px 0 20px 0;
+  /* Remove auto centering, keep vertical margin */
+  /* To align left, no auto margin on left/right */
+}
+
+#searchBox {
+  width: 100%;
+  padding: 14px 16px;
+  /* Increased padding for bigger height */
+  font-size: 18px;
+  /* Slightly larger font */
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  display: none;
+  /* Hide by default */
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
