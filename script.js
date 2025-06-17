@@ -9,7 +9,7 @@ function login() {
     document.getElementById("appDiv").style.display = "block";
     loadEmployees();
   } else {
-    document.getElementById("loginError").innerText = "Invalid login!";
+    document.getElementById("loginError").innerText = "Invalid login! "+"try entering 'TestersTalk' as username and password.";
   }
 }
 
