@@ -107,3 +107,31 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("jQuery UI not loaded. Drag and Drop won't work.");
   }
 });
+
+// Alerts Popups functionality
+function showAlert(type) {
+  switch (type) {
+    case 'simple':
+      // For simple alert, show custom popup
+      document.getElementById('alertMessage').innerText = 'This is a simple alert!';
+      document.getElementById('customAlert').style.display = 'flex';
+      break;
+
+    case 'confirm':
+      // Native confirm — no custom alert
+      confirm('Do you confirm this action?');
+      break;
+
+    case 'prompt':
+      // Native prompt — no custom alert
+      prompt('Please enter your name:');
+      break;
+
+    default:
+      console.warn('Unknown alert type.');
+  }
+}
+
+function closeAlert() {
+  document.getElementById('customAlert').style.display = 'none';
+}

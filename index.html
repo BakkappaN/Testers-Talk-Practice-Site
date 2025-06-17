@@ -175,6 +175,24 @@
           });
         </script>
 
+        <!-- Alerts popups -->
+        <div class="form-group">
+          <label>Alerts Popups:</label>
+          <div class="button-wrapper">
+            <button onclick="showAlert('simple')">Simple Alert</button>
+            <button onclick="showAlert('confirm')">Confirm Alert</button>
+            <button onclick="showAlert('prompt')">Prompt Alert</button>
+          </div>
+        </div>
+
+        <!-- Custom Alert Modal -->
+        <div id="customAlert" class="custom-alert">
+          <div class="alert-content">
+            <span id="alertMessage"></span>
+            <button class="close-btn" onclick="closeAlert()">OK</button>
+          </div>
+        </div>
+
         <!-- Upload functionality -->
 
         <div class="form-horizontal">
