@@ -298,3 +298,50 @@ h4.highlighted-header {
   color: #000 !important;
   font-weight: bold;
 }
+
+#loginDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+/* Style the inputs and button in login */
+#loginDiv input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+#loginDiv button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#loginDiv button:hover {
+  background-color: #45a049;
+}
+
+#loginDiv h2 {
+  margin-bottom: 20px;
+}
+
+#loginError {
+  color: red;
+  margin-top: 10px;
+}
