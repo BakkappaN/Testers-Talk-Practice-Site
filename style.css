@@ -565,14 +565,14 @@ h4.highlighted-header {
 
 /* Form Groups and Labels */
 .form-group {
-  margin: 0;
+  margin-bottom: var(--spacing-lg);
   padding: 0;
   border: none;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
   font-weight: 600;
   color: var(--text-color);
   border: none;
@@ -581,11 +581,20 @@ h4.highlighted-header {
 /* Form sections */
 .form-horizontal {
   border: none;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
 
 .form-horizontal .form-group {
   margin-bottom: var(--spacing-md);
+}
+
+/* Label spacing for specific sections */
+.checkbox-group,
+.radio-group,
+.search-container,
+.hover-container,
+.drag-drop-container {
+  margin-top: var(--spacing-sm);
 }
 
 /* Error message container */
@@ -647,8 +656,19 @@ h4.highlighted-header {
 
 .left-column {
   flex: 0 1 60%;
+  padding-right: var(--spacing-lg);
 }
 
 .right-column {
   flex: 0 1 40%;
+  padding-left: var(--spacing-lg);
+}
+
+/* Adjust spacing for form groups within columns */
+.column .form-group:first-child {
+  margin-top: 0;
+}
+
+.column .form-group:last-child {
+  margin-bottom: 0;
 }
