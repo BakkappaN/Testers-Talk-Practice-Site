@@ -183,6 +183,12 @@ function openVideo(course) {
     videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM';
   } else if (course === 'ts') {
     videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr';
+  } else if (course === 'cypress') {
+    videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq';
+  } else if (course === 'javascript') {
+    videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB';
+  } else if (course === 'api') {
+    videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5';
   }
   
   window.open(videoUrl, '_blank');
