@@ -328,7 +328,7 @@ h4.highlighted-header {
 }
 
 /* Show dropdown on hover */
-.hover-link:hover + .hover-dropdown,
+.hover-link:hover+.hover-dropdown,
 .hover-dropdown:hover {
   display: block;
 }
