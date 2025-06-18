@@ -347,6 +347,13 @@ h4.highlighted-header {
 }
 
 /* ✅ Drag and Drop Styles */
+.drag-drop-container {
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: center;
+  margin-top: var(--spacing-md);
+}
+
 #draggable {
   width: 100px;
   height: 40px;
@@ -359,7 +366,6 @@ h4.highlighted-header {
   align-items: center;
   justify-content: center;
   border-radius: var(--border-radius-md);
-  margin-top: var(--spacing-md);
   font-weight: 600;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
@@ -367,8 +373,7 @@ h4.highlighted-header {
 
 #droppable {
   width: 200px;
-  height: 80px;
-  margin-top: var(--spacing-md);
+  height: 60px;
   padding: var(--spacing-lg);
   border: 2px dashed var(--border-color);
   text-align: center;
@@ -560,7 +565,8 @@ h4.highlighted-header {
 
 /* Form Groups and Labels */
 .form-group {
-  margin-bottom: var(--spacing-md);
+  margin: 0;
+  padding: 0;
   border: none;
 }
 
@@ -626,4 +632,23 @@ h4.highlighted-header {
   gap: var(--spacing-xs);
   font-weight: normal;
   cursor: pointer;
+}
+
+/* Two Column Layout */
+.two-column-container {
+  display: flex;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+}
+
+.column {
+  flex: 1;
+}
+
+.left-column {
+  flex: 0 1 60%;
+}
+
+.right-column {
+  flex: 0 1 40%;
 }
