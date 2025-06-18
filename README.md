@@ -4,12 +4,16 @@
 - Textbox
 - Date
 - Dropdown
-- WebTable
 - Checkbox
 - Radio Button
 - Links
 - IFrames
+- Auto Suggestions
+- Multiple Browser Tabs
+- Alerts & Popups
 - File Upload & Download
 - Drag & Drop
+- WebTable
 - Hover
-- Auto Suggestions
+- Mandatory fields
+- Error Popups
