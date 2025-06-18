@@ -348,30 +348,49 @@ h4.highlighted-header {
 
 /* ✅ Drag and Drop Styles */
 #draggable {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 40px;
   padding: 10px;
-  background-color: #2196f3;
+  background-color: var(--primary-color);
   color: white;
   cursor: move;
   text-align: center;
-  line-height: 100px;
-  border-radius: 8px;
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
 }
 
 #droppable {
-  width: 120px;
-  height: 100px;
-  margin-top: 20px;
-  padding: 20px;
-  border: 2px dashed #aaa;
+  width: 200px;
+  height: 80px;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border: 2px dashed var(--border-color);
   text-align: center;
-  line-height: 110px;
-  font-size: 16px;
-  color: #555;
-  background-color: #f0f0f0;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+  color: var(--text-light);
+  background-color: var(--background-light);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-base);
+}
+
+#draggable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+#droppable.ui-state-hover {
+  background-color: var(--hover-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .ui-state-highlight {
