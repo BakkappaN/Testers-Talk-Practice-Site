@@ -1,14 +1,101 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  margin: 0;
+:root {
+  /* Colors */
+  --primary-color: #4CAF50;
+  --primary-dark: #45a049;
+  --secondary-color: #6a1b9a;
+  --text-color: #333333;
+  --text-light: #666666;
+  --background-color: #ffffff;
+  --background-light: #f9f9f9;
+  --border-color: #cccccc;
+  --error-color: #dc3545;
+  --error-bg: #f8d7da;
+  --success-color: #28a745;
+  --hover-color: #f0f0f0;
+
+  /* Typography */
+  --font-primary: 'Segoe UI', Arial, sans-serif;
+  --font-size-small: 14px;
+  --font-size-base: 16px;
+  --font-size-large: 18px;
+  --font-size-xl: 24px;
+  --line-height-base: 1.5;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+
+  /* Box Shadow */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
 }
 
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  padding: var(--spacing-xl);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: var(--spacing-md);
+  color: var(--secondary-color);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+}
+
+h2 {
+  font-size: calc(var(--font-size-xl) * 0.9);
+}
+
+h3 {
+  font-size: calc(var(--font-size-xl) * 0.8);
+}
+
+h4 {
+  font-size: calc(var(--font-size-xl) * 0.7);
+}
+
+/* Form Elements */
 input,
 select,
 button {
-  padding: 8px;
-  font-size: 14px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-base);
 }
 
 input[type="text"],
@@ -17,13 +104,27 @@ input[type="date"],
 select {
   width: 100%;
   max-width: 300px;
-  box-sizing: border-box;
+  height: 40px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
 }
 
 button {
-  margin-top: 10px;
-  padding: 8px 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
   cursor: pointer;
+  font-weight: 600;
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+button:hover {
+  background-color: var(--primary-dark);
 }
 
 /* Horizontal form container */
@@ -46,45 +147,26 @@ button {
   margin-bottom: 5px;
 }
 
-/* Checkbox and radio groups */
-.checkbox-group,
-.radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.checkbox-group label,
-.radio-group label {
-  margin: 0;
-  font-weight: normal;
-  white-space: nowrap;
-}
-
-.checkbox-group {
-  margin-bottom: 1em;
-}
-
-.radio-group {
-  margin-bottom: 1em;
-}
-
-.form-group {
-  margin-bottom: 1em;
-}
-
-/* Table styles */
+/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  margin: var(--spacing-lg) 0;
+  background-color: var(--background-color);
+  box-shadow: var(--shadow-sm);
 }
 
 th,
 td {
-  border: 1px solid #ccc;
-  padding: 8px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
   text-align: left;
+}
+
+th {
+  background-color: var(--background-light);
+  font-weight: 600;
+  color: var(--secondary-color);
 }
 
 /* Tab styles */
@@ -436,45 +518,93 @@ h4.highlighted-header {
 }
 
 .alert-content {
-  background-color: white;
-  padding: 25px;
-  border-radius: 8px;
+  background-color: var(--background-color);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
   text-align: center;
-  min-width: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
+  min-width: 320px;
+  box-shadow: var(--shadow-lg);
 }
 
 .close-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background-color: var(--primary-color);
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
 }
 
 .close-btn:hover {
-  background-color: #45a049;
+  background-color: var(--primary-dark);
 }
 
-/* Add this to your existing CSS */
+/* Form Groups and Labels */
+.form-group {
+  margin-bottom: var(--spacing-md);
+  border: none;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--text-color);
+  border: none;
+}
+
+/* Form sections */
+.form-horizontal {
+  border: none;
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-horizontal .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Error message container */
+#errorMessage {
+  margin: var(--spacing-md) 0;
+  width: 100%;
+}
+
+/* Mandatory Field Indicator */
 .mandatory::after {
   content: " *";
-  color: red;
+  color: var(--error-color);
   font-weight: bold;
 }
 
+/* Error Message */
 .error-message {
-  color: #dc3545;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 4px;
+  color: var(--error-color);
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-color);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-base);
   display: none;
+  grid-column: 1 / -1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Checkbox and Radio Groups */
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin: var(--spacing-sm) 0;
+}
+
+.checkbox-group label,
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: normal;
+  cursor: pointer;
 }
