@@ -704,8 +704,13 @@ h4.highlighted-header {
   cursor: pointer;
 }
 
+.drag-style-button.iframe-button {
+  width: auto;
+  min-width: 200px;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
 .drag-style-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
   background-color: var(--blue-dark);
 }
