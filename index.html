@@ -97,30 +97,28 @@
               <a href="https://www.youtube.com/@testerstalk" target="_blank">Visit Testers Talk YouTube Channel</a>
             </div>
 
-            <!-- Mouse Hover -->
+            <!-- Alerts popups -->
             <div class="form-group">
-              <label>Mouse Hover:</label>
-              <div class="hover-container">
-                <a href="#" class="hover-link">Hover this link</a>
-                <div class="hover-dropdown">
-                  <a href="https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr&feature=shared"
-                    target="_blank">
-                    Playwright TypeScript by Testers Talk
-                  </a>
-                  <a href="https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM&si=_XrDwMb6lfgy-4gO"
-                    target="_blank">
-                    Playwright JavaScript by Testers Talk
-                  </a>
-                  <a href="https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq&feature=shared"
-                    target="_blank">
-                    Cypress by Testers Talk
-                  </a>
-                  <a href="https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5&si=tWdl6a0tTHglfKSY"
-                    target="_blank">
-                    API Testing by Testers Talk
-                  </a>
-                </div>
+              <label>Alerts Popups:</label>
+              <div class="button-wrapper">
+                <button onclick="showAlert('simple')">Simple Alert</button>
+                <button onclick="showAlert('confirm')">Confirm Alert</button>
+                <button onclick="showAlert('prompt')">Prompt Alert</button>
               </div>
+            </div>
+
+            <!-- Custom Alert Modal -->
+            <div id="customAlert" class="custom-alert">
+              <div class="alert-content">
+                <span id="alertMessage"></span>
+                <button class="close-btn" onclick="closeAlert()">OK</button>
+              </div>
+            </div>
+
+            <!-- Iframes section -->
+            <div class="form-group">
+              <label>Iframes:</label>
+              <iframe id="1122" name="testers" src="video-demo.html" width="100%" height="200" frameborder="0"></iframe>
             </div>
           </div>
 
@@ -225,29 +223,6 @@
             });
           });
         </script>
-
-        <!-- Alerts popups -->
-        <div class="form-group">
-          <label>Alerts Popups:</label>
-          <div class="button-wrapper">
-            <button onclick="showAlert('simple')">Simple Alert</button>
-            <button onclick="showAlert('confirm')">Confirm Alert</button>
-            <button onclick="showAlert('prompt')">Prompt Alert</button>
-          </div>
-        </div>
-
-        <!-- Custom Alert Modal -->
-        <div id="customAlert" class="custom-alert">
-          <div class="alert-content">
-            <span id="alertMessage"></span>
-            <button class="close-btn" onclick="closeAlert()">OK</button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Iframes:</label>
-          <iframe id="1122" name="testers" src="video-demo.html" width="800" height="280" frameborder="0"></iframe>
-        </div>
 
         <div class="button-container">
           <button id="saveBtn" onclick="saveEmployee()">Save</button>
