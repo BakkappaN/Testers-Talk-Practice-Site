@@ -432,28 +432,34 @@ h4.highlighted-header {
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .alert-content {
   background-color: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 25px;
+  border-radius: 8px;
   text-align: center;
   min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
 }
 
 .close-btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #f44336;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .close-btn:hover {
-  background-color: #e53935;
+  background-color: #45a049;
 }
 
 /* Add this to your existing CSS */
@@ -461,4 +467,14 @@ h4.highlighted-header {
   content: " *";
   color: red;
   font-weight: bold;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  display: none;
 }

@@ -13,34 +13,74 @@ function login() {
   }
 }
 
+function showCustomAlert(message) {
+    const customAlert = document.getElementById('customAlert');
+    const alertMessage = document.getElementById('alertMessage');
+    alertMessage.textContent = message;
+    customAlert.style.display = 'flex';
+}
+
+function closeAlert() {
+    const customAlert = document.getElementById('customAlert');
+    customAlert.style.display = 'none';
+}
+
 function saveEmployee() {
-  const name = document.getElementById("empName").value;
-  const dept = document.getElementById("empDept").value;
-  const dob = document.getElementById("empDob").value;
-  const gender = document.getElementById("empGender").value;
+    // Get mandatory field values
+    const name = document.getElementById('empName').value.trim();
+    const department = document.getElementById('empDept').value.trim();
+    const dob = document.getElementById('empDob').value;
+    const gender = document.getElementById('empGender').value;
+    
+    // Check if mandatory fields are empty
+    if (!name || !department || !dob || !gender) {
+        showCustomAlert("Please fill in all mandatory fields marked with *");
+        return false;
+    }
+    
+    // Get selected technologies
+    const technologies = [];
+    document.querySelectorAll('.techCheck:checked').forEach(checkbox => {
+        technologies.push(checkbox.value);
+    });
 
-  const techCheckboxes = document.querySelectorAll(".techCheck");
-  const technologies = Array.from(techCheckboxes)
-    .filter(cb => cb.checked)
-    .map(cb => cb.value);
+    // Get selected country
+    const country = document.querySelector('input[name="country"]:checked').value;
 
-  const country = document.querySelector("input[name='country']:checked").value;
+    // Create table row
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${name}</td>
+        <td>${department}</td>
+        <td>${dob}</td>
+        <td>${gender}</td>
+        <td>${technologies.join(', ')}</td>
+        <td>${country}</td>
+    `;
 
-  if (!name || !dept || !dob) return;
+    // Add row to table
+    const tbody = document.getElementById('empTableBody');
+    tbody.insertBefore(tr, tbody.firstChild);
 
-  let employees = JSON.parse(localStorage.getItem("employees")) || [];
-  employees.unshift({ name, dept, dob, gender, technologies, country });
-  employees = employees.slice(0, 10);
-  localStorage.setItem("employees", JSON.stringify(employees));
-  loadEmployees();
+    // Keep only latest 10 records
+    while (tbody.children.length > 10) {
+        tbody.removeChild(tbody.lastChild);
+    }
 
-  // Reset form
-  document.getElementById("empName").value = "";
-  document.getElementById("empDept").value = "";
-  document.getElementById("empDob").value = "";
-  document.getElementById("empGender").value = "Male";
-  techCheckboxes.forEach(cb => cb.checked = false);
-  document.querySelector("input[name='country'][value='India']").checked = true;
+    // Clear form
+    document.getElementById('empName').value = '';
+    document.getElementById('empDept').value = '';
+    document.getElementById('empDob').value = '';
+    document.getElementById('empGender').value = 'Male';
+    document.querySelectorAll('.techCheck:checked').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    document.querySelector('input[name="country"][value="India"]').checked = true;
+    
+    // Show success message
+    showCustomAlert("Record saved successfully!");
+    
+    return true;
 }
 
 function loadEmployees() {
