@@ -175,3 +175,15 @@ function showAlert(type) {
 function closeAlert() {
   document.getElementById('customAlert').style.display = 'none';
 }
+
+function openVideo(course) {
+  let videoUrl = '';
+  
+  if (course === 'js') {
+    videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM';
+  } else if (course === 'ts') {
+    videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr';
+  }
+  
+  window.open(videoUrl, '_blank');
+}

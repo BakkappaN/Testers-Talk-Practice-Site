@@ -28,8 +28,7 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
 
-  /* Border Radius */
-  --border-radius-sm: 4px;
+  /* Bborder-radius-sm: 4px;
   --border-radius-md: 6px;
   --border-radius-lg: 8px;
 
@@ -677,4 +676,51 @@ h4.highlighted-header {
 
 .column .form-group:last-child {
   margin-bottom: 0;
+}
+
+/* Styles for the iframe buttons */
+.form-group .button-wrapper button {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.form-group .button-wrapper button:hover {
+  background-color: var(--primary-dark);
+}
+
+#videoContainer {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Shared button style matching drag button */
+.drag-style-button {
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.drag-style-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background-color: var(--primary-dark);
 }
