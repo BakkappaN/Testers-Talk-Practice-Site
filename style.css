@@ -12,6 +12,8 @@
   --error-bg: #f8d7da;
   --success-color: #28a745;
   --hover-color: #f0f0f0;
+  --blue-color: #0d47a1;
+  --blue-dark: #002171;
 
   /* Typography */
   --font-primary: 'Segoe UI', Arial, sans-serif;
@@ -679,23 +681,6 @@ h4.highlighted-header {
 }
 
 /* Styles for the iframe buttons */
-.form-group .button-wrapper button {
-  width: 100%;
-  margin: 5px 0;
-  padding: 10px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.form-group .button-wrapper button:hover {
-  background-color: var(--primary-dark);
-}
-
 #videoContainer {
   margin-top: 10px;
   width: 100%;
@@ -706,7 +691,7 @@ h4.highlighted-header {
   width: 100px;
   height: 40px;
   padding: 10px;
-  background-color: var(--primary-color);
+  background-color: var(--blue-color);
   color: white;
   text-align: center;
   display: flex;
@@ -722,5 +707,5 @@ h4.highlighted-header {
 .drag-style-button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  background-color: var(--primary-dark);
+  background-color: var(--blue-dark);
 }
