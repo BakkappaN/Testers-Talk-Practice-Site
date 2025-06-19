@@ -755,3 +755,44 @@ h4.highlighted-header {
     transform: rotate(360deg);
   }
 }
+
+/* Social Media Links Styles */
+.social-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  color: #666;
+  text-decoration: none;
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.social-links a:hover {
+  background-color: #f0f0f0;
+  color: #4CAF50;
+}
+
+.social-links i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.youtube-sub {
+  color: #ff0000 !important;
+  font-weight: 500;
+}
+
+.linkedin-link {
+  color: #0077b5 !important;
+}
+
+.facebook-link {
+  color: #1877f2 !important;
+}
