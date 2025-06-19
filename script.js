@@ -5,9 +5,16 @@ function login() {
   const user = document.getElementById("username").value;
   const pass = document.getElementById("password").value;
   if (user === DUMMY_USER && pass === DUMMY_PASS) {
-    document.getElementById("loginDiv").style.display = "none";
-    document.getElementById("appDiv").style.display = "block";
-    loadEmployees();
+    // Show loading overlay
+    document.getElementById("loadingOverlay").style.display = "flex";
+    
+    // Wait for 4 seconds then proceed with login
+    setTimeout(() => {
+      document.getElementById("loadingOverlay").style.display = "none";
+      document.getElementById("loginDiv").style.display = "none";
+      document.getElementById("appDiv").style.display = "block";
+      loadEmployees();
+    }, 4000);
   } else {
     document.getElementById("loginError").innerText = "Invalid login! "+"try entering 'TestersTalk' as username and password.";
   }
