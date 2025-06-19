@@ -796,3 +796,7 @@ h4.highlighted-header {
 .facebook-link {
   color: #1877f2 !important;
 }
+
+.form-group .social-links {
+  margin-top: 5px;
+}
