@@ -120,7 +120,7 @@
               <label>Iframes:</label>
               <div class="button-wrapper"
                 style="display: flex; flex-wrap: wrap; gap: var(--spacing-xl); margin-top: var(--spacing-md);">
-                <iframe id="courseFrame" style="width: 100%; height: 300px; border: none;" srcdoc='
+                <iframe id="courseFrame" style="width: 100%; height: 120px; border: none;" srcdoc='
                   <html>
                   <head>
                     <style>
@@ -128,7 +128,8 @@
                         display: flex;
                         flex-wrap: wrap;
                         gap: 20px;
-                        padding: 20px;
+                        padding: 10px;
+                        justify-content: center;
                       }
                       .drag-style-button {
                         width: auto;
@@ -234,6 +235,10 @@
           </div>
         </div>
 
+        <div class="button-container">
+          <button id="saveBtn" onclick="saveEmployee()">Save</button>
+        </div>
+
         <script>
           const searchBox = document.getElementById('searchBox');
           const suggestions = document.getElementById('suggestions');
@@ -270,10 +275,6 @@
             });
           });
         </script>
-
-        <div class="button-container">
-          <button id="saveBtn" onclick="saveEmployee()">Save</button>
-        </div>
 
         <h3>Latest 10 Records</h3>
         <table id="empTable">
