@@ -14,7 +14,7 @@ function login() {
       document.getElementById("loginDiv").style.display = "none";
       document.getElementById("appDiv").style.display = "block";
       loadEmployees();
-    }, 4000);
+    }, 2000);
   } else {
     document.getElementById("loginError").innerText = "Invalid login! "+"try entering 'TestersTalk' as username and password.";
   }
