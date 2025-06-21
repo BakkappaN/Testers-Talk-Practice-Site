@@ -8,13 +8,13 @@ function login() {
     // Show loading overlay
     document.getElementById("loadingOverlay").style.display = "flex";
     
-    // Wait for 4 seconds then proceed with login
+    // Wait for 1 second then proceed with login
     setTimeout(() => {
       document.getElementById("loadingOverlay").style.display = "none";
       document.getElementById("loginDiv").style.display = "none";
       document.getElementById("appDiv").style.display = "block";
       loadEmployees();
-    }, 2000);
+    }, 1000);
   } else {
     document.getElementById("loginError").innerText = "Invalid login! "+"try entering 'TestersTalk' as username and password.";
   }
