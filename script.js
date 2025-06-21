@@ -13,6 +13,11 @@ function login() {
       document.getElementById("loadingOverlay").style.display = "none";
       document.getElementById("loginDiv").style.display = "none";
       document.getElementById("appDiv").style.display = "block";
+      // Show welcome message
+      const welcomeMsg = document.getElementById("welcomeMsg");
+      if (welcomeMsg) {
+        welcomeMsg.style.display = "block";
+      }
       loadEmployees();
     }, 1000);
   } else {
