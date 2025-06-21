@@ -232,6 +232,16 @@ th {
   display: block;
 }
 
+/* Add spacing after each chapter in course tabs */
+.tab-content h3 {
+  margin-top: 32px !important;
+  margin-bottom: 10px !important;
+}
+
+.tab-content ul {
+  margin-bottom: 28px !important;
+}
+
 /* Iframe styling */
 iframe {
   margin: 10px 0 20px 0;
