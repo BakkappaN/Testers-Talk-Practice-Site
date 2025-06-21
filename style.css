@@ -315,14 +315,15 @@ h4.highlighted-header {
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: var(--background-light);
   border-radius: var(--border-radius-sm);
-  transition: all var(--transition-base);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+  /* Remove transform from transition */
   display: inline-block;
 }
 
 .hover-link:hover {
   background-color: var(--hover-color);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  /* Remove transform and box-shadow to prevent shaking */
+  /* box-shadow: var(--shadow-sm); */
 }
 
 /* Dropdown container - initially hidden */
@@ -391,7 +392,8 @@ h4.highlighted-header {
   width: 100px;
   height: 40px;
   padding: 10px;
-  background-color: var(--primary-color);
+  background-color: var(--blue-dark);
+  /* Changed to dark blue */
   color: white;
   cursor: move;
   text-align: center;
@@ -421,6 +423,8 @@ h4.highlighted-header {
 }
 
 #draggable:hover {
+  background-color: #00123a;
+  /* Even darker blue on hover */
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -717,7 +721,8 @@ h4.highlighted-header {
   width: 100px;
   height: 40px;
   padding: 10px;
-  background-color: var(--blue-color);
+  background-color: var(--blue-dark);
+  /* Match Drag me button */
   color: white;
   text-align: center;
   display: flex;
@@ -737,8 +742,9 @@ h4.highlighted-header {
   white-space: nowrap;
 }
 
-.drag-style-button:hover {
-  background-color: var(--blue-dark);
+.drag-style-button:hover,
+.drag-style-button.iframe-button:hover {
+  background-color: #00123a;
 }
 
 /* Loading Overlay and Spinner Styles */
