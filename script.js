@@ -70,8 +70,8 @@ function saveEmployee() {
     // Keep only latest 10
     employees = employees.slice(0, 10);
     localStorage.setItem('employees', JSON.stringify(employees));
-    // Render table with clickable name
-    renderEmployeeTable(employees);
+    // Always fetch fresh from localStorage for rendering
+    renderEmployeeTable(JSON.parse(localStorage.getItem('employees')) || []);
     // Clear form
     document.getElementById('empName').value = '';
     document.getElementById('empDept').value = '';
@@ -87,6 +87,10 @@ function saveEmployee() {
 }
 
 function renderEmployeeTable(employees) {
+  // Always fetch fresh from localStorage if not provided
+  if (!employees) {
+    employees = JSON.parse(localStorage.getItem('employees')) || [];
+  }
   const tbody = document.getElementById('empTableBody');
   tbody.innerHTML = '';
   employees.forEach((emp, idx) => {
@@ -108,13 +112,14 @@ function loadEmployees() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Always load employees from localStorage on page load
+  loadEmployees();
   // Auto-login if already logged in
   if (localStorage.getItem('loggedIn') === 'true') {
     document.getElementById("loginDiv").style.display = "none";
     document.getElementById("appDiv").style.display = "block";
     const welcomeMsg = document.getElementById("welcomeMsg");
     if (welcomeMsg) welcomeMsg.style.display = "block";
-    loadEmployees();
     return;
   }
   // File upload handling
@@ -161,6 +166,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     console.error("jQuery UI not loaded. Drag and Drop won't work.");
+  }
+
+  // Add event listener for Clear All Rows button
+  const clearRowsBtn = document.getElementById('clearRowsBtn');
+  if (clearRowsBtn) {
+    clearRowsBtn.onclick = function () {
+      // Only clear employees, not login state
+      localStorage.setItem('employees', JSON.stringify([]));
+      if (typeof employees !== 'undefined') {
+        employees = [];
+      }
+      const tbody = document.getElementById('empTableBody');
+      if (tbody) tbody.innerHTML = '';
+      loadEmployees(); // Refresh table from localStorage
+    };
   }
 });
 

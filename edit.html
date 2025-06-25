@@ -855,14 +855,16 @@
             }
         }
         document.getElementById('saveEditBtn').onclick = function () {
-            if (idx !== null && employees[idx]) {
+            // Always fetch the latest employees from localStorage to avoid stale data
+            const freshEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+            if (idx !== null && freshEmployees[idx]) {
                 // Gather checked technologies
                 const techs = [];
                 document.querySelectorAll('.editTechCheck:checked').forEach(cb => techs.push(cb.value));
                 // Get selected country
                 let country = '';
                 document.querySelectorAll('input[name="editCountry"]').forEach(rb => { if (rb.checked) country = rb.value; });
-                employees[idx] = {
+                freshEmployees[idx] = {
                     name: document.getElementById('editName').value,
                     dept: document.getElementById('editDept').value,
                     dob: document.getElementById('editDob').value,
@@ -870,7 +872,7 @@
                     technologies: techs,
                     country: country
                 };
-                localStorage.setItem('employees', JSON.stringify(employees));
+                localStorage.setItem('employees', JSON.stringify(freshEmployees));
                 localStorage.setItem('loggedIn', 'true'); // Stay logged in after save
                 window.location.href = 'index.html'; // Go back to home after save
             }
