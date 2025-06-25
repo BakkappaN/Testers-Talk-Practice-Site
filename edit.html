@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .logout-link {
+            position: fixed;
+            top: 18px;
+            right: 32px;
+            z-index: 100;
+            font-weight: 600;
+            color: #fff;
+            background: #002171;
+            padding: 8px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        .logout-link:hover {
+            background: #0d47a1;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" class="logout-link" id="logoutLink">Logout</a>
+    <div id="appDiv">
+        <div class="tab-container">
+            <div class="tab-content active" id="editEmployeeDetails">
+                <h2 class="highlighted-header" style="text-align:center;">Edit Employee</h2>
+                <div class="two-column-container">
+                    <div class="column left-column">
+                        <div class="form-group">
+                            <label for="editName" class="mandatory">Name:</label>
+                            <input type="text" id="editName" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editDept" class="mandatory">Department:</label>
+                            <input type="text" id="editDept" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editDob" class="mandatory">Date of Birth:</label>
+                            <input type="date" id="editDob" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editGender" class="mandatory">Gender:</label>
+                            <select id="editGender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="mandatory">Technologies:</label>
+                            <div class="checkbox-group" id="editTechGroup">
+                                <label><input type="checkbox" value="Playwright" class="editTechCheck" />
+                                    Playwright</label>
+                                <label><input type="checkbox" value="Cypress" class="editTechCheck" /> Cypress</label>
+                                <label><input type="checkbox" value="Selenium" class="editTechCheck" /> Selenium</label>
+                                <label><input type="checkbox" value="JavaScript" class="editTechCheck" />
+                                    JavaScript</label>
+                                <label><input type="checkbox" value="Postman" class="editTechCheck" /> Postman</label>
+                                <label><input type="checkbox" value="Rest Assured" class="editTechCheck" /> Rest
+                                    Assured</label>
+                                <label><input type="checkbox" value="API Testing" class="editTechCheck" /> API
+                                    Testing</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="mandatory">Country:</label>
+                            <div class="radio-group" id="editCountryGroup">
+                                <label><input type="radio" name="editCountry" value="India" /> India</label>
+                                <label><input type="radio" name="editCountry" value="United States" /> United
+                                    States</label>
+                                <label><input type="radio" name="editCountry" value="Japan" /> Japan</label>
+                                <label><input type="radio" name="editCountry" value="Russia" /> Russia</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column right-column">
+                        <!-- You can add additional fields or leave this blank for now -->
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button id="saveEditBtn">Save</button>
+                    <button id="cancelBtn" style="margin-left:10px; background:#ccc; color:#222;">Cancel</button>
+                </div>
+                <div id="editMsg" style="margin-top:16px; text-align:center;"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Logout logic
+        document.getElementById('logoutLink').onclick = function (e) {
+            e.preventDefault();
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'index.html';
+        };
+        // Load employee data from localStorage using index from query string
+        function getQueryParam(name) {
+            const url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+        const idx = getQueryParam('idx');
+        const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        if (idx !== null && employees[idx]) {
+            const emp = employees[idx];
+            document.getElementById('editName').value = emp.name;
+            document.getElementById('editDept').value = emp.dept;
+            document.getElementById('editDob').value = emp.dob;
+            document.getElementById('editGender').value = emp.gender;
+            // Pre-check technologies
+            if (Array.isArray(emp.technologies)) {
+                document.querySelectorAll('.editTechCheck').forEach(cb => {
+                    cb.checked = emp.technologies.includes(cb.value);
+                });
+            }
+            // Pre-select country radio
+            if (emp.country) {
+                document.querySelectorAll('input[name="editCountry"]').forEach(rb => {
+                    rb.checked = (rb.value === emp.country);
+                });
+            }
+        }
+        document.getElementById('saveEditBtn').onclick = function () {
+            if (idx !== null && employees[idx]) {
+                // Gather checked technologies
+                const techs = [];
+                document.querySelectorAll('.editTechCheck:checked').forEach(cb => techs.push(cb.value));
+                // Get selected country
+                let country = '';
+                document.querySelectorAll('input[name="editCountry"]').forEach(rb => { if (rb.checked) country = rb.value; });
+                employees[idx] = {
+                    name: document.getElementById('editName').value,
+                    dept: document.getElementById('editDept').value,
+                    dob: document.getElementById('editDob').value,
+                    gender: document.getElementById('editGender').value,
+                    technologies: techs,
+                    country: country
+                };
+                localStorage.setItem('employees', JSON.stringify(employees));
+                localStorage.setItem('loggedIn', 'true'); // Stay logged in after save
+                window.location.href = 'index.html'; // Go back to home after save
+            }
+        };
+        document.getElementById('cancelBtn').onclick = function () {
+            localStorage.setItem('loggedIn', 'true');
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+
+</html>

@@ -18,6 +18,9 @@ function login() {
       if (welcomeMsg) {
         welcomeMsg.style.display = "block";
       }
+      // Show logout button
+      var logoutBtn = document.getElementById('logoutLink');
+      if (logoutBtn) logoutBtn.classList.add('show');
       loadEmployees();
     }, 1000);
   } else {
@@ -61,24 +64,14 @@ function saveEmployee() {
 
     // Create table row
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-        <td>${name}</td>
-        <td>${department}</td>
-        <td>${dob}</td>
-        <td>${gender}</td>
-        <td>${technologies.join(', ')}</td>
-        <td>${country}</td>
-    `;
-
-    // Add row to table
-    const tbody = document.getElementById('empTableBody');
-    tbody.insertBefore(tr, tbody.firstChild);
-
-    // Keep only latest 10 records
-    while (tbody.children.length > 10) {
-        tbody.removeChild(tbody.lastChild);
-    }
-
+    // Save to localStorage for edit functionality
+    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    employees.unshift({ name, dept: department, dob, gender, technologies, country });
+    // Keep only latest 10
+    employees = employees.slice(0, 10);
+    localStorage.setItem('employees', JSON.stringify(employees));
+    // Render table with clickable name
+    renderEmployeeTable(employees);
     // Clear form
     document.getElementById('empName').value = '';
     document.getElementById('empDept').value = '';
@@ -88,20 +81,17 @@ function saveEmployee() {
         checkbox.checked = false;
     });
     document.querySelector('input[name="country"][value="India"]').checked = true;
-    
     // Show success message
     showCustomAlert("Record saved successfully!");
-    
     return true;
 }
 
-function loadEmployees() {
-  const employees = JSON.parse(localStorage.getItem("employees")) || [];
-  const tbody = document.getElementById("empTableBody");
-  tbody.innerHTML = "";
-  employees.forEach(emp => {
+function renderEmployeeTable(employees) {
+  const tbody = document.getElementById('empTableBody');
+  tbody.innerHTML = '';
+  employees.forEach((emp, idx) => {
     const row = `<tr>
-      <td>${emp.name}</td>
+      <td><a href="edit.html?idx=${idx}" style="color:#0d47a1; text-decoration:underline; cursor:pointer;">${emp.name}</a></td>
       <td>${emp.dept}</td>
       <td>${emp.dob}</td>
       <td>${emp.gender}</td>
@@ -112,7 +102,21 @@ function loadEmployees() {
   });
 }
 
+function loadEmployees() {
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
+  renderEmployeeTable(employees);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Auto-login if already logged in
+  if (localStorage.getItem('loggedIn') === 'true') {
+    document.getElementById("loginDiv").style.display = "none";
+    document.getElementById("appDiv").style.display = "block";
+    const welcomeMsg = document.getElementById("welcomeMsg");
+    if (welcomeMsg) welcomeMsg.style.display = "block";
+    loadEmployees();
+    return;
+  }
   // File upload handling
   const fileInput = document.getElementById("fileInput");
   const fileName = document.getElementById("fileName");

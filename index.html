@@ -15,9 +15,36 @@
 
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .logout-link {
+      position: fixed;
+      top: 18px;
+      right: 32px;
+      z-index: 100;
+      font-weight: 600;
+      color: #fff;
+      background: #002171;
+      padding: 8px 18px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+      display: none;
+    }
+
+    .logout-link.show {
+      display: inline-block;
+    }
+
+    .logout-link:hover {
+      background: #0d47a1;
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
+  <a href="#" class="logout-link" id="logoutLink">Logout</a>
 
   <div class="loading-overlay" id="loadingOverlay">
     <div class="spinner"></div>
@@ -1039,6 +1066,19 @@
     </div>
   </div>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Show logout link if logged in
+      if (localStorage.getItem('loggedIn') === 'true') {
+        document.getElementById('logoutLink').classList.add('show');
+      }
+      document.getElementById('logoutLink').onclick = function (e) {
+        e.preventDefault();
+        localStorage.removeItem('loggedIn');
+        window.location.href = 'index.html';
+      };
+    });
+  </script>
 </body>
 
 </html>
