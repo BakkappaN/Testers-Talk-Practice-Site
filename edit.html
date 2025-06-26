@@ -811,6 +811,12 @@
         </div>
     </div>
     <script>
+        // Show logout link only if logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('logoutLink').style.display = 'inline-block';
+        } else {
+            document.getElementById('logoutLink').style.display = 'none';
+        }
         // Logout logic
         document.getElementById('logoutLink').onclick = function (e) {
             e.preventDefault();
