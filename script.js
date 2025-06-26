@@ -178,6 +178,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (tbody) tbody.innerHTML = '';
         loadEmployees(); // Refresh table from localStorage
         showCustomAlert('All employee records have been cleared!');
+        // Edge fallback: if table not cleared, force reload
+        setTimeout(function() {
+          const employees = JSON.parse(localStorage.getItem('employees')) || [];
+          if (employees.length !== 0 || (tbody && tbody.children.length !== 0)) {
+            location.reload();
+          }
+        }, 200);
       }
     };
   }
