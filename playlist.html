@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>YouTube Playlist + GitHub Repo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .playlist-label {
+            font-weight: bold;
+            margin-top: 24px;
+            font-size: 1.1em;
+            color: #0d47a1;
+        }
+
+        .playlist-section {
+            margin-bottom: 32px;
+        }
+
+        .playlist-link {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="backToLoginBtn" class="logout-link"
+        style="position:fixed;top:18px;left:32px;z-index:100;font-weight:600;color:#fff;background:#002171;padding:8px 18px;border-radius:5px;text-decoration:none;transition:background 0.2s;box-shadow:0 2px 6px rgba(0,0,0,0.07);">&larr;
+        Back to Login</button>
+    <div class="container" style="max-width:700px;margin:40px auto;">
+        <h2 style="text-align:center;">YouTube Playlist + GitHub Repo</h2>
+        <div class="playlist-section">
+            <div class="playlist-label">Edit Page</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr"
+                target="_blank">Playwright TypeScript Course</a>
+        </div>
+        <div class="playlist-section">
+            <div class="playlist-label">Playwright TypeScript Course</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr"
+                target="_blank">YouTube Playlist</a>
+            <br>
+            <a class="playlist-link" href="https://github.com/microsoft/playwright" target="_blank">GitHub Repo</a>
+        </div>
+        <div class="playlist-section">
+            <div class="playlist-label">Playwright JavaScript Course</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB"
+                target="_blank">YouTube Playlist</a>
+            <br>
+            <a class="playlist-link" href="https://github.com/microsoft/playwright" target="_blank">GitHub Repo</a>
+        </div>
+        <div class="playlist-section">
+            <div class="playlist-label">Cypress Course</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq"
+                target="_blank">YouTube Playlist</a>
+            <br>
+            <a class="playlist-link" href="https://github.com/cypress-io/cypress" target="_blank">GitHub Repo</a>
+        </div>
+        <div class="playlist-section">
+            <div class="playlist-label">JavaScript Course</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB"
+                target="_blank">YouTube Playlist</a>
+            <br>
+            <a class="playlist-link" href="https://github.com/getify/You-Dont-Know-JS" target="_blank">GitHub Repo</a>
+        </div>
+        <div class="playlist-section">
+            <div class="playlist-label">Postman Course</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5"
+                target="_blank">YouTube Playlist</a>
+            <br>
+            <a class="playlist-link" href="https://github.com/postmanlabs/postman-app-support" target="_blank">GitHub
+                Repo</a>
+        </div>
+        <div class="playlist-section">
+            <div class="playlist-label">Rest Assured Course</div>
+            <a class="playlist-link" href="https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5"
+                target="_blank">YouTube Playlist</a>
+            <br>
+            <a class="playlist-link" href="https://github.com/rest-assured/rest-assured" target="_blank">GitHub Repo</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('backToLoginBtn').onclick = function () {
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+
+</html>
