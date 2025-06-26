@@ -172,14 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const clearRowsBtn = document.getElementById('clearRowsBtn');
   if (clearRowsBtn) {
     clearRowsBtn.onclick = function () {
-      // Only clear employees, not login state
-      localStorage.setItem('employees', JSON.stringify([]));
-      if (typeof employees !== 'undefined') {
-        employees = [];
+      if (confirm('Are you sure you want to clear all employee records?')) {
+        localStorage.setItem('employees', JSON.stringify([]));
+        const tbody = document.getElementById('empTableBody');
+        if (tbody) tbody.innerHTML = '';
+        loadEmployees(); // Refresh table from localStorage
+        showCustomAlert('All employee records have been cleared!');
       }
-      const tbody = document.getElementById('empTableBody');
-      if (tbody) tbody.innerHTML = '';
-      loadEmployees(); // Refresh table from localStorage
     };
   }
 });
