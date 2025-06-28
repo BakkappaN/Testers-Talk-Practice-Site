@@ -315,6 +315,27 @@
       color: #222;
       font-size: 1em;
     }
+
+    .main-header {
+      text-align: center;
+      color: #fff;
+      margin: 0 0 40px 0;
+      font-size: 2.5em;
+      font-weight: 800;
+      position: relative;
+      z-index: 10;
+    }
+
+    .main-header::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(120deg, #7ee787 0%, #79c0ff 40%, #f778ba 100%);
+      bottom: -8px;
+      left: 0;
+      z-index: -1;
+    }
   </style>
 </head>
 
@@ -326,12 +347,13 @@
     <div class="loading-text">Logging in...</div>
   </div>
 
+  <h1 class="main-header">Testers Talk: A Practice Space for Passionate QA Minds</h1>
+
   <div id="loginSection">
-    <h1
-      style="text-align:center; margin-top: 24px; font-size:2rem; color:#fff; font-family:sans-serif; font-weight:700; letter-spacing:1px;">
-      Testers Talk: A Practice Space for Passionate QA Minds</h1>
+
     <div class="main-flex">
       <div id="loginDiv">
+        <!-- Header removed from here -->
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
@@ -1389,6 +1411,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+
       // Show logout link if logged in
       if (localStorage.getItem('loggedIn') === 'true') {
         document.getElementById('logoutLink').classList.add('show');

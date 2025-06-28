@@ -456,6 +456,19 @@ h4.highlighted-header {
   text-align: center;
 }
 
+#loginDiv h1 {
+  color: #222;
+  font-size: 2rem;
+  font-family: var(--font-primary, sans-serif);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+  z-index: 2;
+  position: relative;
+}
+
 /* Style the inputs and button in login */
 #loginDiv input {
   width: 100%;
@@ -831,4 +844,18 @@ h4.highlighted-header {
 
 .form-group .social-links {
   margin-top: 5px;
+}
+
+.main-header {
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  color: #222;
+  font-size: 2rem;
+  font-family: var(--font-primary, sans-serif);
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 10;
+  position: relative;
 }
