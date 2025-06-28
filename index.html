@@ -16,6 +16,162 @@
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      background: #f5f7fa;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .main-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      max-width: none;
+      margin: 60px 0 0 0;
+      box-sizing: border-box;
+      padding-left: 40px;
+      padding-right: 16px;
+      width: 100%;
+      position: static;
+      gap: 60px;
+      /* Increased gap for more spacing between containers */
+    }
+
+    #loginDiv {
+      width: 400px;
+      max-width: 400px;
+      min-width: 320px;
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 32px 28px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 0;
+      top: unset;
+      left: unset;
+      transform: none;
+      align-items: center;
+      margin: 0;
+      position: static;
+      /* Ensure it stays at the left of the flex row */
+      order: 0;
+    }
+
+    #loginDiv input,
+    #loginDiv button {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    #loginDiv input[type="text"],
+    #loginDiv input[type="password"] {
+      width: 100%;
+      max-width: 260px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    #loginDiv button {
+      width: 100%;
+      max-width: 260px;
+      padding: 10px 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background: #1976d2;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: background 0.2s;
+      display: block;
+    }
+
+    #loginDiv button:hover {
+      background: #0d47a1;
+    }
+
+    #loginDiv .social-links {
+      width: 100%;
+    }
+
+    #loginDiv .social-links a {
+      display: inline-block;
+      width: auto;
+    }
+
+    .course-container {
+      width: 100%;
+      max-width: 700px;
+      min-width: 400px;
+      height: auto;
+      min-height: unset;
+      overflow: visible;
+      box-sizing: border-box;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .course-video {
+      width: 100%;
+      max-width: 100%;
+      height: 340px;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+      display: block;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .main-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        max-width: 98vw;
+        margin: 32px auto;
+        padding: 0;
+      }
+
+      #loginDiv,
+      .course-container {
+        min-width: unset;
+        max-width: 95vw;
+        width: 100%;
+        align-items: center;
+      }
+
+      #loginDiv {
+        align-items: center;
+      }
+
+      .course-container {
+        position: static;
+        right: unset;
+        top: unset;
+        transform: none;
+        width: 95vw;
+        max-width: 95vw;
+      }
+    }
+
     .logout-link {
       position: fixed;
       top: 18px;
@@ -40,6 +196,56 @@
       background: #0d47a1;
       color: #fff;
     }
+
+    #loginSection {
+      display: block;
+    }
+
+    #appDiv {
+      display: none;
+    }
+
+    .course-video {
+      width: 100%;
+      max-width: 100%;
+      height: 340px;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .video-nav-btn {
+      font-size: 2rem;
+      background: #f5f7fa;
+      border: 2px solid #1976d2;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #1976d2;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 18px;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+    }
+
+    .video-nav-btn:hover {
+      background: #e3f2fd;
+      color: #e53935;
+      border-color: #e53935;
+    }
+
+    .video-nav-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 24px;
+    }
   </style>
 </head>
 
@@ -51,34 +257,53 @@
     <div class="loading-text">Logging in...</div>
   </div>
 
-  <div id="loginDiv">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <p id="loginError"></p>
+  <div id="loginSection">
+    <h1
+      style="text-align:center; margin-top: 24px; font-size:2rem; color:#0d47a1; font-family:sans-serif; font-weight:700; letter-spacing:1px;">
+      Testers Talk: A Practice Space for Passionate QA Minds</h1>
+    <div class="main-flex">
+      <div id="loginDiv">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p id="loginError"></p>
 
-    <div class="social-links">
-      <a href="https://www.youtube.com/@testerstalk?sub_confirmation=1" target="_blank" class="youtube-sub">
-        <i class="fab fa-youtube"></i>Subscribe for Daily Updates
-      </a>
-      <br>
-      <a href="https://www.linkedin.com/groups/10393547/" target="_blank" class="linkedin-link">
-        <i class="fab fa-linkedin"></i>Join LinkedIn Group
-      </a>
-      <br>
-      <a href="https://www.facebook.com/groups/247868358996762" target="_blank" class="facebook-link">
-        <i class="fab fa-facebook"></i>Join Facebook Group
-      </a>
-      <br>
-      <a href="https://www.linkedin.com/in/bakkappa-n" target="_blank" class="linkedin-link">
-        <i class="fab fa-linkedin"></i>Connect on LinkedIn
-      </a>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@testerstalk?sub_confirmation=1" target="_blank" class="youtube-sub">
+            <i class="fab fa-youtube"></i>Subscribe for Daily Updates
+          </a>
+          <br>
+          <a href="https://www.linkedin.com/groups/10393547/" target="_blank" class="linkedin-link">
+            <i class="fab fa-linkedin"></i>Join LinkedIn Group
+          </a>
+          <br>
+          <a href="https://www.facebook.com/groups/247868358996762" target="_blank" class="facebook-link">
+            <i class="fab fa-facebook"></i>Join Facebook Group
+          </a>
+          <br>
+          <a href="https://www.linkedin.com/in/bakkappa-n" target="_blank" class="linkedin-link">
+            <i class="fab fa-linkedin"></i>Connect on LinkedIn
+          </a>
+        </div>
+
+        <a href="playlist.html" id="playlistLink"
+          style="display:block;margin:20px auto 0 auto;text-align:center;font-weight:bold;color:#1976d2;text-decoration:underline;">YouTube
+          Playlist + GitHub Repo.</a>
+      </div>
+
+      <div class="course-container">
+        <h2 id="courseTitle" style="margin-bottom: 12px;">YouTube FREE Courses</h2>
+        <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
+          style="margin-bottom: 18px;">Playwright TypeScript Course</a>
+        <div class="video-nav-controls">
+          <button id="prevVideo" class="video-nav-btn" aria-label="Previous Video">&lt;</button>
+          <iframe id="courseVideo" class="course-video" src="https://www.youtube.com/embed/788GvvcfwTY"
+            title="Playwright TypeScript Course" allowfullscreen></iframe>
+          <button id="nextVideo" class="video-nav-btn" aria-label="Next Video">&gt;</button>
+        </div>
+      </div>
     </div>
-
-    <a href="playlist.html" id="playlistLink"
-      style="display:block;margin:20px auto 0 auto;text-align:center;font-weight:bold;color:#1976d2;text-decoration:underline;">YouTube
-      Playlist + GitHub Repo.</a>
   </div>
 
   <div id="appDiv" style="display:none;">
@@ -507,7 +732,7 @@
                   <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- NodeJS Plugin</li>
                   <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Git Plugin</li>
                   <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- JUnit Plugin</li>
-                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Allure Plugin</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- Allure Plugin</li>
                 </ul>
               </li>
               <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Add GitHub PAT token in Jenkins?</li>
@@ -1085,6 +1310,102 @@
         window.location.href = 'index.html';
       };
     });
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      if (user === "TestersTalk" && pass === "TestersTalk") {
+        document.getElementById("loadingOverlay").style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("loadingOverlay").style.display = "none";
+          // Hide login section and header
+          var loginSection = document.getElementById('loginSection');
+          if (loginSection) loginSection.style.display = 'none';
+          // Also hide header if it is outside loginSection (extra safety)
+          var header = document.querySelector('h1');
+          if (header) header.style.display = 'none';
+          document.getElementById("appDiv").style.display = "block";
+          // Show welcome message
+          const welcomeMsg = document.getElementById("welcomeMsg");
+          if (welcomeMsg) {
+            welcomeMsg.style.display = "block";
+          }
+          // Show logout button
+          var logoutBtn = document.getElementById('logoutLink');
+          if (logoutBtn) logoutBtn.classList.add('show');
+          if (typeof loadEmployees === 'function') loadEmployees();
+        }, 1000);
+      } else {
+        document.getElementById("loginError").innerText = "Invalid login! try entering 'TestersTalk' as username and password.";
+      }
+    }
+
+    function saveEmployee() {
+      // ...existing save logic...
+      // After saving employee details, ensure loginSection and YouTube FREE Courses are hidden
+      var loginSection = document.getElementById('loginSection');
+      if (loginSection) loginSection.style.display = 'none';
+      var appDiv = document.getElementById('appDiv');
+      if (appDiv) appDiv.style.display = 'block';
+    }
+
+    const videos = [
+      {
+        title: 'Playwright TypeScript Course',
+        link: 'https://youtu.be/788GvvcfwTY?feature=shared',
+        embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1'
+      },
+      {
+        title: 'Playwright JavaScript Course',
+        link: 'https://youtu.be/2poXBtifpzA?feature=shared',
+        embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1'
+      },
+      {
+        title: 'Cypress Course',
+        link: 'https://youtu.be/oJV5whmzfZI?feature=shared',
+        embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1'
+      },
+      {
+        title: 'JavaScript For Beginners',
+        link: 'https://youtu.be/ACUMZ3OkExQ?feature=shared',
+        embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1'
+      },
+      {
+        title: 'Postman Course',
+        link: 'https://youtu.be/QKBa8lt5Wfo?feature=shared',
+        embed: 'https://www.youtube.com/embed/QKBa8lt5Wfo?autoplay=1&mute=1'
+      },
+      {
+        title: 'Rest Assured Course',
+        link: 'https://youtu.be/o9KJhGHl49M?feature=shared',
+        embed: 'https://www.youtube.com/embed/o9KJhGHl49M?autoplay=1&mute=1'
+      },
+      {
+        title: 'Specflow with Selenium Course',
+        link: 'https://youtu.be/7xPcalwU76c?feature=shared',
+        embed: 'https://www.youtube.com/embed/7xPcalwU76c?autoplay=1&mute=1'
+      }
+    ];
+    let current = 0;
+    function updateVideo() {
+      document.getElementById('courseLink').textContent = videos[current].title;
+      document.getElementById('courseLink').href = videos[current].link;
+      // Reload iframe with autoplay and mute
+      const iframe = document.getElementById('courseVideo');
+      iframe.src = videos[current].embed;
+    }
+    // Ensure first video autoplays by resetting src on load
+    window.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('courseVideo').src = videos[0].embed;
+    });
+    document.getElementById('prevVideo').onclick = function () {
+      current = (current - 1 + videos.length) % videos.length;
+      updateVideo();
+    };
+    document.getElementById('nextVideo').onclick = function () {
+      current = (current + 1) % videos.length;
+      updateVideo();
+    };
   </script>
 </body>
 

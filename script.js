@@ -11,7 +11,9 @@ function login() {
     // Wait for 1 second then proceed with login
     setTimeout(() => {
       document.getElementById("loadingOverlay").style.display = "none";
-      document.getElementById("loginDiv").style.display = "none";
+      // Hide the entire login section (header + containers)
+      var loginSection = document.getElementById('loginSection');
+      if (loginSection) loginSection.style.display = 'none';
       document.getElementById("appDiv").style.display = "block";
       // Show welcome message
       const welcomeMsg = document.getElementById("welcomeMsg");
@@ -21,6 +23,8 @@ function login() {
       // Show logout button
       var logoutBtn = document.getElementById('logoutLink');
       if (logoutBtn) logoutBtn.classList.add('show');
+      // Set login state
+      localStorage.setItem('loggedIn', 'true');
       loadEmployees();
     }, 1000);
   } else {
@@ -116,10 +120,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loadEmployees();
   // Auto-login if already logged in
   if (localStorage.getItem('loggedIn') === 'true') {
-    document.getElementById("loginDiv").style.display = "none";
-    document.getElementById("appDiv").style.display = "block";
+    // Hide login section and YouTube course container
+    var loginSection = document.getElementById('loginSection');
+    if (loginSection) loginSection.style.display = 'none';
+    var appDiv = document.getElementById('appDiv');
+    if (appDiv) appDiv.style.display = 'block';
     const welcomeMsg = document.getElementById("welcomeMsg");
     if (welcomeMsg) welcomeMsg.style.display = "block";
+    // Show logout button
+    var logoutBtn = document.getElementById('logoutLink');
+    if (logoutBtn) logoutBtn.classList.add('show');
     return;
   }
   // File upload handling
