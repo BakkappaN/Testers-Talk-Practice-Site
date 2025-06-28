@@ -17,10 +17,12 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      background: #f5f7fa;
+      background: #fff url('https://github.githubassets.com/images/modules/site/home-campaign/hero-bg.webp') no-repeat center center fixed;
+      background-size: cover;
       min-height: 100vh;
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
+      position: relative;
     }
 
     .main-flex {
@@ -28,7 +30,7 @@
       flex-direction: row;
       justify-content: flex-start;
       align-items: flex-start;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       max-width: none;
       margin: 60px 0 0 0;
       box-sizing: border-box;
@@ -37,7 +39,15 @@
       width: 100%;
       position: static;
       gap: 60px;
-      /* Increased gap for more spacing between containers */
+    }
+
+    #loginDiv,
+    .course-container,
+    .playground-container {
+      position: relative;
+      z-index: 1;
+      border: 2.5px solid #fff !important;
+      /* Remove any pseudo-element border/flash */
     }
 
     #loginDiv {
@@ -45,9 +55,10 @@
       max-width: 400px;
       min-width: 320px;
       position: relative;
-      background: #fff;
-      border-radius: 12px;
+      background: transparent;
+      border-radius: 16px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border: 2.5px solid #fff !important;
       padding: 32px 28px;
       box-sizing: border-box;
       display: flex;
@@ -61,8 +72,26 @@
       align-items: center;
       margin: 0;
       position: static;
-      /* Ensure it stays at the left of the flex row */
       order: 0;
+      overflow: visible;
+    }
+
+    #loginDiv::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 20px;
+      z-index: 0;
+      background: linear-gradient(120deg, #7ee787 0%, #79c0ff 40%, #f778ba 100%);
+      padding: 0;
+      filter: blur(0px) brightness(1.08);
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    #loginDiv>* {
+      position: relative;
+      z-index: 1;
     }
 
     #loginDiv input,
@@ -248,15 +277,29 @@
     }
 
     .playground-container {
-      background: #fff;
-      border-radius: 10px;
+      background: transparent;
+      border-radius: 16px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
       padding: 24px 32px;
-      min-width: 220px;
-      max-width: 260px;
+      min-width: 320px;
+      max-width: 400px;
+      width: 400px;
+      min-height: 420px;
       margin-left: 12px;
       margin-top: 0;
-      align-self: flex-start;
+      position: relative;
+      z-index: 1;
+      overflow: visible;
+    }
+
+    .playground-container::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    .playground-container>* {
+      position: relative;
+      z-index: 1;
     }
 
     .playground-container h3 {
@@ -285,7 +328,7 @@
 
   <div id="loginSection">
     <h1
-      style="text-align:center; margin-top: 24px; font-size:2rem; color:#0d47a1; font-family:sans-serif; font-weight:700; letter-spacing:1px;">
+      style="text-align:center; margin-top: 24px; font-size:2rem; color:#fff; font-family:sans-serif; font-weight:700; letter-spacing:1px;">
       Testers Talk: A Practice Space for Passionate QA Minds</h1>
     <div class="main-flex">
       <div id="loginDiv">
@@ -318,10 +361,10 @@
           Playlist + GitHub Repo.</a>
       </div>
 
-      <div class="course-container">
-        <h2 id="courseTitle" style="margin-bottom: 12px;">YouTube FREE Courses</h2>
+      <div class="course-container" style="color:#fff;">
+        <h2 id="courseTitle" style="margin-bottom: 12px; color:#fff;">YouTube FREE Courses</h2>
         <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
-          style="margin-bottom: 18px;">Playwright TypeScript Course</a>
+          style="margin-bottom: 18px; color:#fff; text-decoration:underline;">Playwright TypeScript Course</a>
         <div class="video-nav-controls">
           <button id="prevVideo" class="video-nav-btn" aria-label="Previous Video">&lt;</button>
           <iframe id="courseVideo" class="course-video" src="https://www.youtube.com/embed/788GvvcfwTY"
@@ -331,7 +374,7 @@
       </div>
 
       <div class="playground-container">
-        <h3>Playground Contains</h3>
+        <h3>Playground Contains:</h3>
         <ol style="margin:0 0 0 18px;padding:0;color:#222;font-size:1em;">
           <li>Login Form</li>
           <li>Textboxes</li>
@@ -354,7 +397,7 @@
 
   <div id="appDiv" style="display:none;">
     <div id="welcomeMsg"
-      style="display:none; font-size: 1.3em; color: #0d47a1; font-weight: bold; margin-bottom: 16px; text-align:center;">
+      style="display:none; font-size: 1.3em; color: #fff; font-weight: bold; margin-bottom: 16px; text-align:center;">
       Welcome to Testers Talk!</div>
     <div class="tab-container">
       <div class="tab-buttons">
@@ -1359,6 +1402,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       if (localStorage.getItem('loggedIn') === 'true') {
+
         var loginSection = document.getElementById('loginSection');
         if (loginSection) loginSection.style.display = 'none';
         var appDiv = document.getElementById('appDiv');
