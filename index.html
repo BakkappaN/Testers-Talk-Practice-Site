@@ -1311,6 +1311,19 @@
       };
     });
 
+    document.addEventListener('DOMContentLoaded', function() {
+      if (localStorage.getItem('loggedIn') === 'true') {
+        var loginSection = document.getElementById('loginSection');
+        if (loginSection) loginSection.style.display = 'none';
+        var appDiv = document.getElementById('appDiv');
+        if (appDiv) appDiv.style.display = 'block';
+        var welcomeMsg = document.getElementById('welcomeMsg');
+        if (welcomeMsg) welcomeMsg.style.display = 'block';
+        var logoutBtn = document.getElementById('logoutLink');
+        if (logoutBtn) logoutBtn.classList.add('show');
+      }
+    });
+
     function login() {
       const user = document.getElementById("username").value;
       const pass = document.getElementById("password").value;
