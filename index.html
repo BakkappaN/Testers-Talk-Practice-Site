@@ -336,6 +336,30 @@
       left: 0;
       z-index: -1;
     }
+
+    .purple-heading {
+      color: #7c3aed !important;
+      text-shadow: 1px 1px 2px #e0e0ff;
+      font-weight: bold;
+    }
+
+    .login-label-style {
+      color: #4B006E !important;
+      text-shadow: 1px 1px 2px #e0e0ff;
+      font-weight: bold;
+      font-size: 2em;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+
+    .main-header-label {
+      color: #4B006E !important;
+      text-shadow: 1px 1px 2px #e0e0ff;
+      font-weight: bold;
+      font-size: 2.2em;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 
@@ -347,14 +371,14 @@
     <div class="loading-text">Logging in...</div>
   </div>
 
-  <h1 class="main-header" id="siteHeader">Testers Talk: A Practice Space for Passionate QA Minds</h1>
+  <h1 class="main-header-label" id="siteHeader">Testers Talk: A Practice Space for Passionate QA Minds</h1>
 
   <div id="loginSection">
 
     <div class="main-flex">
       <div id="loginDiv">
         <!-- Header removed from here -->
-        <h2>Login</h2>
+        <h2 class="login-label-style">Login</h2>
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
         <button onclick="login()">Login</button>
@@ -384,7 +408,8 @@
       </div>
 
       <div class="course-container" style="color:#fff;">
-        <h2 id="courseTitle" style="margin-bottom: 12px; color:#fff;">YouTube FREE Courses</h2>
+        <h2 class="login-label-style" id="courseTitle" style="margin-bottom: 12px; color:#fff;">YouTube FREE Courses
+        </h2>
         <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
           style="margin-bottom: 18px; color:#fff; text-decoration:underline;">Playwright TypeScript Course</a>
         <div class="video-nav-controls">
@@ -396,7 +421,7 @@
       </div>
 
       <div class="playground-container">
-        <h3>Playground Contains:</h3>
+        <h2 class="login-label-style">Playground Contains:</h2>
         <ol style="margin:0 0 0 18px;padding:0;color:#222;font-size:1em;">
           <li>Login Form</li>
           <li>Textboxes</li>
