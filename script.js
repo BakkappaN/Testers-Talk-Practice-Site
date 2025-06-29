@@ -215,6 +215,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
   }
+
+  // Auto-advance YouTube course video every 5 seconds
+  const nextVideoBtn = document.getElementById('nextVideo');
+  if (nextVideoBtn) {
+    setInterval(() => {
+      // Only auto-advance if the button is visible (container is shown)
+      if (nextVideoBtn.offsetParent !== null) {
+        nextVideoBtn.click();
+      }
+    }, 20000);
+  }
 });
 
 // Alerts Popups functionality
