@@ -14,6 +14,9 @@ function login() {
       // Hide the entire login section (header + containers)
       var loginSection = document.getElementById('loginSection');
       if (loginSection) loginSection.style.display = 'none';
+      // Hide the header after login
+      var siteHeader = document.getElementById('siteHeader');
+      if (siteHeader) siteHeader.style.display = 'none';
       document.getElementById("appDiv").style.display = "block";
       // Show welcome message
       const welcomeMsg = document.getElementById("welcomeMsg");
@@ -87,6 +90,7 @@ function saveEmployee() {
     document.querySelector('input[name="country"][value="India"]').checked = true;
     // Show success message
     showCustomAlert("Record saved successfully!");
+    hideHeaderIfNotLogin();
     return true;
 }
 
@@ -115,6 +119,18 @@ function loadEmployees() {
   renderEmployeeTable(employees);
 }
 
+function hideHeaderIfNotLogin() {
+  var loginSection = document.getElementById('loginSection');
+  var siteHeader = document.getElementById('siteHeader');
+  if (siteHeader) {
+    if (!loginSection || loginSection.style.display === 'none') {
+      siteHeader.style.display = 'none';
+    } else {
+      siteHeader.style.display = '';
+    }
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Always load employees from localStorage on page load
   loadEmployees();
@@ -130,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show logout button
     var logoutBtn = document.getElementById('logoutLink');
     if (logoutBtn) logoutBtn.classList.add('show');
+    hideHeaderIfNotLogin(); // <-- Ensure header is hidden after auto-login
     return;
   }
   // File upload handling

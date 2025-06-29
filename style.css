@@ -846,16 +846,18 @@ h4.highlighted-header {
   margin-top: 5px;
 }
 
+#siteHeader,
 .main-header {
-  width: 100%;
-  text-align: center;
-  margin-top: 32px;
-  margin-bottom: 32px;
-  color: #222;
+  color: #6a1b9a;
+  /* Use the secondary color for strong contrast */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 0 #fff;
   font-size: 2rem;
   font-family: var(--font-primary, sans-serif);
   font-weight: 700;
   letter-spacing: 1px;
-  z-index: 10;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+  z-index: 2;
   position: relative;
 }

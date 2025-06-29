@@ -347,7 +347,7 @@
     <div class="loading-text">Logging in...</div>
   </div>
 
-  <h1 class="main-header">Testers Talk: A Practice Space for Passionate QA Minds</h1>
+  <h1 class="main-header" id="siteHeader">Testers Talk: A Practice Space for Passionate QA Minds</h1>
 
   <div id="loginSection">
 
@@ -434,8 +434,8 @@
 
       <!-- Employee Details Tab -->
       <div class="tab-content active" id="employeeDetails">
-        <h4 class="highlighted-header">Textbox, Date, Dropdown, WebTable, Checkbox, Radio Button, Links, IFrames,
-          File Upload & Download, Drag Drop, Mulitple Tabs etc.</h4>
+        <!-- <h4 class="highlighted-header">Textbox, Date, Dropdown, WebTable, Checkbox, Radio Button, Links, IFrames,
+          File Upload & Download, Drag Drop, Mulitple Tabs etc.</h4> -->
 
         <div class="form-horizontal">
           <div class="form-group">
@@ -1473,6 +1473,12 @@
       if (loginSection) loginSection.style.display = 'none';
       var appDiv = document.getElementById('appDiv');
       if (appDiv) appDiv.style.display = 'block';
+    }
+
+    // Hide header if not on login page
+    if (document.getElementById('loginDiv') === null || document.getElementById('loginDiv').offsetParent === null) {
+      var header = document.getElementById('siteHeader');
+      if (header) header.style.display = 'none';
     }
 
     const videos = [
