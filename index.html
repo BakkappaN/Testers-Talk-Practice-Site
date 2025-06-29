@@ -360,6 +360,173 @@
       margin-bottom: 18px;
       letter-spacing: 1px;
     }
+
+    .main-link-dark-purple {
+      color: #4B006E !important;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    /* Chatbot Widget */
+    .chatbot-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 320px;
+      max-width: 90vw;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+      border: 1px solid #e0e0e0;
+      z-index: 9999;
+      font-family: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chatbot-header {
+      background: #4B006E;
+      color: #fff;
+      padding: 12px 16px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .chatbot-header-controls {
+      float: right;
+      display: flex;
+      gap: 6px;
+      margin-left: 10px;
+    }
+
+    .chatbot-header-btn {
+      width: 22px;
+      height: 22px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1.1em;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .chatbot-header-btn:hover {
+      background: rgba(76, 0, 110, 0.18);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      font-size: 1em;
+      background: #faf7fd;
+      max-height: 320px;
+      min-height: 60px;
+      scrollbar-width: thin;
+      scrollbar-color: #4B006E #e0e0e0;
+    }
+
+    .chatbot-messages::-webkit-scrollbar {
+      width: 8px;
+      background: #e0e0e0;
+      border-radius: 6px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-thumb {
+      background: #4B006E;
+      border-radius: 6px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-thumb:hover {
+      background: #7c3aed;
+    }
+
+    .chatbot-input-row {
+      display: flex;
+      border-top: 1px solid #eee;
+      background: #fff;
+    }
+
+    .chatbot-input-row input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 1em;
+      outline: none;
+      background: #fff;
+    }
+
+    .chatbot-input-row button {
+      background: #4B006E;
+      color: #fff;
+      border: none;
+      padding: 0 18px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 0 0 12px 0;
+      transition: background 0.2s;
+    }
+
+    .chatbot-input-row button:hover {
+      background: #2d0040;
+    }
+
+    .chatbot-message {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .chatbot-message.user {
+      text-align: right;
+      color: #4B006E;
+      font-weight: 500;
+    }
+
+    .chatbot-message.bot {
+      text-align: left;
+      color: #333;
+    }
+
+    .chatbot-option-btn {
+      background: #f3e8ff;
+      color: #4B006E;
+      border: 1px solid #d1b3ff;
+      border-radius: 6px;
+      padding: 6px 14px;
+      margin: 4px 4px 0 0;
+      cursor: pointer;
+      font-size: 0.98em;
+      transition: background 0.2s;
+    }
+
+    .chatbot-option-btn:hover {
+      background: #e9d5ff;
+    }
+
+    .chatbot-container.minimized {
+      height: 44px !important;
+      min-height: 0 !important;
+      max-height: 44px !important;
+      overflow: hidden;
+      transition: height 0.2s, max-height 0.2s;
+    }
+
+    .chatbot-container.maximized {
+      width: 98vw !important;
+      max-width: 98vw !important;
+      height: 90vh !important;
+      max-height: 90vh !important;
+      right: 1vw !important;
+      bottom: 1vh !important;
+      z-index: 99999;
+      transition: width 0.2s, height 0.2s, max-width 0.2s, max-height 0.2s;
+    }
   </style>
 </head>
 
@@ -402,9 +569,8 @@
           </a>
         </div>
 
-        <a href="playlist.html" id="playlistLink"
-          style="display:block;margin:20px auto 0 auto;text-align:center;font-weight:bold;color:#1976d2;text-decoration:underline;">YouTube
-          Playlist + GitHub Repo.</a>
+        <!-- Update the link to use the new class -->
+        <a href="playlist.html" class="main-link-dark-purple">YouTube Playlist + GitHub Repo.</a>
       </div>
 
       <div class="course-container" style="color:#fff;">
@@ -440,6 +606,7 @@
           <li>Auto Suggestions</li>
           <li>File Upload & Download</li>
           <li>Back, Forward, Refresh</li>
+          <li>Chatbot</li>
         </ol>
       </div>
     </div>
@@ -1436,6 +1603,128 @@
 
     </div>
   </div>
+
+  <!-- Chatbot Widget -->
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">
+      Testers Talk Chatbot
+      <span class="chatbot-header-controls">
+        <button class="chatbot-header-btn" id="chatbotMinBtn" title="Minimize" aria-label="Minimize">&#8211;</button>
+        <button class="chatbot-header-btn" id="chatbotMaxBtn" title="Maximize" aria-label="Maximize">&#9723;</button>
+        <button class="chatbot-header-btn" id="chatbotCloseBtn" title="Close" aria-label="Close">&#10005;</button>
+      </span>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chatbot-message bot">👋 Hi! Type 'Hi' to start a conversation.</div>
+    </div>
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbotInput" placeholder="Type your message..." autocomplete="off" />
+      <button id="chatbotSendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const chatbot = document.getElementById('chatbot');
+      const minBtn = document.getElementById('chatbotMinBtn');
+      const maxBtn = document.getElementById('chatbotMaxBtn');
+      const closeBtn = document.getElementById('chatbotCloseBtn');
+      let isMin = false, isMax = false;
+
+      minBtn.onclick = function () {
+        if (!isMin) {
+          chatbot.classList.add('minimized');
+          isMin = true;
+        } else {
+          chatbot.classList.remove('minimized');
+          isMin = false;
+        }
+      };
+      maxBtn.onclick = function () {
+        if (!isMax) {
+          chatbot.classList.add('maximized');
+          isMax = true;
+        } else {
+          chatbot.classList.remove('maximized');
+          isMax = false;
+        }
+      };
+      closeBtn.onclick = function () {
+        chatbot.style.display = 'none';
+      };
+
+      const messagesDiv = document.getElementById('chatbotMessages');
+      const input = document.getElementById('chatbotInput');
+      const sendBtn = document.getElementById('chatbotSendBtn');
+
+      function appendMessage(text, sender) {
+        const msg = document.createElement('div');
+        msg.className = 'chatbot-message ' + sender;
+        msg.innerHTML = text;
+        messagesDiv.appendChild(msg);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+
+      function showOptions() {
+        const optionsDiv = document.createElement('div');
+        optionsDiv.innerHTML =
+          '<button class="chatbot-option-btn" onclick="window.chatbotOption(1)">1. Playground Features</button>' +
+          '<button class="chatbot-option-btn" onclick="window.chatbotOption(2)">2. YouTube Free Courses</button>';
+        appendMessage(optionsDiv.innerHTML, 'bot');
+      }
+
+      window.chatbotOption = function (opt) {
+        if (opt === 1) {
+          appendMessage(`Playground Features:<br><ol style='margin:0 0 0 18px;padding:0;color:#222;font-size:1em;'>
+        <li>Login Form</li>
+        <li>Textboxes</li>
+        <li>Dropdown</li>
+        <li>Checkboxes</li>
+        <li>Radio Buttons</li>
+        <li>Date Picker</li>
+        <li>Web Tables</li>
+        <li>Links</li>
+        <li>Iframes</li>
+        <li>Multiple Browser Tabs</li>
+        <li>Alerts, Prompts, Confirmations - Dialogues</li>
+        <li>Multiple Tabs</li>
+        <li>Drag and Drop</li>
+        <li>Mouse Hover</li>
+        <li>Auto Suggestions</li>
+        <li>File Upload & Download</li>
+        <li>Back, Forward, Refresh</li>
+        <li>Chatbot</li>
+      </ol>`, 'bot');
+        } else if (opt === 2) {
+          appendMessage('YouTube Free Courses:<br>' +
+            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr" target="_blank" class="main-link-dark-purple">Playwright TypeScript Full Course</a><br>' +
+            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM" target="_blank" class="main-link-dark-purple">Playwright JavaScript Full Course</a><br>' +
+            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq" target="_blank" class="main-link-dark-purple">Cypress Full Course</a><br>' +
+            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB" target="_blank" class="main-link-dark-purple">JavaScript For Beginners</a><br>' +
+            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5" target="_blank" class="main-link-dark-purple">API Testing Full Course</a>', 'bot');
+        }
+      };
+
+      function handleUserInput() {
+        const val = input.value.trim();
+        if (!val) return;
+        appendMessage(val, 'user');
+        input.value = '';
+        if (/^hi$/i.test(val)) {
+          setTimeout(showOptions, 400);
+        } else {
+          setTimeout(function () {
+            appendMessage("Please type 'Hi' to start. 😊", 'bot');
+          }, 400);
+        }
+      }
+
+      sendBtn.onclick = handleUserInput;
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') handleUserInput();
+      });
+    })();
+  </script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
