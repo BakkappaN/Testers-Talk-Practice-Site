@@ -1696,18 +1696,73 @@
         <li>Chatbot</li>
       </ol>`, 'bot');
         } else if (opt === 2) {
-          appendMessage('YouTube Free Courses:<br>' +
-            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr" target="_blank" class="main-link-dark-purple">Playwright TypeScript Full Course</a><br>' +
-            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM" target="_blank" class="main-link-dark-purple">Playwright JavaScript Full Course</a><br>' +
-            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq" target="_blank" class="main-link-dark-purple">Cypress Full Course</a><br>' +
-            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB" target="_blank" class="main-link-dark-purple">JavaScript For Beginners</a><br>' +
-            '<a href="https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5" target="_blank" class="main-link-dark-purple">API Testing Full Course</a>', 'bot');
+          // Show all labels as options
+          const ytOptions = [
+            {
+              label: 'Playwright TypeScript Course',
+              youtube: 'https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr',
+              github: ['https://github.com/BakkappaN/PlaywrightTypeScriptTutorialFullCourse']
+            },
+            {
+              label: 'Playwright JavaScript Course',
+              youtube: 'https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM',
+              github: [
+                'https://github.com/BakkappaN/PlaywrightTutorialFullCourse',
+                'https://github.com/BakkappaN/PlaywrightAPITestingTutorial'
+              ]
+            },
+            {
+              label: 'Cypress Course',
+              youtube: 'https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq',
+              github: ['https://github.com/BakkappaN/CypressTutorialFullCourse']
+            },
+            {
+              label: 'JavaScript Course',
+              youtube: 'https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB',
+              github: ['https://github.com/BakkappaN/JavaScriptTutorialFullCourse']
+            },
+            {
+              label: 'Postman Course',
+              youtube: 'https://youtube.com/playlist?list=PLUeDIlio4THGcgNP3_Ocb_I_l4ITai5QT',
+              github: ['https://github.com/BakkappaN/PostmanCollectionsByTestersTalk']
+            },
+            {
+              label: 'Rest Assured Course',
+              youtube: 'https://youtube.com/playlist?list=PLUeDIlio4THGL7lQXQwxsV9re_i0U2b0Q',
+              github: ['https://github.com/BakkappaN/RestAssuredAPITestingFramework']
+            }
+          ];
+          let html = '<div style="margin-bottom:8px;">Select a course:</div>';
+          ytOptions.forEach((item, idx) => {
+            html += `<button class='chatbot-option-btn' onclick='window.selectYTOption(${idx})'>${item.label}</button>`;
+          });
+          appendMessage(html, 'bot');
+          window._ytOptions = ytOptions;
+        }
+      };
+
+      window.selectYTOption = function (idx) {
+        const opt = window._ytOptions[idx];
+        if (opt) {
+          let html = `<div><b>${opt.label}</b><br>`;
+          html += `<a href='${opt.youtube}' target='_blank' class='main-link-dark-purple'>YouTube Playlist</a><br>`;
+          opt.github.forEach((repo, i) => {
+            html += `<a href='${repo}' target='_blank' class='main-link-dark-purple'>GitHub Repo${opt.github.length > 1 ? ' ' + (i + 1) : ''}</a><br>`;
+          });
+          html += '</div>';
+          appendMessage(html, 'bot');
         }
       };
 
       function handleUserInput() {
         const val = input.value.trim();
         if (!val) return;
+        if (/^start over$/i.test(val)) {
+          messagesDiv.innerHTML = '';
+          setTimeout(showOptions, 400);
+          input.value = '';
+          return;
+        }
         appendMessage(val, 'user');
         input.value = '';
         if (/^hi$/i.test(val)) {
