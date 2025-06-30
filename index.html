@@ -1672,6 +1672,25 @@
         msg.innerHTML = text;
         messagesDiv.appendChild(msg);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        // Add Start Over button after every bot response
+        if (sender === 'bot') {
+          addStartOverButton();
+        }
+      }
+
+      function addStartOverButton() {
+        // Remove any existing Start Over button
+        const oldBtn = messagesDiv.querySelector('.chatbot-startover-btn');
+        if (oldBtn) oldBtn.remove();
+        const btn = document.createElement('button');
+        btn.className = 'chatbot-startover-btn chatbot-option-btn';
+        btn.textContent = 'Start Over';
+        btn.onclick = function () {
+          messagesDiv.innerHTML = '';
+          setTimeout(showOptions, 400);
+        };
+        messagesDiv.appendChild(btn);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
       }
 
       function showOptions() {

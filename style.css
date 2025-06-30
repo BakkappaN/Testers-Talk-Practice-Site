@@ -888,3 +888,24 @@ h4.highlighted-header {
 #chatbot.maximized-header .chatbot-header {
   border-radius: 16px 16px 0 0;
 }
+
+/* Chatbot Start Over Button */
+.chatbot-startover-btn {
+  display: block;
+  margin: 16px auto 0 auto;
+  background: #fffbe7;
+  color: #b26a00;
+  border: 1px solid #ffe082;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 22px;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.08);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.chatbot-startover-btn:hover {
+  background: #ffe082;
+  color: #6a1b9a;
+}
