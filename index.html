@@ -527,6 +527,15 @@
       z-index: 99999;
       transition: width 0.2s, height 0.2s, max-width 0.2s, max-height 0.2s;
     }
+
+    .chatbot-container.maximized-header {
+      height: calc(100vh - 48px) !important;
+      top: 48px !important;
+      right: 1vw !important;
+      bottom: 1vh !important;
+      z-index: 99999;
+      transition: height 0.2s, top 0.2s, right 0.2s, bottom 0.2s;
+    }
   </style>
 </head>
 
@@ -1778,6 +1787,20 @@
       input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') handleUserInput();
       });
+
+      const chatbotHeader = document.querySelector('.chatbot-header');
+      if (chatbotHeader) {
+        chatbotHeader.style.cursor = 'pointer';
+        chatbotHeader.addEventListener('click', function (e) {
+          // Only trigger if not clicking a control button
+          if (e.target.closest('.chatbot-header-controls')) return;
+          if (!chatbot.classList.contains('maximized-header')) {
+            chatbot.classList.add('maximized-header');
+          } else {
+            chatbot.classList.remove('maximized-header');
+          }
+        });
+      }
     })();
   </script>
 
