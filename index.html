@@ -536,6 +536,98 @@
       z-index: 99999;
       transition: height 0.2s, top 0.2s, right 0.2s, bottom 0.2s;
     }
+
+    /* Scrollable Courses Section */
+    .scrollable-courses-section {
+      margin: 40px 0;
+      padding: 0 16px;
+      color: #333;
+    }
+
+    .scrollable-courses-section h2 {
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 24px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .scrollable-courses-section h2::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(120deg, #7ee787 0%, #79c0ff 40%, #f778ba 100%);
+      bottom: -6px;
+      left: 0;
+      z-index: -1;
+    }
+
+    .scrollable-courses-table {
+      width: 100%;
+      max-width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      table-layout: auto;
+    }
+
+    .scrollable-courses-table th,
+    .scrollable-courses-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid #e0e0e0;
+      vertical-align: middle;
+    }
+
+    .scrollable-courses-table th {
+      background: #f5f7fa;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .scrollable-courses-table td {
+      background: #fff;
+      color: #555;
+    }
+
+    .scrollable-courses-table a {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .scrollable-courses-table a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+
+      .scrollable-courses-table,
+      .scrollable-courses-table th,
+      .scrollable-courses-table td {
+        font-size: 0.9em;
+        padding: 10px 12px;
+      }
+
+      .scrollable-courses-section h2 {
+        font-size: 1.5em;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .scrollable-courses-table,
+      .scrollable-courses-table th,
+      .scrollable-courses-table td {
+        font-size: 0.8em;
+        padding: 8px 10px;
+      }
+
+      .scrollable-courses-section h2 {
+        font-size: 1.3em;
+      }
+    }
   </style>
 </head>
 
@@ -608,6 +700,7 @@
           <li>Links</li>
           <li>Iframes</li>
           <li>Multiple Browser Tabs</li>
+          <li>Scrolling - Horizontal & Vertical</li>
           <li>Alerts, Prompts, Confirmations - Dialogues</li>
           <li>Multiple Tabs</li>
           <li>Drag and Drop</li>
@@ -1611,6 +1704,63 @@
 
 
     </div>
+
+    <div id="appScrollableCourses" class="scrollable-courses-section" style="display:block;">
+      <h2 style="color:#6a1b9a; margin-bottom: 16px;">Scrolling - Horizontal & Vertical</h2>
+      <table class="scrollable-courses-table">
+        <thead>
+          <tr>
+            <th>Course Title</th>
+            <th>Preview</th>
+            <th>Watch on YouTube</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Playwright TypeScript Course</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1"
+                title="Playwright TypeScript Course" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+          <tr>
+            <td>Playwright JavaScript Course</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1"
+                title="Playwright JavaScript Course" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/2poXBtifpzA?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+          <tr>
+            <td>Cypress Course</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1"
+                title="Cypress Course" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/oJV5whmzfZI?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+          <tr>
+            <td>JavaScript For Beginners</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1"
+                title="JavaScript For Beginners" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/ACUMZ3OkExQ?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+          <tr>
+            <td>Postman Course</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/QKBa8lt5Wfo?autoplay=1&mute=1"
+                title="Postman Course" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/QKBa8lt5Wfo?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+          <tr>
+            <td>Rest Assured Course</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/o9KJhGHl49M?autoplay=1&mute=1"
+                title="Rest Assured Course" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/o9KJhGHl49M?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+          <tr>
+            <td>Specflow with Selenium Course</td>
+            <td><iframe width="220" height="124" src="https://www.youtube.com/embed/7xPcalwU76c?autoplay=1&mute=1"
+                title="Specflow with Selenium Course" allow="autoplay" allowfullscreen></iframe></td>
+            <td><a href="https://youtu.be/7xPcalwU76c?feature=shared" target="_blank">Watch</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Chatbot Widget -->
@@ -1631,7 +1781,6 @@
       <button id="chatbotSendBtn">Send</button>
     </div>
   </div>
-
   <script>
     (function () {
       const chatbot = document.getElementById('chatbot');
@@ -1719,6 +1868,7 @@
         <li>Drag and Drop</li>
         <li>Mouse Hover</li>
         <li>Auto Suggestions</li>
+        <li>Scrolling - Horizontal & Vertical</li>
         <li>File Upload & Download</li>
         <li>Back, Forward, Refresh</li>
         <li>Chatbot</li>
@@ -1874,6 +2024,12 @@
           var logoutBtn = document.getElementById('logoutLink');
           if (logoutBtn) logoutBtn.classList.add('show');
           if (typeof loadEmployees === 'function') loadEmployees();
+          // Show scrollable courses section after login
+          var appScrollableCourses = document.getElementById('appScrollableCourses');
+          if (appScrollableCourses) {
+            appScrollableCourses.style.display = 'block';
+            appScrollableCourses.scrollIntoView({ behavior: 'smooth' });
+          }
         }, 1000);
       } else {
         document.getElementById("loginError").innerText = "Invalid login! try entering 'TestersTalk' as username and password.";
@@ -1953,6 +2109,8 @@
       updateVideo();
     };
   </script>
+  <!-- End Scrollable YouTube FREE Courses Grid -->
+
 </body>
 
 </html>

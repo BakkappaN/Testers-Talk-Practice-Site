@@ -226,6 +226,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 20000);
   }
+
+  // Show/hide last column in scrollable-courses-table on horizontal scroll
+  (function() {
+    const section = document.querySelector('.scrollable-courses-section');
+    if (!section) return;
+    section.addEventListener('scroll', function() {
+      if (section.scrollLeft > 0) { // Lowered threshold for instant feedback
+        section.classList.add('scrolled');
+      } else {
+        section.classList.remove('scrolled');
+      }
+    });
+  })();
 });
 
 // Alerts Popups functionality

@@ -909,3 +909,112 @@ h4.highlighted-header {
   background: #ffe082;
   color: #6a1b9a;
 }
+
+/* Scrollable Courses Grid Styles */
+.scrollable-courses-section {
+  margin: 48px 0 0 0;
+  padding: 24px 0 0 0;
+  background: #f9f9fc;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  width: 80vw;
+  max-width: 1440px;
+  position: static;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 600px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  padding-bottom: 12px;
+}
+
+.scrollable-courses-table {
+  min-width: 1600px;
+  width: 1600px;
+  max-width: none;
+  table-layout: auto;
+}
+
+.scrollable-courses-table th,
+.scrollable-courses-table td {
+  border: 1px solid #e0e0e0;
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.scrollable-courses-table th {
+  background: #6a1b9a;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.scrollable-courses-table td {
+  background: #fafaff;
+  font-size: 1em;
+}
+
+.scrollable-courses-table a {
+  color: #0d47a1;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.scrollable-courses-table a:hover {
+  color: #4caf50;
+}
+
+.scrollable-courses-table iframe {
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  width: 440px !important;
+  height: 248px !important;
+}
+
+/* Hide only the link in the last column by default, show it only when table is scrolled horizontally */
+.scrollable-courses-table td:last-child a,
+.scrollable-courses-table th:last-child a {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.scrollable-courses-section.scrolled .scrollable-courses-table td:last-child a,
+.scrollable-courses-section.scrolled .scrollable-courses-table th:last-child a {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+
+  .scrollable-courses-table th,
+  .scrollable-courses-table td {
+    padding: 8px 6px;
+    font-size: 0.98em;
+  }
+
+  .scrollable-courses-table iframe {
+    width: 140px;
+    height: 80px;
+  }
+
+  .scrollable-courses-table td:last-child a,
+  .scrollable-courses-table th:last-child a {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Center the Watch link in the last column of the table both horizontally and vertically */
+.scrollable-courses-table td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}
