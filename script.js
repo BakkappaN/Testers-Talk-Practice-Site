@@ -45,6 +45,20 @@ function showCustomAlert(message) {
 function closeAlert() {
     const customAlert = document.getElementById('customAlert');
     customAlert.style.display = 'none';
+    // Handle post-auto-logout UI
+    if (window._autoLoggedOut) {
+        window._autoLoggedOut = false;
+        var appDiv = document.getElementById('appDiv');
+        if (appDiv) appDiv.style.display = 'none';
+        var loginSection = document.getElementById('loginSection');
+        if (loginSection) loginSection.style.display = '';
+        var siteHeader = document.getElementById('siteHeader');
+        if (siteHeader) siteHeader.style.display = '';
+        var logoutBtn = document.getElementById('logoutLink');
+        if (logoutBtn) logoutBtn.classList.remove('show');
+        var welcomeMsg = document.getElementById('welcomeMsg');
+        if (welcomeMsg) welcomeMsg.style.display = 'none';
+    }
 }
 
 function saveEmployee() {
@@ -239,6 +253,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   })();
+
+  // Hide/show Logout button on scroll: only show when at top
+  window.addEventListener('scroll', function() {
+    var logoutBtn = document.getElementById('logoutLink');
+    if (!logoutBtn) return;
+    if (window.scrollY < 20 && logoutBtn.classList.contains('show')) {
+      logoutBtn.style.opacity = '1';
+      logoutBtn.style.pointerEvents = 'auto';
+    } else {
+      logoutBtn.style.opacity = '0';
+      logoutBtn.style.pointerEvents = 'none';
+    }
+  });
 });
 
 // Alerts Popups functionality
@@ -266,7 +293,22 @@ function showAlert(type) {
 }
 
 function closeAlert() {
-  document.getElementById('customAlert').style.display = 'none';
+  const customAlert = document.getElementById('customAlert');
+  customAlert.style.display = 'none';
+  // Handle post-auto-logout UI
+  if (window._autoLoggedOut) {
+      window._autoLoggedOut = false;
+      var appDiv = document.getElementById('appDiv');
+      if (appDiv) appDiv.style.display = 'none';
+      var loginSection = document.getElementById('loginSection');
+      if (loginSection) loginSection.style.display = '';
+      var siteHeader = document.getElementById('siteHeader');
+      if (siteHeader) siteHeader.style.display = '';
+      var logoutBtn = document.getElementById('logoutLink');
+      if (logoutBtn) logoutBtn.classList.remove('show');
+      var welcomeMsg = document.getElementById('welcomeMsg');
+      if (welcomeMsg) welcomeMsg.style.display = 'none';
+  }
 }
 
 function openVideo(course) {
@@ -286,3 +328,32 @@ function openVideo(course) {
   
   window.open(videoUrl, '_blank');
 }
+
+// --- Auto Logout on Inactivity (1 minute) ---
+(function() {
+  let logoutTimer;
+  const LOGOUT_TIME = 1800000; // 1 minute
+
+  function resetLogoutTimer() {
+    if (logoutTimer) clearTimeout(logoutTimer);
+    if (localStorage.getItem('loggedIn') === 'true') {
+      logoutTimer = setTimeout(() => {
+        // Perform logout
+        localStorage.removeItem('loggedIn');
+        // Show alert and set flag, defer UI hiding to closeAlert
+        window._autoLoggedOut = true;
+        showCustomAlert('You have been automatically logged out due to 1 minute of inactivity. Please log in again to continue.');
+      }, LOGOUT_TIME);
+    }
+  }
+
+  // Listen for user activity
+  ['mousemove','keydown','mousedown','touchstart','scroll'].forEach(evt => {
+    window.addEventListener(evt, resetLogoutTimer, true);
+  });
+
+  // Start timer on page load if logged in
+  if (localStorage.getItem('loggedIn') === 'true') {
+    resetLogoutTimer();
+  }
+})();

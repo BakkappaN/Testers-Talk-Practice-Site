@@ -887,6 +887,18 @@
             localStorage.setItem('loggedIn', 'true');
             window.location.href = 'index.html';
         };
+        // Hide/show Logout button on scroll: only show when at top
+        window.addEventListener('scroll', function () {
+            var logoutBtn = document.getElementById('logoutLink');
+            if (!logoutBtn) return;
+            if (window.scrollY < 20 && logoutBtn.style.display !== 'none') {
+                logoutBtn.style.opacity = '1';
+                logoutBtn.style.pointerEvents = 'auto';
+            } else {
+                logoutBtn.style.opacity = '0';
+                logoutBtn.style.pointerEvents = 'none';
+            }
+        });
     </script>
 </body>
 

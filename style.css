@@ -1027,73 +1027,36 @@ h4.highlighted-header {
   vertical-align: middle;
 }
 
-/* ...existing code... */
-.tab-buttons {
-  margin-bottom: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-start;
+.logout-link {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  font-weight: 600;
+  color: #fff;
+  background: #002171;
+  padding: 10px 22px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  display: none;
 }
 
-.tab-button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-right: 0;
-  border-radius: 4px 4px 0 0;
-  transition: background-color 0.3s ease;
-  flex: 0 0 auto;
-  min-width: 180px;
-  max-width: 100%;
-  box-sizing: border-box;
+.logout-link.show {
+  display: inline-block;
 }
 
-@media (max-width: 900px) {
-  .tab-button {
-    min-width: 140px;
-    padding: 10px 8px;
+.logout-link:hover {
+  background: #0d47a1;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .logout-link {
+    top: 8px;
+    right: 8px;
+    padding: 8px 12px;
     font-size: 15px;
-  }
-}
-
-@media (max-width: 700px) {
-  .tab-buttons {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 6px;
-    scrollbar-width: thin;
-    scrollbar-color: #bdbdbd #f9f9f9;
-  }
-
-  .tab-button {
-    min-width: 120px;
-    font-size: 14px;
-    white-space: nowrap;
-  }
-
-  .tab-buttons::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .tab-buttons::-webkit-scrollbar-thumb {
-    background: #bdbdbd;
-    border-radius: 3px;
-  }
-
-  .tab-buttons::-webkit-scrollbar-track {
-    background: #f9f9f9;
-  }
-}
-
-@media (max-width: 480px) {
-  .tab-button {
-    min-width: 100px;
-    font-size: 13px;
-    padding: 8px 6px;
   }
 }

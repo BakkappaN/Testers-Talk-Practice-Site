@@ -57,11 +57,27 @@
             background: #7c3aed;
             color: #fff;
         }
+
+        #backToLoginBtn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 4px 10px;
+            font-size: 0.9em;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+        }
     </style>
 </head>
 
 <body>
-    <a href="#" class="logout-link" id="logoutLink">Logout</a>
+    <button id="backToLoginBtn">Back</button>
     <div id="appDiv">
         <div class="tab-container">
             <div class="tab-buttons">
@@ -329,10 +345,9 @@
                     <li>&nbsp;&nbsp;&nbsp;1.17 Pick Locator in VS Code</li>
                     <li>&nbsp;&nbsp;&nbsp;1.18 Install Playwright from Command Prompt</li>
                     <li>&nbsp;&nbsp;&nbsp;1.19 Run Test in Headless mode</li>
-                    <li>&nbsp;&nbsp;&nbsp;1.20 Run Test in UI mode</li>
-                    <li>&nbsp;&nbsp;&nbsp;1.21 Run Specific Spec File</li>
-                    <li>&nbsp;&nbsp;&nbsp;1.22 Run Test on Different Browsers</li>
-                    <li>&nbsp;&nbsp;&nbsp;1.23 Codegen – Record and Play Test</li>
+                    <li>&nbsp;&nbsp;&nbsp;1.20 Run Test in Headed mode</li>
+                    <li>&nbsp;&nbsp;&nbsp;1.21 Run Test on Different Browsers using CMD</li>
+                    <li>&nbsp;&nbsp;&nbsp;1.22 Codegen – Record and Play Test</li>
                 </ul>
                 <h3>2. Locators, Assertions, Hooks, Annotations & Actions</h3>
                 <ul>
@@ -759,13 +774,22 @@
             </div>
         </div>
     </div>
-    <button id="backToLoginBtn" class="logout-link"
-        style="position:fixed;top:18px;left:32px;z-index:100;font-weight:600;color:#fff;background:#002171;padding:8px 18px;border-radius:5px;text-decoration:none;transition:background 0.2s;box-shadow:0 2px 6px rgba(0,0,0,0.07);">
-        Back</button>
     <script>
         document.getElementById('backToLoginBtn').onclick = function () {
             window.location.href = 'index.html';
         };
+        // Hide/show Back and Logout buttons on scroll (only visible at top)
+        function handleScrollButtons() {
+            const backBtn = document.getElementById('backToLoginBtn');
+            if (window.scrollY === 0) {
+                backBtn.style.display = 'block';
+            } else {
+                backBtn.style.display = 'none';
+            }
+        }
+        window.addEventListener('scroll', handleScrollButtons);
+        // Initial state
+        handleScrollButtons();
         // Tab switching logic for playlist page
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
