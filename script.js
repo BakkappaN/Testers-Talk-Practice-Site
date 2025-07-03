@@ -160,7 +160,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show logout button
     var logoutBtn = document.getElementById('logoutLink');
     if (logoutBtn) logoutBtn.classList.add('show');
-    hideHeaderIfNotLogin(); // <-- Ensure header is hidden after auto-login
+    hideHeaderIfNotLogin();
+    // --- Tab logic and clear rows logic always initialize after login ---
+    initializeTabs();
+    restoreActiveTab();
+    initializeClearRowsBtn();
     return;
   }
   // File upload handling
@@ -183,17 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Tab switching logic
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
-
-  tabButtons.forEach((btn, idx) => {
-    btn.addEventListener("click", () => {
-      tabButtons.forEach(b => b.classList.remove("active"));
-      tabContents.forEach(c => c.classList.remove("active"));
-      btn.classList.add("active");
-      tabContents[idx].classList.add("active");
-    });
-  });
+  initializeTabs();
+  restoreActiveTab();
+  // Clear All Rows button logic
+  initializeClearRowsBtn();
 
   // ✅ Drag and Drop functionality using jQuery UI
   if (typeof $ !== "undefined" && typeof $.ui !== "undefined") {
@@ -357,3 +354,53 @@ function openVideo(course) {
     resetLogoutTimer();
   }
 })();
+
+// --- Tab logic helpers ---
+function initializeTabs() {
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+  tabButtons.forEach((btn, idx) => {
+    btn.onclick = function () {
+      tabButtons.forEach(b => b.classList.remove("active"));
+      tabContents.forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      tabContents[idx].classList.add("active");
+      // Save active tab index
+      localStorage.setItem('activeTabIdx', idx);
+    };
+  });
+}
+
+function restoreActiveTab() {
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+  let idx = parseInt(localStorage.getItem('activeTabIdx'), 10);
+  if (isNaN(idx) || idx < 0 || idx >= tabButtons.length) idx = 0;
+  tabButtons.forEach(b => b.classList.remove("active"));
+  tabContents.forEach(c => c.classList.remove("active"));
+  if (tabButtons[idx]) tabButtons[idx].classList.add("active");
+  if (tabContents[idx]) tabContents[idx].classList.add("active");
+}
+
+// --- Clear All Rows button logic helper ---
+function initializeClearRowsBtn() {
+  const clearRowsBtn = document.getElementById('clearRowsBtn');
+  if (clearRowsBtn) {
+    clearRowsBtn.onclick = function () {
+      if (confirm('Are you sure you want to clear all employee records?')) {
+        localStorage.setItem('employees', JSON.stringify([]));
+        const tbody = document.getElementById('empTableBody');
+        if (tbody) tbody.innerHTML = '';
+        loadEmployees(); // Refresh table from localStorage
+        showCustomAlert('All employee records have been cleared!');
+        // Edge fallback: if table not cleared, force reload
+        setTimeout(function() {
+          const employees = JSON.parse(localStorage.getItem('employees')) || [];
+          if (employees.length !== 0 || (tbody && tbody.children.length !== 0)) {
+            location.reload();
+          }
+        }, 200);
+      }
+    };
+  }
+}
