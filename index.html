@@ -1878,12 +1878,12 @@
         <li>Links</li>
         <li>Iframes</li>
         <li>Multiple Browser Tabs</li>
+        <li>Scrolling - Horizontal & Vertical</li>
         <li>Alerts, Prompts, Confirmations - Dialogues</li>
         <li>Multiple Tabs</li>
         <li>Drag and Drop</li>
         <li>Mouse Hover</li>
         <li>Auto Suggestions</li>
-        <li>Scrolling - Horizontal & Vertical</li>
         <li>File Upload & Download</li>
         <li>Back, Forward, Refresh</li>
         <li>Chatbot</li>
@@ -1942,6 +1942,11 @@
           opt.github.forEach((repo, i) => {
             html += `<a href='${repo}' target='_blank' class='main-link-dark-purple'>GitHub Repo${opt.github.length > 1 ? ' ' + (i + 1) : ''}</a><br>`;
           });
+          // Add downloadable links for Playwright TypeScript Course
+          if (opt.label === 'Playwright TypeScript Course') {
+            html += `<p>📄 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.pdf" download>Download PDF Document</a></p>`;
+            html += `<p>📝 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download>Download Word Document</a></p>`;
+          }
           html += '</div>';
           appendMessage(html, 'bot');
         }
