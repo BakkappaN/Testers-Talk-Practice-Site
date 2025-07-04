@@ -326,10 +326,10 @@ function openVideo(course) {
   window.open(videoUrl, '_blank');
 }
 
-// --- Auto Logout on Inactivity (1 minute) ---
+// --- Auto Logout on Inactivity (3 minute) ---
 (function() {
   let logoutTimer;
-  const LOGOUT_TIME = 1800000; // 1 minute
+  const LOGOUT_TIME = 1800000; // 3 minute
 
   function resetLogoutTimer() {
     if (logoutTimer) clearTimeout(logoutTimer);
@@ -339,7 +339,7 @@ function openVideo(course) {
         localStorage.removeItem('loggedIn');
         // Show alert and set flag, defer UI hiding to closeAlert
         window._autoLoggedOut = true;
-        showCustomAlert('You have been automatically logged out due to 1 minute of inactivity. Please log in again to continue.');
+        showCustomAlert('You have been automatically logged out due to 3 minute of inactivity. Please log in again to continue.');
       }, LOGOUT_TIME);
     }
   }
