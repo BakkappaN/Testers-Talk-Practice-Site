@@ -4,7 +4,18 @@ const DUMMY_PASS = "TestersTalk";
 function login() {
   const user = document.getElementById("username").value;
   const pass = document.getElementById("password").value;
+  const rememberMe = document.getElementById("rememberMe").checked;
   if (user === DUMMY_USER && pass === DUMMY_PASS) {
+    // Save credentials if rememberMe is checked
+    if (rememberMe) {
+      localStorage.setItem('savedUsername', user);
+      localStorage.setItem('savedPassword', pass);
+      localStorage.setItem('rememberMe', 'true');
+    } else {
+      localStorage.removeItem('savedUsername');
+      localStorage.removeItem('savedPassword');
+      localStorage.removeItem('rememberMe');
+    }
     // Show loading overlay
     document.getElementById("loadingOverlay").style.display = "flex";
     
@@ -166,6 +177,12 @@ document.addEventListener("DOMContentLoaded", () => {
     restoreActiveTab();
     initializeClearRowsBtn();
     return;
+  }
+  // Auto-fill credentials if saved
+  if (localStorage.getItem('rememberMe') === 'true') {
+    document.getElementById('username').value = localStorage.getItem('savedUsername') || '';
+    document.getElementById('password').value = localStorage.getItem('savedPassword') || '';
+    document.getElementById('rememberMe').checked = true;
   }
   // File upload handling
   const fileInput = document.getElementById("fileInput");
@@ -404,3 +421,14 @@ function initializeClearRowsBtn() {
     };
   }
 }
+
+// Hide Logout button on scroll, show only at top
+window.addEventListener('scroll', function() {
+  var logoutBtn = document.querySelector('.logout-link');
+  if (!logoutBtn) return;
+  if (window.scrollY > 10) {
+    logoutBtn.classList.add('hide-on-scroll');
+  } else {
+    logoutBtn.classList.remove('hide-on-scroll');
+  }
+});

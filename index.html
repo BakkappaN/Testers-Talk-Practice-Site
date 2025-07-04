@@ -650,6 +650,10 @@
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
         <button onclick="login()">Login</button>
+        <div class="remember-me-row">
+          <input type="checkbox" id="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+        </div>
         <p id="loginError"></p>
 
         <div class="social-links">
@@ -826,7 +830,7 @@
 
             <!-- Iframes section -->
             <div class="form-group">
-              <label>Iframes:</label>
+              <label>Iframe:</label>
               <div class="button-wrapper"
                 style="display: flex; flex-wrap: wrap; gap: var(--spacing-xl); margin-top: var(--spacing-md);">
                 <iframe id="courseFrame" style="width: 100%; height: 120px; border: none;" srcdoc='

@@ -510,6 +510,19 @@ h4.highlighted-header {
   margin-top: 10px;
 }
 
+/* Ensure Remember me checkbox and label are in a single line and styled */
+#loginDiv .remember-me-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: auto;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Search box styles */
 .search-container {
   position: relative;
@@ -1028,19 +1041,26 @@ h4.highlighted-header {
 }
 
 .logout-link {
-  position: fixed;
+  position: absolute;
   top: 16px;
   right: 16px;
   z-index: 9999;
   font-weight: 600;
-  color: #fff;
-  background: #002171;
+  color: #111 !important;
+  background: #fff !important;
   padding: 10px 22px;
   border-radius: 5px;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background 0.2s, opacity 0.2s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
   display: none;
+  opacity: 1;
+  border: 1px solid #ccc;
+}
+
+.logout-link.hide-on-scroll {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .logout-link.show {
@@ -1048,8 +1068,8 @@ h4.highlighted-header {
 }
 
 .logout-link:hover {
-  background: #0d47a1;
-  color: #fff;
+  background: #f5f5f5 !important;
+  color: #111 !important;
 }
 
 @media (max-width: 600px) {
