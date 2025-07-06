@@ -268,6 +268,7 @@
     <script>
         // Video data for Playwright TypeScript Full Course
         const latestVideos = [
+            // Playwright TypeScript Full Course
             {
                 part: 'Playwright TypeScript Course PART-01',
                 link: 'https://youtu.be/788GvvcfwTY?feature=shared',
@@ -291,6 +292,58 @@
                 link: 'https://youtu.be/D44k45N6S58?feature=shared',
                 embed: 'https://www.youtube.com/embed/D44k45N6S58?autoplay=1&mute=1',
                 title: 'Playwright TypeScript Full Course PART-04'
+            },
+            // Playwright JavaScript Full Course (3 parts)
+            {
+                part: 'Playwright JavaScript Course PART-01',
+                link: 'https://youtu.be/2poXBtifpzA?feature=shared',
+                embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-01'
+            },
+            {
+                part: 'Playwright JavaScript Course PART-02',
+                link: 'https://youtu.be/lM-lqPun9P8?feature=shared',
+                embed: 'https://www.youtube.com/embed/lM-lqPun9P8?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-02'
+            },
+            {
+                part: 'Playwright JavaScript Course PART-03',
+                link: 'https://youtu.be/Exx2M5Pz06g?feature=shared',
+                embed: 'https://www.youtube.com/embed/Exx2M5Pz06g?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-03'
+            },
+            // Cypress Tutorial Full Course
+            {
+                part: 'Cypress Tutorial Full Course',
+                link: 'https://youtu.be/oJV5whmzfZI?feature=shared',
+                embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1',
+                title: 'Cypress Tutorial Full Course PART-01'
+            },
+            // JavaScript For Beginners
+            {
+                part: 'JavaScript For Beginners',
+                link: 'https://youtu.be/ACUMZ3OkExQ?feature=shared',
+                embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1',
+                title: 'JavaScript For Beginners PART-01'
+            },
+            // API Testing (Manual + Automation) Full Course (3 parts)
+            {
+                part: 'API Testing Course PART-01',
+                link: 'https://youtu.be/QKBa8lt5Wfo?feature=shared',
+                embed: 'https://www.youtube.com/embed/QKBa8lt5Wfo?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-01'
+            },
+            {
+                part: 'API Testing Course PART-02',
+                link: 'https://youtu.be/o9KJhGHl49M?feature=shared',
+                embed: 'https://www.youtube.com/embed/o9KJhGHl49M?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-02'
+            },
+            {
+                part: 'API Testing Course PART-03',
+                link: 'https://youtu.be/kay86__5eTg?feature=shared',
+                embed: 'https://www.youtube.com/embed/kay86__5eTg?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-03'
             }
         ];
 
@@ -320,7 +373,8 @@
             if (latestAutoScrollInterval) clearInterval(latestAutoScrollInterval);
             latestAutoScrollInterval = setInterval(() => {
                 if (latestStartIdx + latestVisibleCount < latestVideos.length) {
-                    latestStartIdx++;
+                    latestStartIdx += latestVisibleCount;
+                    if (latestStartIdx >= latestVideos.length) latestStartIdx = 0;
                 } else {
                     latestStartIdx = 0;
                 }
