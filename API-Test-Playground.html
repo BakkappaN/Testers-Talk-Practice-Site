@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>API Test Playground</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: #2a003f;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: block;
+            overflow-y: auto;
+        }
+
+        .api-playground-container {
+            background: #3d0066;
+            border-radius: 16px;
+            padding: 40px 32px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+            margin: 120px auto 0 auto;
+        }
+
+        .api-playground-title {
+            font-size: 2em;
+            margin-bottom: 18px;
+            color: #4b006e;
+            text-shadow: 1px 1px 2px #e0e0ff;
+            font-weight: bold;
+        }
+
+        .api-playground-desc {
+            font-size: 1.1em;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 24px;
+            left: 32px;
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 22px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            z-index: 101;
+        }
+
+        .back-btn:hover {
+            background: #32004a;
+        }
+
+        header {
+            width: 100vw;
+            position: static;
+            top: 0;
+            left: 0;
+            text-align: center;
+            background: #2a003f;
+            z-index: 100;
+            padding: 24px 0 12px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.4em;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .latest-section-wrapper {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 260px;
+            z-index: 101;
+            background: #2a003f;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 0;
+        }
+
+        .latest-section-label-top {
+            background: transparent;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: none;
+        }
+
+        .latest-label-divider-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            min-width: 60px;
+        }
+
+        .latest-section {
+            display: none;
+        }
+
+        .latest-divider {
+            display: block;
+            width: 3px;
+            height: 180px;
+            background: #fff;
+            border-radius: 2px;
+            margin: 0 auto;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+        }
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: 240px;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .latest-videos-arrows {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .latest-arrow-btn {
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .latest-arrow-btn:disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .video-part {
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px 8px 12px 8px;
+            min-width: 200px;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-part span {
+            color: #4b006e;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .video-part a {
+            color: #4b006e;
+            font-size: 0.98em;
+            margin-bottom: 6px;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .video-part a:hover {
+            color: #32004a;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href='index.html'">Back</button>
+        <h1>API Test Playground</h1>
+        <div class="latest-section-wrapper">
+            <div class="latest-section-label-top">Latest from Testers Talk : </div>
+            <div class="latest-section-and-videos">
+                <div class="latest-label-divider-col">
+                    <div class="latest-section">Latest from Testers Talk</div>
+                    <div class="latest-divider"></div>
+                </div>
+                <div class="latest-videos-section">
+                    <!-- <h3 class="latest-videos-title">Playwright TypeScript Full Course</h3> -->
+                    <div class="latest-videos-arrows">
+                        <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
+                        <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
+                    </div>
+                    <div class="latest-videos-list" id="latestVideosList">
+                        <!-- Videos will be rendered here by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="api-playground-container">
+        <div class="api-playground-title">API Test Playground</div>
+        <div class="api-playground-desc">Welcome! This page is reserved for API testing demos and
+            playgrounds.<br>Implement your API test UI here.</div>
+    </div>
+
+    <script>
+        // Video data for Playwright TypeScript Full Course
+        const latestVideos = [
+            {
+                part: 'Playwright TypeScript Course PART-01',
+                link: 'https://youtu.be/788GvvcfwTY?feature=shared',
+                embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-01'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-02',
+                link: 'https://youtu.be/YfRazDhi9Fw?feature=shared',
+                embed: 'https://www.youtube.com/embed/YfRazDhi9Fw?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-02'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-03',
+                link: 'https://youtu.be/iGQ-qTLEPLw?feature=shared',
+                embed: 'https://www.youtube.com/embed/iGQ-qTLEPLw?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-03'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-04',
+                link: 'https://youtu.be/D44k45N6S58?feature=shared',
+                embed: 'https://www.youtube.com/embed/D44k45N6S58?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-04'
+            }
+        ];
+
+        let latestStartIdx = 0;
+        const latestVisibleCount = 3;
+        let latestAutoScrollInterval;
+
+        function renderLatestVideos() {
+            const list = document.getElementById('latestVideosList');
+            list.innerHTML = '';
+            for (let i = latestStartIdx; i < Math.min(latestStartIdx + latestVisibleCount, latestVideos.length); i++) {
+                const v = latestVideos[i];
+                const div = document.createElement('div');
+                div.className = 'video-part';
+                div.innerHTML = `
+      <span style="font-weight:600; color:#333;">${v.part}:</span>
+      <a class="playlist-link" href="${v.link}" target="_blank">Watch on YouTube</a>
+      <iframe width="220" height="124" src="${v.embed}" title="${v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `;
+                list.appendChild(div);
+            }
+            document.getElementById('latestUpBtn').disabled = latestStartIdx === 0;
+            document.getElementById('latestDownBtn').disabled = latestStartIdx + latestVisibleCount >= latestVideos.length;
+        }
+
+        function startLatestAutoScroll() {
+            if (latestAutoScrollInterval) clearInterval(latestAutoScrollInterval);
+            latestAutoScrollInterval = setInterval(() => {
+                if (latestStartIdx + latestVisibleCount < latestVideos.length) {
+                    latestStartIdx++;
+                } else {
+                    latestStartIdx = 0;
+                }
+                renderLatestVideos();
+            }, 15000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            renderLatestVideos();
+            document.getElementById('latestUpBtn').onclick = function () {
+                if (latestStartIdx > 0) {
+                    latestStartIdx--;
+                    renderLatestVideos();
+                }
+            };
+            document.getElementById('latestDownBtn').onclick = function () {
+                if (latestStartIdx + latestVisibleCount < latestVideos.length) {
+                    latestStartIdx++;
+                    renderLatestVideos();
+                }
+            };
+            startLatestAutoScroll();
+        });
+    </script>
+</body>
+
+</html>

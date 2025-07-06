@@ -1080,3 +1080,55 @@ h4.highlighted-header {
     font-size: 15px;
   }
 }
+
+/* New API Test Playground Banner */
+.api-banner {
+  width: 100%;
+  background: #0a2540;
+  color: #fff;
+  text-align: center;
+  padding: 14px 0 10px 0;
+  border-radius: 0 0 12px 12px;
+  margin-top: 18px;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(10, 37, 64, 0.08);
+}
+
+.api-banner-fullwidth {
+  width: 100vw;
+  position: static;
+  left: 0;
+  right: 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #0a2540;
+  color: #fff;
+  text-align: center;
+  padding: 16px 0 12px 0;
+  border-radius: 0;
+  font-size: 1.15em;
+  box-shadow: 0 2px 8px rgba(10, 37, 64, 0.08);
+  z-index: 10;
+}
+
+@media (max-width: 600px) {
+  .api-banner-fullwidth {
+    font-size: 1em;
+    padding: 12px 0 10px 0;
+  }
+}
+
+body {
+  padding-bottom: 56px;
+}
+
+.api-playground-link {
+  color: #4b006e !important;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: none;
+}
+
+.api-playground-link:hover {
+  color: #4b006e !important;
+}

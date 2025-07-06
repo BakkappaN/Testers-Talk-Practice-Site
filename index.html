@@ -628,6 +628,51 @@
         font-size: 1.3em;
       }
     }
+
+    /* Banner for API Test Playground */
+    .api-banner {
+      background: #002171;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .api-playground-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .api-playground-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Full-width banner */
+    .api-banner-fullwidth {
+      background: #002171;
+      color: #fff;
+      padding: 16px 0;
+      border-radius: 0;
+      margin: 0 -40px 24px -40px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .api-banner-fullwidth::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, #7ee787 0%, #79c0ff 40%, #f778ba 100%);
+      z-index: -1;
+      filter: blur(8px);
+    }
   </style>
 </head>
 
@@ -1796,6 +1841,11 @@
       <button id="chatbotSendBtn">Send</button>
     </div>
   </div>
+  <br>
+  <br>
+  <div class="api-banner-fullwidth">
+    <a href="API-Test-Playground.html" class="api-playground-link">API Test Playground</a>
+  </div>
   <script>
     (function () {
       const chatbot = document.getElementById('chatbot');
@@ -2129,8 +2179,6 @@
       updateVideo();
     };
   </script>
-  <!-- End Scrollable YouTube FREE Courses Grid -->
-
 </body>
 
 </html>
