@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>API Test Playground</title>
+    <title>Test API's</title>
     <link rel="stylesheet" href="style.css" />
     <style>
         body {
@@ -13,6 +13,7 @@
             min-height: 100vh;
             margin: 0;
             display: block;
+            overflow-x: hidden;
             overflow-y: auto;
         }
 
@@ -22,9 +23,9 @@
             padding: 40px 32px;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
             text-align: center;
-            max-width: 480px;
+            max-width: 2200px;
             width: 100%;
-            margin: 120px auto 0 auto;
+            margin: 120px 0 0 0;
         }
 
         .api-playground-title {
@@ -232,13 +233,867 @@
             border-radius: 6px;
             margin-top: 4px;
         }
+
+        /* API Test Form Styles */
+        form {
+            margin-top: 32px;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background: #4b006e;
+            color: #fff;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        #apiResponse {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #181828;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1em;
+        }
+
+        /* Flex container for sidebar and latest section */
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            flex: 1 1 0;
+            min-width: 280px;
+            max-width: 100%;
+            margin: 32px 0 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* Latest section wrapper styles */
+        .latest-section-wrapper {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 260px;
+            z-index: 101;
+            background: #2a003f;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 0;
+        }
+
+        .latest-section-label-top {
+            background: transparent;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: none;
+        }
+
+        .latest-label-divider-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            min-width: 60px;
+        }
+
+        .latest-section {
+            display: none;
+        }
+
+        .latest-divider {
+            display: block;
+            width: 3px;
+            height: 180px;
+            background: #fff;
+            border-radius: 2px;
+            margin: 0 auto;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+        }
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: 240px;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .latest-videos-arrows {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .latest-arrow-btn {
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .latest-arrow-btn:disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .video-part {
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px 8px 12px 8px;
+            min-width: 200px;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-part span {
+            color: #4b006e;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .video-part a {
+            color: #4b006e;
+            font-size: 0.98em;
+            margin-bottom: 6px;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .video-part a:hover {
+            color: #32004a;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+
+        /* API Test Form Styles */
+        form {
+            margin-top: 32px;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background: #4b006e;
+            color: #fff;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        #apiResponse {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #181828;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1em;
+        }
+
+        /* Flex container for sidebar and latest section */
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            flex: 1 1 0;
+            min-width: 280px;
+            max-width: 100%;
+            margin: 32px 0 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* Latest section wrapper styles */
+        .latest-section-wrapper {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 260px;
+            z-index: 101;
+            background: #2a003f;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 0;
+        }
+
+        .latest-section-label-top {
+            background: transparent;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: none;
+        }
+
+        .latest-label-divider-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            min-width: 60px;
+        }
+
+        .latest-section {
+            display: none;
+        }
+
+        .latest-divider {
+            display: block;
+            width: 3px;
+            height: 180px;
+            background: #fff;
+            border-radius: 2px;
+            margin: 0 auto;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+        }
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: 240px;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .latest-videos-arrows {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .latest-arrow-btn {
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .latest-arrow-btn:disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .video-part {
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px 8px 12px 8px;
+            min-width: 200px;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-part span {
+            color: #4b006e;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .video-part a {
+            color: #4b006e;
+            font-size: 0.98em;
+            margin-bottom: 6px;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .video-part a:hover {
+            color: #32004a;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+
+        /* API Test Form Styles */
+        form {
+            margin-top: 32px;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background: #4b006e;
+            color: #fff;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        #apiResponse {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #181828;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1em;
+        }
+
+        /* Flex container for sidebar and latest section */
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            flex: 1 1 0;
+            min-width: 280px;
+            max-width: 100%;
+            margin: 32px 0 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* Latest section wrapper styles */
+        .latest-section-wrapper {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 260px;
+            z-index: 101;
+            background: #2a003f;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 0;
+        }
+
+        .latest-section-label-top {
+            background: transparent;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: none;
+        }
+
+        .latest-label-divider-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            min-width: 60px;
+        }
+
+        .latest-section {
+            display: none;
+        }
+
+        .latest-divider {
+            display: block;
+            width: 3px;
+            height: 180px;
+            background: #fff;
+            border-radius: 2px;
+            margin: 0 auto;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+        }
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: 240px;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .latest-videos-arrows {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .latest-arrow-btn {
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .latest-arrow-btn:disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .video-part {
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px 8px 12px 8px;
+            min-width: 200px;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-part span {
+            color: #4b006e;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .video-part a {
+            color: #4b006e;
+            font-size: 0.98em;
+            margin-bottom: 6px;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .video-part a:hover {
+            color: #32004a;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+
+        /* API Test Form Styles */
+        form {
+            margin-top: 32px;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background: #4b006e;
+            color: #fff;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        #apiResponse {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #181828;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1em;
+        }
     </style>
 </head>
 
 <body>
     <header>
         <button class="back-btn" onclick="window.location.href='index.html'">Back</button>
-        <h1>API Test Playground</h1>
+        <h1>Test API's</h1>
+    </header>
+    <div style="display: flex; flex-direction: row; align-items: flex-start; width: 100%; box-sizing: border-box;">
+        <div style="flex: 1 1 auto; min-width: 400px; max-width: 100%; margin: 32px 0 0 48px; box-sizing: border-box;">
+            <a href="#" id="bookingApiDetailsLink"
+                style="color: #4b006e; background: #fff; padding: 12px 28px; border-radius: 8px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); display: block; font-size: 1.15em; margin-bottom: 0; text-align: left;">Booking
+                API Details &#9660;</a>
+            <div id="bookingApiDetailsContent"
+                style="display: none; background: transparent; color: #222; border-radius: 0 0 12px 12px; box-shadow: none; padding: 0; margin-top: 0; min-width: 340px; width: 100%; font-size: 1em; text-align: left; box-sizing: border-box;">
+                <div style="margin-top: 0; margin-left: 0; padding: 0 0; width: 100%; box-sizing: border-box;">
+                    <!-- POST Request Section -->
+                    <div style="margin-bottom: 18px; width: 100%; box-sizing: border-box;">
+                        <a href="#" class="expand-link" id="postRequestLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none; width: 100%; box-sizing: border-box;">POST
+                            Request &#9660;</a>
+                        <div id="postRequestContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="apiTestForm"
+                                style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="apiUrl" style="font-weight:bold;">API URL:</label>
+                                    <input type="url" id="apiUrl" name="apiUrl"
+                                        placeholder="https://api.example.com/endpoint" required
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"
+                                        value="https://restful-booker.herokuapp.com/booking">
+                                    <label for="apiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                    <textarea id="apiHeaders" name="apiHeaders"
+                                        placeholder='{"Authorization": "Bearer ..."}' rows="2"
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json"}</textarea>
+                                    <label for="apiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                    <textarea id="apiBody" name="apiBody" placeholder='{"key": "value"}' rows="4"
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{
+    "firstname": "playwright by testers talk",
+    "lastname": "cypress by testers talk",
+    "totalprice": 1000,
+    "depositpaid": true,
+    "bookingdates": {
+        "checkin": "2025-01-15",
+        "checkout": "2025-01-17"
+    },
+    "additionalneeds": "breakfast"
+}</textarea>
+                                    <label for="apiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                    <select id="apiMethod" name="apiMethod"
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                        <option value="POST" selected>POST</option>
+                                        <option value="GET">GET</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="PATCH">PATCH</option>
+                                        <option value="DELETE">DELETE</option>
+                                        <option value="HEAD">HEAD</option>
+                                        <option value="OPTIONS">OPTIONS</option>
+                                    </select>
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                        <button type="submit" id="sendApiBtn"
+                                            style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert
+                                            to cURL</button>
+                                    </div>
+                                </div>
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="apiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <textarea id="apiResponse" readonly rows="13"
+                                        style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- GET Request Section -->
+                    <div style="margin-bottom: 18px;">
+                        <a href="#" class="expand-link" id="getRequestLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">GET
+                            Request &#9660;</a>
+                        <div id="getRequestContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
+                            GET request details go here.</div>
+                    </div>
+                    <!-- TOKEN Generation Section -->
+                    <div style="margin-bottom: 18px;">
+                        <a href="#" class="expand-link" id="tokenGenLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">TOKEN
+                            Generation &#9660;</a>
+                        <div id="tokenGenContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
+                            Token generation details go here.</div>
+                    </div>
+                    <!-- PUT Request Section -->
+                    <div style="margin-bottom: 18px;">
+                        <a href="#" class="expand-link" id="putRequestLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">PUT
+                            Request &#9660;</a>
+                        <div id="putRequestContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
+                            PUT request details go here.</div>
+                    </div>
+                    <!-- PATCH Request Section -->
+                    <div style="margin-bottom: 18px;">
+                        <a href="#" class="expand-link" id="patchRequestLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">PATCH
+                            Request &#9660;</a>
+                        <div id="patchRequestContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
+                            PATCH request details go here.</div>
+                    </div>
+                    <!-- DELETE Request Section -->
+                    <div style="margin-bottom: 0;">
+                        <a href="#" class="expand-link" id="deleteRequestLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">DELETE
+                            Request &#9660;</a>
+                        <div id="deleteRequestContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
+                            DELETE request details go here.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="latest-section-wrapper">
             <div class="latest-section-label-top">Latest from Testers Talk : </div>
             <div class="latest-section-and-videos">
@@ -258,11 +1113,6 @@
                 </div>
             </div>
         </div>
-    </header>
-    <div class="api-playground-container">
-        <div class="api-playground-title">API Test Playground</div>
-        <div class="api-playground-desc">Welcome! This page is reserved for API testing demos and
-            playgrounds.<br>Implement your API test UI here.</div>
     </div>
 
     <script>
@@ -379,7 +1229,7 @@
                     latestStartIdx = 0;
                 }
                 renderLatestVideos();
-            }, 15000);
+            }, 30000);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -398,6 +1248,81 @@
             };
             startLatestAutoScroll();
         });
+
+        // Expandable Booking API Details link logic
+        document.addEventListener('DOMContentLoaded', function () {
+            // Booking API Details
+            const link = document.getElementById('bookingApiDetailsLink');
+            const content = document.getElementById('bookingApiDetailsContent');
+            let expanded = false;
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                expanded = !expanded;
+                content.style.display = expanded ? 'block' : 'none';
+                link.innerHTML = expanded ? 'Booking API Details &#9650;' : 'Booking API Details &#9660;';
+            });
+            // POST Request
+            setupExpand('postRequestLink', 'postRequestContent', 'POST Request');
+            // GET Request
+            setupExpand('getRequestLink', 'getRequestContent', 'GET Request');
+            // TOKEN Generation
+            setupExpand('tokenGenLink', 'tokenGenContent', 'TOKEN Generation');
+            // PUT Request
+            setupExpand('putRequestLink', 'putRequestContent', 'PUT Request');
+            // PATCH Request
+            setupExpand('patchRequestLink', 'patchRequestContent', 'PATCH Request');
+            // DELETE Request
+            setupExpand('deleteRequestLink', 'deleteRequestContent', 'DELETE Request');
+            function setupExpand(linkId, contentId, label) {
+                const l = document.getElementById(linkId);
+                const c = document.getElementById(contentId);
+                let exp = false;
+                l.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    exp = !exp;
+                    c.style.display = exp ? 'block' : 'none';
+                    l.innerHTML = exp ? label + ' &#9650;' : label + ' &#9660;';
+                });
+            }
+        });
+
+        document.getElementById('apiTestForm').onsubmit = function (e) {
+            e.preventDefault();
+            const url = document.getElementById('apiUrl').value.trim();
+            const method = document.getElementById('apiMethod').value;
+            let headers = {};
+            let body = document.getElementById('apiBody').value.trim();
+            const headersRaw = document.getElementById('apiHeaders').value.trim();
+            const responseBox = document.getElementById('apiResponse');
+            responseBox.value = '';
+            try {
+                if (headersRaw) headers = JSON.parse(headersRaw);
+            } catch (err) {
+                responseBox.value = 'Invalid headers JSON: ' + err.message;
+                return;
+            }
+            // Only include body for methods that support it
+            const methodsWithBody = ['POST', 'PUT', 'PATCH'];
+            // Build cURL command
+            let curl = `curl -X ${method}`;
+            // Add headers
+            for (const [key, value] of Object.entries(headers)) {
+                curl += ` -H ${JSON.stringify(key + ': ' + value)}`;
+            }
+            // Add body if needed
+            if (body && methodsWithBody.includes(method)) {
+                try {
+                    const parsedBody = JSON.parse(body);
+                    curl += ` --data-raw ${JSON.stringify(JSON.stringify(parsedBody))}`;
+                } catch (err) {
+                    responseBox.value = 'Invalid body JSON: ' + err.message;
+                    return;
+                }
+            }
+            // Add URL (always last)
+            curl += ` ${JSON.stringify(url)}`;
+            responseBox.value = curl;
+        };
     </script>
 </body>
 
