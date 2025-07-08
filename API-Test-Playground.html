@@ -1000,16 +1000,15 @@
                                 style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
                                 <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
                                     <label for="apiUrl" style="font-weight:bold;">API URL:</label>
-                                    <input type="url" id="apiUrl" name="apiUrl"
-                                        placeholder="https://api.example.com/endpoint" required
+                                    <input type="url" name="apiUrl" placeholder="https://api.example.com/endpoint"
+                                        required
                                         style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"
                                         value="https://restful-booker.herokuapp.com/booking">
                                     <label for="apiHeaders" style="font-weight:bold;">Headers (JSON):</label>
-                                    <textarea id="apiHeaders" name="apiHeaders"
-                                        placeholder='{"Authorization": "Bearer ..."}' rows="2"
+                                    <textarea name="apiHeaders" placeholder='{"Authorization": "Bearer ..."}' rows="2"
                                         style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json"}</textarea>
                                     <label for="apiBody" style="font-weight:bold;">Request Body (JSON):</label>
-                                    <textarea id="apiBody" name="apiBody" placeholder='{"key": "value"}' rows="4"
+                                    <textarea name="apiBody" placeholder='{"key": "value"}' rows="4"
                                         style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{
     "firstname": "playwright by testers talk",
     "lastname": "cypress by testers talk",
@@ -1022,7 +1021,7 @@
     "additionalneeds": "breakfast"
 }</textarea>
                                     <label for="apiMethod" style="font-weight:bold;">HTTP Method:</label>
-                                    <select id="apiMethod" name="apiMethod"
+                                    <select name="apiMethod"
                                         style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
                                         <option value="POST" selected>POST</option>
                                         <option value="GET">GET</option>
@@ -1040,20 +1039,57 @@
                                 </div>
                                 <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
                                     <label for="apiResponse" style="font-weight:bold;">cURL Command:</label>
-                                    <textarea id="apiResponse" readonly rows="13"
+                                    <textarea name="apiResponse" readonly rows="13"
                                         style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <!-- GET Request Section -->
-                    <div style="margin-bottom: 18px;">
+                    <div style="margin-bottom: 18px; width: 100%; box-sizing: border-box;">
                         <a href="#" class="expand-link" id="getRequestLink"
-                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">GET
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none; width: 100%; box-sizing: border-box;">GET
                             Request &#9660;</a>
                         <div id="getRequestContent"
-                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
-                            GET request details go here.</div>
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="getAPITestForm"
+                                style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="apiUrl" style="font-weight:bold;">API URL:</label>
+                                    <input type="url" name="apiUrl" placeholder="https://api.example.com/endpoint"
+                                        required
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"
+                                        value="https://restful-booker.herokuapp.com/booking">
+                                    <label for="apiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                    <textarea name="apiHeaders"
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"></textarea>
+                                    <label for="apiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                    <textarea name="apiBody" placeholder='{"key": "value"}' rows="4"
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"></textarea>
+                                    <label for="apiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                    <select name="apiMethod"
+                                        style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                        <option value="POST">POST</option>
+                                        <option value="GET" selected>GET</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="PATCH">PATCH</option>
+                                        <option value="DELETE">DELETE</option>
+                                        <option value="HEAD">HEAD</option>
+                                        <option value="OPTIONS">OPTIONS</option>
+                                    </select>
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                        <button type="submit" id="sendApiBtn"
+                                            style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert
+                                            to cURL</button>
+                                    </div>
+                                </div>
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="apiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <textarea name="apiResponse" readonly rows="13"
+                                        style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!-- TOKEN Generation Section -->
                     <div style="margin-bottom: 18px;">
@@ -1286,14 +1322,26 @@
             }
         });
 
+        // POST Request form handler
         document.getElementById('apiTestForm').onsubmit = function (e) {
             e.preventDefault();
-            const url = document.getElementById('apiUrl').value.trim();
-            const method = document.getElementById('apiMethod').value;
+            handleFormSubmit(this);
+        };
+
+        // GET Request form handler
+        document.getElementById('getAPITestForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+
+        function handleFormSubmit(form) {
+            const url = form.querySelector('[name="apiUrl"]').value.trim();
+            const method = form.querySelector('[name="apiMethod"]').value;
             let headers = {};
-            let body = document.getElementById('apiBody').value.trim();
-            const headersRaw = document.getElementById('apiHeaders').value.trim();
-            const responseBox = document.getElementById('apiResponse');
+            let body = form.querySelector('[name="apiBody"]').value.trim();
+            const headersRaw = form.querySelector('[name="apiHeaders"]').value.trim();
+            const responseBox = form.querySelector('[name="apiResponse"]');
             responseBox.value = '';
             try {
                 if (headersRaw) headers = JSON.parse(headersRaw);
@@ -1322,7 +1370,7 @@
             // Add URL (always last)
             curl += ` ${JSON.stringify(url)}`;
             responseBox.value = curl;
-        };
+        }
     </script>
 </body>
 
