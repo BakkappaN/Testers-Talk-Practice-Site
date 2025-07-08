@@ -39,6 +39,7 @@ function login() {
       if (logoutBtn) logoutBtn.classList.add('show');
       // Set login state
       localStorage.setItem('loggedIn', 'true');
+      setLoginBackground(false);
       loadEmployees();
     }, 1000);
   } else {
@@ -156,6 +157,24 @@ function hideHeaderIfNotLogin() {
   }
 }
 
+// Utility to set login background
+function setLoginBackground(isLogin) {
+  var loginSection = document.getElementById('loginSection');
+  var mainFlex = document.querySelector('.main-flex');
+  var banner = document.querySelector('.api-banner-fullwidth');
+  if (isLogin) {
+    document.body.classList.add('login-bg');
+    if (loginSection) loginSection.classList.add('login-bg-section');
+    if (mainFlex) mainFlex.classList.add('login-bg-flex');
+    if (banner) banner.classList.add('login-banner-floating');
+  } else {
+    document.body.classList.remove('login-bg');
+    if (loginSection) loginSection.classList.remove('login-bg-section');
+    if (mainFlex) mainFlex.classList.remove('login-bg-flex');
+    if (banner) banner.classList.remove('login-banner-floating');
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Only force logout if this is a true browser refresh
   let isReload = false;
@@ -164,22 +183,43 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (performance.navigation) {
     isReload = performance.navigation.type === 1;
   }
-  if (isReload) {
-    localStorage.removeItem('loggedIn');
-    // Always show login section and header, hide appDiv and welcomeMsg
+  // Only show spinner if user was logged in before refresh
+  const wasLoggedIn = localStorage.getItem('loggedIn') === 'true';
+  if (isReload && wasLoggedIn) {
+    // Show spinner with custom message
+    var loadingOverlay = document.getElementById("loadingOverlay");
+    if (loadingOverlay) {
+      loadingOverlay.style.display = "flex";
+      var loadingText = document.getElementsByClassName("loading-text")[0];
+      if (loadingText) loadingText.textContent = "Refreshing... Logging you out. Please wait...";
+    }
+    // Hide login section and header during spinner
     var loginSection = document.getElementById('loginSection');
-    if (loginSection) loginSection.style.display = '';
+    if (loginSection) loginSection.style.display = 'none';
     var siteHeader = document.getElementById('siteHeader');
-    if (siteHeader) siteHeader.style.display = '';
+    if (siteHeader) siteHeader.style.display = 'none';
     var appDiv = document.getElementById('appDiv');
     if (appDiv) appDiv.style.display = 'none';
     var welcomeMsg = document.getElementById('welcomeMsg');
     if (welcomeMsg) welcomeMsg.style.display = 'none';
+    localStorage.removeItem('loggedIn');
+    setLoginBackground(true);
+    setTimeout(() => {
+      if (loadingOverlay) {
+        loadingOverlay.style.display = "none";
+        if (loadingText) loadingText.textContent = "Logging in...";
+      }
+      if (loginSection) loginSection.style.display = '';
+      if (siteHeader) siteHeader.style.display = '';
+      setLoginBackground(true);
+    }, 2000);
+    return;
   }
   // Always load employees from localStorage on page load
   loadEmployees();
   // Auto-login if already logged in
   if (localStorage.getItem('loggedIn') === 'true') {
+    setLoginBackground(false);
     // Hide login section and YouTube course container
     var loginSection = document.getElementById('loginSection');
     if (loginSection) loginSection.style.display = 'none';
@@ -299,6 +339,9 @@ document.addEventListener("DOMContentLoaded", () => {
       logoutBtn.style.pointerEvents = 'none';
     }
   });
+
+  // If not logged in, show login background
+  setLoginBackground(true);
 });
 
 // Alerts Popups functionality
