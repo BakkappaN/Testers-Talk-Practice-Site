@@ -157,6 +157,25 @@ function hideHeaderIfNotLogin() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Only force logout if this is a true browser refresh
+  let isReload = false;
+  if (performance.getEntriesByType && performance.getEntriesByType("navigation").length > 0) {
+    isReload = performance.getEntriesByType("navigation")[0].type === "reload";
+  } else if (performance.navigation) {
+    isReload = performance.navigation.type === 1;
+  }
+  if (isReload) {
+    localStorage.removeItem('loggedIn');
+    // Always show login section and header, hide appDiv and welcomeMsg
+    var loginSection = document.getElementById('loginSection');
+    if (loginSection) loginSection.style.display = '';
+    var siteHeader = document.getElementById('siteHeader');
+    if (siteHeader) siteHeader.style.display = '';
+    var appDiv = document.getElementById('appDiv');
+    if (appDiv) appDiv.style.display = 'none';
+    var welcomeMsg = document.getElementById('welcomeMsg');
+    if (welcomeMsg) welcomeMsg.style.display = 'none';
+  }
   // Always load employees from localStorage on page load
   loadEmployees();
   // Auto-login if already logged in
