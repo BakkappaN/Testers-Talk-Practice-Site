@@ -618,7 +618,8 @@ h4.highlighted-header {
 }
 
 .alert-content {
-  background-color: var(--background-color);
+  background-color: #4B006E; /* Dark purple background */
+  color: white; /* White text */
   padding: var(--spacing-xl);
   border-radius: var(--border-radius-lg);
   text-align: center;
@@ -629,14 +630,16 @@ h4.highlighted-header {
 .close-btn {
   margin-top: var(--spacing-lg);
   padding: var(--spacing-sm) var(--spacing-xl);
-  background-color: var(--primary-color);
+  background-color: #28a745; /* Green background */
   color: white;
   border-radius: var(--border-radius-sm);
   font-weight: 600;
+  border: none;
+  cursor: pointer;
 }
 
 .close-btn:hover {
-  background-color: var(--primary-dark);
+  background-color: #218838; /* Darker green on hover */
 }
 
 /* Form Groups and Labels */
@@ -1051,9 +1054,9 @@ h4.highlighted-header {
   right: 16px;
   z-index: 9999;
   font-weight: 600;
-  color: #111 !important;
-  background: #fff !important;
-  padding: 10px 22px;
+  color: #fff !important;
+  background: #002171 !important;
+  padding: 6px 16px;
   border-radius: 5px;
   text-decoration: none;
   transition: background 0.2s, opacity 0.2s;
@@ -1061,6 +1064,7 @@ h4.highlighted-header {
   display: none;
   opacity: 1;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .logout-link.hide-on-scroll {

@@ -2047,30 +2047,67 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-
-      // Show logout link if logged in
-      if (localStorage.getItem('loggedIn') === 'true') {
-        document.getElementById('logoutLink').classList.add('show');
+      // Debug: log login state
+      console.log('DOMContentLoaded: loggedIn =', localStorage.getItem('loggedIn'));
+      
+      // Check if this is a true browser refresh (not navigation from edit page)
+      let isRefresh = false;
+      if (performance.getEntriesByType && performance.getEntriesByType("navigation").length > 0) {
+        isRefresh = performance.getEntriesByType("navigation")[0].type === "reload";
+      } else if (performance.navigation) {
+        isRefresh = performance.navigation.type === 1;
       }
-      document.getElementById('logoutLink').onclick = function (e) {
-        e.preventDefault();
+      
+      // Only clear login state on true browser refresh, not on navigation
+      if (isRefresh) {
         localStorage.removeItem('loggedIn');
-        window.location.href = 'index.html';
-      };
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
+      }
+      
+      // Always hide logout button first
+      var logoutBtn = document.getElementById('logoutLink');
+      if (logoutBtn) logoutBtn.classList.remove('show');
+      
+      // Check if user is logged in
       if (localStorage.getItem('loggedIn') === 'true') {
-
+        // User is logged in - show app content and logout button
         var loginSection = document.getElementById('loginSection');
         if (loginSection) loginSection.style.display = 'none';
         var appDiv = document.getElementById('appDiv');
         if (appDiv) appDiv.style.display = 'block';
         var welcomeMsg = document.getElementById('welcomeMsg');
         if (welcomeMsg) welcomeMsg.style.display = 'block';
-        var logoutBtn = document.getElementById('logoutLink');
         if (logoutBtn) logoutBtn.classList.add('show');
+      } else {
+        // User is not logged in - ensure login page is shown and logout button is hidden
+        var loginSection = document.getElementById('loginSection');
+        if (loginSection) loginSection.style.display = 'block';
+        var appDiv = document.getElementById('appDiv');
+        if (appDiv) appDiv.style.display = 'none';
+        var welcomeMsg = document.getElementById('welcomeMsg');
+        if (welcomeMsg) welcomeMsg.style.display = 'none';
       }
+      
+      // Set up logout button click handler
+      document.getElementById('logoutLink').onclick = function (e) {
+        e.preventDefault();
+        localStorage.removeItem('loggedIn');
+        document.getElementById('logoutLink').classList.remove('show'); // Hide logout button immediately
+        
+        // Show logout spinner
+        var loadingOverlay = document.getElementById('loadingOverlay');
+        var loadingText = document.querySelector('.loading-text');
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          if (loadingText) {
+            loadingText.textContent = 'Logged out...';
+          }
+        }
+        
+        // Redirect after spinner delay
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 2000);
+      };
     });
 
     function login() {
@@ -2080,6 +2117,8 @@
         document.getElementById("loadingOverlay").style.display = "flex";
         setTimeout(() => {
           document.getElementById("loadingOverlay").style.display = "none";
+          // Set login state in localStorage
+          localStorage.setItem('loggedIn', 'true');
           // Hide login section and header
           var loginSection = document.getElementById('loginSection');
           if (loginSection) loginSection.style.display = 'none';
