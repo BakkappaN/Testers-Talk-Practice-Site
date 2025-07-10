@@ -1252,3 +1252,81 @@ body.login-bg .course-container a {
   color: #111 !important;
   text-decoration: underline;
 }
+
+/* Responsive Login Page Improvements */
+@media (max-width: 900px) {
+  .main-flex {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    max-width: 100vw !important;
+    margin: 24px auto 16px auto !important;
+    padding: 0 !important;
+  }
+  #loginDiv,
+  .course-container {
+    width: 100% !important;
+    max-width: 95vw !important;
+    min-width: unset !important;
+    flex: unset !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 24px 8px !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 600px) {
+  #loginDiv,
+  .course-container {
+    max-width: 100vw !important;
+    padding: 16px 2vw !important;
+    border-width: 2px !important;
+  }
+  .main-flex {
+    gap: 12px !important;
+    padding: 0 !important;
+  }
+  .course-video {
+    height: 180px !important;
+    min-height: 120px !important;
+    max-height: 220px !important;
+    width: 100% !important;
+  }
+}
+@media (max-width: 400px) {
+  #loginDiv,
+  .course-container {
+    padding: 8px 0 !important;
+    border-width: 1.5px !important;
+  }
+  .main-header-label, .login-label-style {
+    font-size: 1.1em !important;
+    margin-bottom: 8px !important;
+  }
+}
+/* End Responsive Login Page Improvements */
+
+/* Desktop: Side-by-side layout for login and course sections */
+@media (min-width: 901px) {
+  .main-flex {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 60px !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 60px 40px 40px 40px !important;
+  }
+  #loginDiv, .course-container {
+    max-width: 400px;
+    min-width: 320px;
+    width: 100%;
+    margin: 0;
+    align-items: stretch;
+    padding: 32px 28px;
+  }
+  .course-container {
+    min-width: 400px;
+    max-width: 600px;
+  }
+}
