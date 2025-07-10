@@ -331,14 +331,30 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('scroll', function() {
     var logoutBtn = document.getElementById('logoutLink');
     if (!logoutBtn) return;
-    if (window.scrollY < 20 && logoutBtn.classList.contains('show')) {
-      logoutBtn.style.opacity = '1';
-      logoutBtn.style.pointerEvents = 'auto';
-    } else {
-      logoutBtn.style.opacity = '0';
-      logoutBtn.style.pointerEvents = 'none';
+    
+    // Only apply scroll hiding if the logout button should be shown (user is logged in)
+    if (logoutBtn.classList.contains('show')) {
+      if (window.scrollY < 20) {
+        logoutBtn.style.opacity = '1';
+        logoutBtn.style.pointerEvents = 'auto';
+      } else {
+        logoutBtn.style.opacity = '0';
+        logoutBtn.style.pointerEvents = 'none';
+      }
     }
   });
+  
+  // Ensure logout button is visible immediately after login
+  function ensureLogoutButtonVisible() {
+    var logoutBtn = document.getElementById('logoutLink');
+    if (logoutBtn && logoutBtn.classList.contains('show') && window.scrollY < 20) {
+      logoutBtn.style.opacity = '1';
+      logoutBtn.style.pointerEvents = 'auto';
+    }
+  }
+  
+  // Call this function after login to ensure button is visible
+  setTimeout(ensureLogoutButtonVisible, 100);
 
   // If not logged in, show login background
   setLoginBackground(true);
@@ -484,13 +500,4 @@ function initializeClearRowsBtn() {
   }
 }
 
-// Hide Logout button on scroll, show only at top
-window.addEventListener('scroll', function() {
-  var logoutBtn = document.querySelector('.logout-link');
-  if (!logoutBtn) return;
-  if (window.scrollY > 10) {
-    logoutBtn.classList.add('hide-on-scroll');
-  } else {
-    logoutBtn.classList.remove('hide-on-scroll');
-  }
-});
+// Removed duplicate scroll event listener to fix logout button visibility

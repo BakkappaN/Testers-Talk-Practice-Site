@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Testers Talk - Medium Articles</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .logout-link {
+            position: fixed;
+            top: 18px;
+            right: 32px;
+            z-index: 100;
+            font-weight: 600;
+            color: #fff;
+            background: #002171;
+            padding: 6px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+            font-size: 14px;
+        }
+
+        .logout-link:hover {
+            background: #0d47a1;
+            color: #fff;
+        }
+
+        .medium-articles-container {
+            max-width: 1200px;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .article-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #4B006E;
+        }
+
+        .article-title {
+            color: #4B006E;
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        .article-title:hover {
+            text-decoration: underline;
+        }
+
+        .article-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            color: #999;
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .read-more-btn {
+            background: #4B006E;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .read-more-btn:hover {
+            background: #7c3aed;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            color: white;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 18px;
+            left: 32px;
+            z-index: 100;
+            font-weight: 600;
+            color: #fff;
+            background: #4B006E;
+            padding: 6px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+            font-size: 14px;
+        }
+
+        .back-button:hover {
+            background: #7c3aed;
+            color: #fff;
+        }
+
+        /* Tab Navigation Styles */
+        .tab-navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .tab-button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .tab-button:hover {
+            background: #16a34a;
+        }
+
+        .tab-button.active {
+            background: white;
+            color: #22c55e;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .articles-list {
+            max-width: 800px;
+            margin: 0;
+        }
+
+        .article-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #4B006E;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .article-number {
+            color: #4B006E;
+            font-weight: bold;
+            font-size: 1.1em;
+            min-width: 30px;
+        }
+
+        .article-link {
+            color: #4B006E;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .article-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Latest Section Styles */
+        .latest-section-wrapper {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 260px;
+            z-index: 101;
+            background: transparent;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 0;
+        }
+
+        .latest-section-label-top {
+            background: transparent;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: none;
+        }
+
+        .latest-label-divider-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            min-width: 60px;
+        }
+
+        .latest-section {
+            display: none;
+        }
+
+        .latest-divider {
+            display: block;
+            width: 3px;
+            height: 180px;
+            background: #fff;
+            border-radius: 2px;
+            margin: 0 auto;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+        }
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: 240px;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .latest-videos-arrows {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .latest-arrow-btn {
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .latest-arrow-btn:disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .video-part {
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px 8px 12px 8px;
+            min-width: 200px;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-part span {
+            color: #4b006e;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .video-part a {
+            color: #4b006e;
+            font-size: 0.98em;
+            margin-bottom: 6px;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .video-part a:hover {
+            color: #32004a;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-button">Back</a>
+    <a href="#" class="logout-link" id="logoutLink">Logout</a>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Latest from Testers Talk Section -->
+    <div class="latest-section-wrapper">
+        <div class="latest-section-label-top">Latest from Testers Talk : </div>
+        <div class="latest-section-and-videos">
+            <div class="latest-label-divider-col">
+                <div class="latest-section">Latest from Testers Talk</div>
+                <div class="latest-divider"></div>
+            </div>
+            <div class="latest-videos-section">
+                <div class="latest-videos-arrows">
+                    <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
+                    <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
+                </div>
+                <div class="latest-videos-list" id="latestVideosList">
+                    <!-- Videos will be rendered here by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="medium-articles-container">
+        <div class="page-header">
+            <h1>Testers Talk - Medium Articles</h1>
+            <p>Explore our latest articles on software testing, automation, and quality assurance</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-button active" onclick="showTab('playwright')">Playwright TypeScript/JavaScript</button>
+            <button class="tab-button" onclick="showTab('api-testing')">API Testing</button>
+            <button class="tab-button" onclick="showTab('cypress')">Cypress</button>
+            <button class="tab-button" onclick="showTab('selenium')">Selenium</button>
+        </div>
+
+        <!-- Playwright TypeScript/JavaScript Tab -->
+        <div id="playwright" class="tab-content active">
+            <div class="articles-list">
+                <div class="article-item">
+                    <div class="article-number">1.</div>
+                    <a href="https://medium.com/@testerstalk/official-playwright-mcp-server-claude-ai-integration-guide-dcad70df3969" target="_blank" class="article-link">
+                        Official Playwright MCP Server + Claude AI: Integration Guide
+                    </a>
+                </div>
+                <div class="article-item">
+                    <div class="article-number">2.</div>
+                    <a href="https://medium.com/@testerstalk/how-to-install-microsoft-playwright-mcp-server-in-vs-code-9e65513e23e5" target="_blank" class="article-link">
+                        How to Install Microsoft Playwright MCP Server in VS Code?
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Testing Tab -->
+        <div id="api-testing" class="tab-content">
+            <div class="articles-list">
+                <!-- Articles will be populated here -->
+            </div>
+        </div>
+
+        <!-- Cypress Tab -->
+        <div id="cypress" class="tab-content">
+            <div class="articles-list">
+                <!-- Articles will be populated here -->
+            </div>
+        </div>
+
+        <!-- Selenium Tab -->
+        <div id="selenium" class="tab-content">
+            <div class="articles-list">
+                <!-- Articles will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video data for Latest from Testers Talk
+        const latestVideos = [
+            // Playwright TypeScript Full Course
+            {
+                part: 'Playwright TypeScript Course PART-01',
+                link: 'https://youtu.be/788GvvcfwTY?feature=shared',
+                embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-01'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-02',
+                link: 'https://youtu.be/YfRazDhi9Fw?feature=shared',
+                embed: 'https://www.youtube.com/embed/YfRazDhi9Fw?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-02'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-03',
+                link: 'https://youtu.be/iGQ-qTLEPLw?feature=shared',
+                embed: 'https://www.youtube.com/embed/iGQ-qTLEPLw?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-03'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-04',
+                link: 'https://youtu.be/D44k45N6S58?feature=shared',
+                embed: 'https://www.youtube.com/embed/D44k45N6S58?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-04'
+            },
+            // Playwright JavaScript Full Course (3 parts)
+            {
+                part: 'Playwright JavaScript Course PART-01',
+                link: 'https://youtu.be/2poXBtifpzA?feature=shared',
+                embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-01'
+            },
+            {
+                part: 'Playwright JavaScript Course PART-02',
+                link: 'https://youtu.be/lM-lqPun9P8?feature=shared',
+                embed: 'https://www.youtube.com/embed/lM-lqPun9P8?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-02'
+            },
+            {
+                part: 'Playwright JavaScript Course PART-03',
+                link: 'https://youtu.be/Exx2M5Pz06g?feature=shared',
+                embed: 'https://www.youtube.com/embed/Exx2M5Pz06g?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-03'
+            },
+            // Cypress Tutorial Full Course
+            {
+                part: 'Cypress Tutorial Full Course',
+                link: 'https://youtu.be/oJV5whmzfZI?feature=shared',
+                embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1',
+                title: 'Cypress Tutorial Full Course PART-01'
+            },
+            // JavaScript For Beginners
+            {
+                part: 'JavaScript For Beginners',
+                link: 'https://youtu.be/ACUMZ3OkExQ?feature=shared',
+                embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1',
+                title: 'JavaScript For Beginners PART-01'
+            },
+            // API Testing (Manual + Automation) Full Course (3 parts)
+            {
+                part: 'API Testing Course PART-01',
+                link: 'https://youtu.be/QKBa8lt5Wfo?feature=shared',
+                embed: 'https://www.youtube.com/embed/QKBa8lt5Wfo?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-01'
+            },
+            {
+                part: 'API Testing Course PART-02',
+                link: 'https://youtu.be/o9KJhGHl49M?feature=shared',
+                embed: 'https://www.youtube.com/embed/o9KJhGHl49M?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-02'
+            },
+            {
+                part: 'API Testing Course PART-03',
+                link: 'https://youtu.be/kay86__5eTg?feature=shared',
+                embed: 'https://www.youtube.com/embed/kay86__5eTg?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-03'
+            }
+        ];
+
+        let latestStartIdx = 0;
+        const latestVisibleCount = 5;
+        let latestAutoScrollInterval;
+
+        function renderLatestVideos() {
+            const list = document.getElementById('latestVideosList');
+            list.innerHTML = '';
+            for (let i = latestStartIdx; i < Math.min(latestStartIdx + latestVisibleCount, latestVideos.length); i++) {
+                const v = latestVideos[i];
+                const div = document.createElement('div');
+                div.className = 'video-part';
+                div.innerHTML = `
+      <span style="font-weight:600; color:#333;">${v.part}:</span>
+      <a class="playlist-link" href="${v.link}" target="_blank">Watch on YouTube</a>
+      <iframe width="220" height="124" src="${v.embed}" title="${v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `;
+                list.appendChild(div);
+            }
+            document.getElementById('latestUpBtn').disabled = latestStartIdx === 0;
+            document.getElementById('latestDownBtn').disabled = latestStartIdx + latestVisibleCount >= latestVideos.length;
+        }
+
+        function startLatestAutoScroll() {
+            if (latestAutoScrollInterval) clearInterval(latestAutoScrollInterval);
+            latestAutoScrollInterval = setInterval(() => {
+                if (latestStartIdx + latestVisibleCount < latestVideos.length) {
+                    latestStartIdx += latestVisibleCount;
+                    if (latestStartIdx >= latestVideos.length) latestStartIdx = 0;
+                } else {
+                    latestStartIdx = 0;
+                }
+                renderLatestVideos();
+            }, 30000);
+        }
+
+        // Show logout link only if logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('logoutLink').style.display = 'inline-block';
+        } else {
+            document.getElementById('logoutLink').style.display = 'none';
+        }
+
+        // Logout logic
+        document.getElementById('logoutLink').onclick = function (e) {
+            e.preventDefault();
+            localStorage.removeItem('loggedIn');
+            
+            // Show logout spinner
+            var loadingOverlay = document.getElementById('loadingOverlay');
+            var loadingText = document.querySelector('.loading-text');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'flex';
+                if (loadingText) {
+                    loadingText.textContent = 'Logged out...';
+                }
+            }
+            
+            // Redirect after spinner delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        };
+
+        // Tab switching function
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Initialize latest videos functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            renderLatestVideos();
+            document.getElementById('latestUpBtn').onclick = function () {
+                if (latestStartIdx > 0) {
+                    latestStartIdx--;
+                    renderLatestVideos();
+                }
+            };
+            document.getElementById('latestDownBtn').onclick = function () {
+                if (latestStartIdx + latestVisibleCount < latestVideos.length) {
+                    latestStartIdx++;
+                    renderLatestVideos();
+                }
+            };
+            startLatestAutoScroll();
+        });
+
+        // Check if this is a refresh and user was logged in
+        let isRefresh = false;
+        if (performance.getEntriesByType && performance.getEntriesByType("navigation").length > 0) {
+            isRefresh = performance.getEntriesByType("navigation")[0].type === "reload";
+        } else if (performance.navigation) {
+            isRefresh = performance.navigation.type === 1;
+        }
+
+        if (isRefresh && localStorage.getItem('loggedIn') === 'true') {
+            var loadingOverlay = document.getElementById('loadingOverlay');
+            var loadingText = document.querySelector('.loading-text');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'flex';
+                if (loadingText) {
+                    loadingText.textContent = 'Refreshing... Logging you out. Please wait...';
+                }
+            }
+            
+            localStorage.removeItem('loggedIn');
+            
+            setTimeout(() => {
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'none';
+                }
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html> 

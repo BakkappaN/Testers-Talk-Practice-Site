@@ -1847,6 +1847,8 @@
   </div>
   <div class="api-banner-fullwidth">
     <a href="API-Test-Playground.html" class="api-playground-link">Test API's</a>
+    <span style="margin: 0 10px; color: #fff;">|</span>
+    <a href="Testers-Talk-Medium-Articles.html" class="api-playground-link">Medium Articles</a>
   </div>
   <script>
     (function () {
@@ -2058,9 +2060,36 @@
         isRefresh = performance.navigation.type === 1;
       }
       
-      // Only clear login state on true browser refresh, not on navigation
-      if (isRefresh) {
+      // Show refresh spinner if this is a refresh and user was logged in
+      if (isRefresh && localStorage.getItem('loggedIn') === 'true') {
+        var loadingOverlay = document.getElementById('loadingOverlay');
+        var loadingText = document.querySelector('.loading-text');
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          if (loadingText) {
+            loadingText.textContent = 'Refreshing... Logging you out. Please wait...';
+          }
+        }
+        
+        // Clear login state and show spinner for 2 seconds
         localStorage.removeItem('loggedIn');
+        
+        setTimeout(() => {
+          if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+          }
+          // Show login page after spinner
+          var loginSection = document.getElementById('loginSection');
+          if (loginSection) loginSection.style.display = 'block';
+          var appDiv = document.getElementById('appDiv');
+          if (appDiv) appDiv.style.display = 'none';
+          var welcomeMsg = document.getElementById('welcomeMsg');
+          if (welcomeMsg) welcomeMsg.style.display = 'none';
+          var logoutBtn = document.getElementById('logoutLink');
+          if (logoutBtn) logoutBtn.classList.remove('show');
+        }, 2000);
+        
+        return; // Exit early to prevent other logic from running
       }
       
       // Always hide logout button first
@@ -2099,7 +2128,7 @@
         if (loadingOverlay) {
           loadingOverlay.style.display = 'flex';
           if (loadingText) {
-            loadingText.textContent = 'Logged out...';
+            loadingText.textContent = 'Logging out...';
           }
         }
         
