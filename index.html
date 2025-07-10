@@ -16,29 +16,41 @@
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      background: #fff url('https://github.githubassets.com/images/modules/site/home-campaign/hero-bg.webp') no-repeat center center fixed;
-      background-size: cover;
-      min-height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      position: relative;
+    :root {
+      --background-color: transparent !important;
+    }
+    
+    html, body {
+      background: linear-gradient(120deg, #7ee787 0%, #79c0ff 40%, #f778ba 100%) !important;
+      background-size: cover !important;
+      min-height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-family: 'Segoe UI', Arial, sans-serif !important;
+      position: relative !important;
     }
 
     .main-flex {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: flex-start;
-      flex-wrap: nowrap;
-      max-width: none;
-      margin: 60px 0 0 0;
-      box-sizing: border-box;
-      padding-left: 40px;
-      padding-right: 16px;
-      width: 100%;
-      position: static;
       gap: 60px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 60px 40px 40px 40px;
+      margin: 0;
+      position: static;
+    }
+
+    .playground-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+      padding: 0 40px 40px 40px;
+      box-sizing: border-box;
     }
 
     #loginDiv,
@@ -51,42 +63,41 @@
     }
 
     #loginDiv {
-      width: 400px;
-      max-width: 400px;
-      min-width: 320px;
-      position: relative;
-      background: transparent;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      border: 2.5px solid #fff !important;
-      padding: 32px 28px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin: 0;
-      top: unset;
-      left: unset;
-      transform: none;
-      align-items: center;
-      margin: 0;
-      position: static;
-      order: 0;
-      overflow: visible;
+      width: 400px !important;
+      max-width: 400px !important;
+      min-width: 320px !important;
+      flex: 0 0 400px !important;
+      position: relative !important;
+      background: transparent !important;
+      border-radius: 16px !important;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      border: 3px solid #fff;
+      padding: 32px 28px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      text-align: center !important;
+      margin: 0 0 0 40px !important;
+      top: unset !important;
+      left: unset !important;
+      transform: none !important;
+      order: 0 !important;
+      overflow: visible !important;
+      height: 100%;
     }
 
     #loginDiv::before {
-      content: "";
-      position: absolute;
-      inset: -4px;
-      border-radius: 20px;
-      z-index: 0;
-      background: linear-gradient(120deg, #7ee787 0%, #79c0ff 40%, #f778ba 100%);
-      padding: 0;
-      filter: blur(0px) brightness(1.08);
-      opacity: 1;
-      pointer-events: none;
+      content: "" !important;
+      position: absolute !important;
+      inset: -4px !important;
+      border-radius: 20px !important;
+      z-index: 0 !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+      padding: 0 !important;
+      filter: blur(0px) brightness(1.08) !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
     }
 
     #loginDiv>* {
@@ -144,17 +155,18 @@
     }
 
     .course-container {
-      width: 100%;
-      max-width: 700px;
-      min-width: 400px;
-      height: auto;
-      min-height: unset;
-      overflow: visible;
-      box-sizing: border-box;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      width: auto !important;
+      max-width: none !important;
+      min-width: 400px !important;
+      flex: 1 !important;
+      height: auto !important;
+      min-height: unset !important;
+      overflow: visible !important;
+      box-sizing: border-box !important;
+      padding: 32px 28px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
     }
 
     .course-video {
@@ -175,29 +187,19 @@
         align-items: center;
         gap: 24px;
         max-width: 98vw;
-        margin: 32px auto;
+        margin: 32px auto 24px auto;
         padding: 0;
       }
-
       #loginDiv,
       .course-container {
-        min-width: unset;
-        max-width: 95vw;
         width: 100%;
-        align-items: center;
-      }
-
-      #loginDiv {
-        align-items: center;
-      }
-
-      .course-container {
-        position: static;
-        right: unset;
-        top: unset;
-        transform: none;
-        width: 95vw;
         max-width: 95vw;
+        min-width: unset;
+        flex: unset;
+        align-items: center;
+      }
+      .playground-section {
+        padding: 0 16px 24px 16px;
       }
     }
 
@@ -684,58 +686,65 @@
     <div class="loading-text">Logging in...</div>
   </div>
 
+  <br>
   <h1 class="main-header-label" id="siteHeader">Testers Talk: A Practice Space for Passionate QA Minds</h1>
 
   <div id="loginSection">
 
-    <div class="main-flex">
-      <div id="loginDiv">
-        <!-- Header removed from here -->
+    <div class="main-flex" style="display: flex; flex-direction: row; justify-content: center; align-items: stretch; gap: 30px; width: 100%; box-sizing: border-box; padding: 60px 20px 40px 20px; margin: 0;">
+      <div id="loginDiv" style="width: 400px; max-width: 400px; min-width: 320px; flex: 0 0 400px; position: relative; background: transparent; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); border: 3px solid #fff; padding: 32px 28px; box-sizing: border-box; display: flex; flex-direction: column; align-items: stretch; text-align: center; margin: 0; top: unset; left: unset; transform: none; order: 0; overflow: visible; height: 100%;">
         <h2 class="login-label-style">Login</h2>
-        <input type="text" id="username" placeholder="Username" />
-        <input type="password" id="password" placeholder="Password" />
-        <button onclick="login()">Login</button>
-        <div class="remember-me-row">
-          <input type="checkbox" id="rememberMe" />
-          <label for="rememberMe">Remember me</label>
-        </div>
-        <p id="loginError"></p>
+        <div style="flex:1 1 0%; display:flex; flex-direction:column; justify-content:center;">
+          <input type="text" id="username" placeholder="Username" />
+          <input type="password" id="password" placeholder="Password" />
+          <button onclick="login()">Login</button>
+          <div class="remember-me-row">
+            <input type="checkbox" id="rememberMe" />
+            <label for="rememberMe">Remember me</label>
+          </div>
+          <p id="loginError"></p>
 
-        <div class="social-links">
-          <a href="https://www.youtube.com/@testerstalk?sub_confirmation=1" target="_blank" class="youtube-sub">
-            <i class="fab fa-youtube"></i>Subscribe for Daily Updates
-          </a>
-          <br>
-          <a href="https://www.linkedin.com/groups/10393547/" target="_blank" class="linkedin-link">
-            <i class="fab fa-linkedin"></i>Join LinkedIn Group
-          </a>
-          <br>
-          <a href="https://www.facebook.com/groups/247868358996762" target="_blank" class="facebook-link">
-            <i class="fab fa-facebook"></i>Join Facebook Group
-          </a>
-          <br>
-          <a href="https://www.linkedin.com/in/bakkappa-n" target="_blank" class="linkedin-link">
-            <i class="fab fa-linkedin"></i>Connect on LinkedIn
-          </a>
-        </div>
+          <div class="social-links">
+            <a href="https://www.youtube.com/@testerstalk?sub_confirmation=1" target="_blank" class="youtube-sub">
+              <i class="fab fa-youtube"></i>Subscribe for Daily Updates
+            </a>
+            <br>
+            <a href="https://www.linkedin.com/groups/10393547/" target="_blank" class="linkedin-link">
+              <i class="fab fa-linkedin"></i>Join LinkedIn Group
+            </a>
+            <br>
+            <a href="https://www.facebook.com/groups/247868358996762" target="_blank" class="facebook-link">
+              <i class="fab fa-facebook"></i>Join Facebook Group
+            </a>
+            <br>
+            <a href="https://www.linkedin.com/in/bakkappa-n" target="_blank" class="linkedin-link">
+              <i class="fab fa-linkedin"></i>Connect on LinkedIn
+            </a>
+          </div>
 
-        <!-- Update the link to use the new class -->
-        <a href="playlist.html" class="main-link-dark-purple">YouTube Playlist + GitHub Repo.</a>
+          <!-- Update the link to use the new class -->
+          <a href="playlist.html" class="main-link-dark-purple">YouTube Playlist + GitHub Repo.</a>
+          <br><br>
+        </div>
       </div>
 
-      <div class="course-container" style="color:#fff;">
-        <h2 class="login-label-style" id="courseTitle" style="margin-bottom: 12px; color:#fff;">YouTube FREE Courses
+      <div class="course-container" style="width: auto !important; max-width: none !important; min-width: 550px !important; flex: 0 0 auto !important; height: 100% !important; overflow: hidden !important; box-sizing: border-box !important; padding: 45px 40px 30px 40px !important; display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: stretch !important; color:#fff !important; border: 8px solid #fff !important; box-shadow: 0 6px 30px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.3) !important; background: rgba(0,0,0,0.1) !important; margin: 0 !important;">
+        <h2 class="login-label-style" id="courseTitle" style="margin-bottom: 12px; text-align: center;">YouTube FREE Courses
         </h2>
         <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
-          style="margin-bottom: 18px; color:#fff; text-decoration:underline;">Playwright TypeScript Course</a>
-        <div class="video-nav-controls">
-          <button id="prevVideo" class="video-nav-btn" aria-label="Previous Video">&lt;</button>
+          style="margin-bottom: 15px; color:#fff; text-decoration:underline; text-align: center; display: block;">Playwright TypeScript Course</a>
+          <br><br>
+        <div class="video-nav-controls" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:30px; margin-top: 20px; margin-bottom: 0; height: 300px;">
+          <button id="prevVideo" class="video-nav-btn" aria-label="Previous Video" style="font-size: 2rem; background: #f5f7fa; border: 2px solid #1976d2; border-radius: 50%; cursor: pointer; color: #1976d2; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s, border 0.2s; z-index: 10; position: relative;">&lt;</button>
           <iframe id="courseVideo" class="course-video" src="https://www.youtube.com/embed/788GvvcfwTY"
-            title="Playwright TypeScript Course" allowfullscreen></iframe>
-          <button id="nextVideo" class="video-nav-btn" aria-label="Next Video">&gt;</button>
+            title="Playwright TypeScript Course" allowfullscreen style="width:850px; height:450px; max-height:450px; min-height:280px;"></iframe>
+          <button id="nextVideo" class="video-nav-btn" aria-label="Next Video" style="font-size: 2rem; background: #f5f7fa; border: 2px solid #1976d2; border-radius: 50%; cursor: pointer; color: #1976d2; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s, border 0.2s; z-index: 10; position: relative;">&gt;</button>
         </div>
+        <br><br><br><br>
       </div>
+    </div>
 
+    <div class="playground-section" style="display: none;">
       <div class="playground-container">
         <h2 class="login-label-style">Playground Contains:</h2>
         <ol style="margin:0 0 0 18px;padding:0;color:#222;font-size:1em;">
@@ -1205,25 +1214,25 @@
               </li>
               <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Add GitHub PAT token in Jenkins?</li>
               <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Create Jenkins Job & Run Playwright Tests?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Publish Junit Test Results in Jenkins?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Publish Allure Report in Jenkins?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Publish Junit Test Results in Jenkins?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Publish Allure Report in Jenkins?</li>
             </ul>
           </li>
 
           <li>&nbsp;&nbsp;&nbsp;
             7.2 How to Integrate Playwright with Azure DevOps Pipeline
             <ul>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- Download & Install GIT - <a href="https://git-scm.com/downloads"
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Download & Install GIT - <a href="https://git-scm.com/downloads"
                   target="_blank">https://git-scm.com/downloads</a></li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Install Azure Repos extension in VS Code</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Create a New Repository in Azure DevOps?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Push Source Code from VS Code to Azure DevOps?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Create a .yml (YAML) file?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Create Azure DevOps Pipeline?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Run Playwright Tests using ADO pipeline?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Publish JUnit Test Results in ADO?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Attach “playwright-report” in ADO as Artifacts?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Update Test Case Status Automatically in Test Plan
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Install Azure Repos extension in VS Code</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Create a New Repository in Azure DevOps?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Push Source Code from VS Code to Azure DevOps?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Create a .yml (YAML) file?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Create Azure DevOps Pipeline?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Run Playwright Tests using ADO pipeline?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Publish JUnit Test Results in ADO?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Attach "playwright-report" in ADO as Artifacts?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Update Test Case Status Automatically in Test Plan
                 (Pipeline + Local)?</li>
             </ul>
           </li>
@@ -1231,11 +1240,11 @@
           <li>&nbsp;&nbsp;&nbsp;
             7.3 Integrate Playwright with GitHub Actions:
             <ul>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Create a .yml (YAML) File?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Run Playwright Tests using GitHub Actions?</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- Workflow - Auto Trigger</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- Workflow - Manual Trigger</li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp>- How to Attach “playwright-report“ as Artifacts</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Create a .yml (YAML) File?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Run Playwright Tests using GitHub Actions?</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Workflow - Auto Trigger</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Workflow - Manual Trigger</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- How to Attach "playwright-report" as Artifacts</li>
             </ul>
           </li>
         </ul>
@@ -1345,7 +1354,7 @@
           <li>&nbsp;&nbsp;&nbsp;6.5 Publish Results in ADO</li>
         </ul>
 
-        <h3>7. Rerun Failed Tests, Browser Context, Popup’s, Alerts etc.</h3>
+        <h3>7. Rerun Failed Tests, Browser Context, Popup's, Alerts etc.</h3>
         <ul>
           <li>&nbsp;&nbsp;&nbsp;7.1 Browser Context – Open multiple browser sessions</li>
           <li>&nbsp;&nbsp;&nbsp;7.2 Run Test in already Opened Browser</li>
@@ -1533,7 +1542,7 @@
         <ul>
           <li>&nbsp;&nbsp;&nbsp;1.1 What is Postman?</li>
           <li>&nbsp;&nbsp;&nbsp;1.2 What is API & its types?</li>
-          <li>&nbsp;&nbsp;&nbsp;1.3 What are Web Services? & It’s types</li>
+          <li>&nbsp;&nbsp;&nbsp;1.3 What are Web Services? & It's types</li>
           <li>&nbsp;&nbsp;&nbsp;1.4 How to Install Postman?</li>
           <li>&nbsp;&nbsp;&nbsp;1.5 What are the other software's required?</li>
           <li>&nbsp;&nbsp;&nbsp;1.6 Create Collections & Folders</li>
@@ -1681,7 +1690,7 @@
         <h3>Chapter-03</h3>
         <ul>
           <li>&nbsp;&nbsp;&nbsp;3.1 What is Serialization & De-Serialization in API Testing?</li>
-          <li>&nbsp;&nbsp;&nbsp;3.2 Create a POST API Request using POJO’s?</li>
+          <li>&nbsp;&nbsp;&nbsp;3.2 Create a POST API Request using POJO's?</li>
           <li>&nbsp;&nbsp;&nbsp;3.3 Validate API Response</li>
           <li>&nbsp;&nbsp;&nbsp;3.4 Create a GET API Request</li>
           <li>&nbsp;&nbsp;&nbsp;3.5 Validate API Response</li>
