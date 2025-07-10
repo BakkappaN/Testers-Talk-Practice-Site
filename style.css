@@ -60,6 +60,11 @@ body {
   padding: var(--spacing-xl);
 }
 
+body:not(.login-bg) {
+  background: #fff url('https://github.githubassets.com/images/modules/site/home-campaign/hero-bg.webp') no-repeat center center fixed !important;
+  background-size: cover !important;
+}
+
 h1,
 h2,
 h3,
@@ -1129,7 +1134,7 @@ body {
 
 /* Add this at the end of the file for specificity */
 body.login-bg {
-  background: var(--background-color) !important;
+  background: #f6f8fa !important;
   background-image: none !important;
   min-width: 100vw !important;
   min-height: 100vh !important;
@@ -1241,4 +1246,9 @@ body.login-bg #siteHeader {
   margin-top: 0 !important;
   padding-top: 0 !important;
   box-shadow: none !important;
+}
+
+body.login-bg .course-container a {
+  color: #111 !important;
+  text-decoration: underline;
 }
