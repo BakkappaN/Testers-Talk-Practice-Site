@@ -1547,8 +1547,33 @@
                             style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">TOKEN
                             Generation &#9660;</a>
                         <div id="tokenGenContent"
-                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
-                            Token generation details go here.</div>
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="tokenGenForm"
+                                style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="tokenGenApiUrl" style="font-weight:bold;">API URL:</label>
+                                    <input type="url" name="apiUrl" id="tokenGenApiUrl" placeholder="https://api.example.com/auth/token" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;" value="https://restful-booker.herokuapp.com/auth">
+                                    <label for="tokenGenApiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                    <textarea name="apiHeaders" id="tokenGenApiHeaders" placeholder='{"Content-Type": "application/json"}' rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json"}</textarea>
+                                    <label for="tokenGenApiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                    <textarea name="apiBody" id="tokenGenApiBody" placeholder='{"username": "admin", "password": "password123"}' rows="4" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{
+    "username": "admin",
+    "password": "password123"
+}</textarea>
+                                    <label for="tokenGenApiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                    <select name="apiMethod" id="tokenGenApiMethod" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                        <option value="POST" selected>POST</option>
+                                    </select>
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                        <button type="submit" id="sendTokenGenBtn" style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert to cURL</button>
+                                    </div>
+                                </div>
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="tokenGenApiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <textarea name="apiResponse" id="tokenGenApiResponse" readonly rows="13" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!-- PUT Request Section -->
                     <div style="margin-bottom: 18px;">
@@ -1556,8 +1581,40 @@
                             style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">PUT
                             Request &#9660;</a>
                         <div id="putRequestContent"
-                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
-                            PUT request details go here.</div>
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="putRequestForm"
+                                style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="putRequestApiUrl" style="font-weight:bold;">API URL:</label>
+                                    <input type="url" name="apiUrl" id="putRequestApiUrl" placeholder="https://api.example.com/endpoint" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;" value="https://restful-booker.herokuapp.com/booking/1">
+                                    <label for="putRequestApiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                    <textarea name="apiHeaders" id="putRequestApiHeaders" placeholder='{"Authorization": "Bearer ..."}' rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json", "Cookie": "token=token_number"}</textarea>
+                                    <label for="putRequestApiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                    <textarea name="apiBody" id="putRequestApiBody" placeholder='{"key": "value"}' rows="4" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{
+    "firstname": "api testing by testers talk",
+    "lastname": "javascript by testers talk",
+    "totalprice": 1500,
+    "depositpaid": true,
+    "bookingdates": {
+        "checkin": "2025-02-15",
+        "checkout": "2025-02-17"
+    },
+    "additionalneeds": "lunch"
+}</textarea>
+                                    <label for="putRequestApiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                    <select name="apiMethod" id="putRequestApiMethod" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                        <option value="PUT" selected>PUT</option>
+                                    </select>
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                        <button type="submit" id="sendPutRequestBtn" style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert to cURL</button>
+                                    </div>
+                                </div>
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="putRequestApiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <textarea name="apiResponse" id="putRequestApiResponse" readonly rows="13" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!-- PATCH Request Section -->
                     <div style="margin-bottom: 18px;">
@@ -1565,8 +1622,33 @@
                             style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">PATCH
                             Request &#9660;</a>
                         <div id="patchRequestContent"
-                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
-                            PATCH request details go here.</div>
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="patchRequestForm"
+                                style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="patchRequestApiUrl" style="font-weight:bold;">API URL:</label>
+                                    <input type="url" name="apiUrl" id="patchRequestApiUrl" placeholder="https://api.example.com/endpoint" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;" value="https://restful-booker.herokuapp.com/booking/1">
+                                    <label for="patchRequestApiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                    <textarea name="apiHeaders" id="patchRequestApiHeaders" placeholder='{"Authorization": "Bearer ..."}' rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json", "Cookie": "token=token_number"}</textarea>
+                                    <label for="patchRequestApiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                    <textarea name="apiBody" id="patchRequestApiBody" placeholder='{"key": "value"}' rows="4" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{
+    "firstname": "playwright typescript by testers talk",
+    "additionalneeds": "dinner"
+}</textarea>
+                                    <label for="patchRequestApiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                    <select name="apiMethod" id="patchRequestApiMethod" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                        <option value="PATCH" selected>PATCH</option>
+                                    </select>
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                        <button type="submit" id="sendPatchRequestBtn" style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert to cURL</button>
+                                    </div>
+                                </div>
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="patchRequestApiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <textarea name="apiResponse" id="patchRequestApiResponse" readonly rows="13" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!-- DELETE Request Section -->
                     <div style="margin-bottom: 0;">
@@ -1574,8 +1656,30 @@
                             style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none;">DELETE
                             Request &#9660;</a>
                         <div id="deleteRequestContent"
-                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
-                            DELETE request details go here.</div>
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="deleteRequestForm"
+                                style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="deleteRequestApiUrl" style="font-weight:bold;">API URL:</label>
+                                    <input type="url" name="apiUrl" id="deleteRequestApiUrl" placeholder="https://api.example.com/endpoint" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;" value="https://restful-booker.herokuapp.com/booking/1">
+                                    <label for="deleteRequestApiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                    <textarea name="apiHeaders" id="deleteRequestApiHeaders" placeholder='{"Authorization": "Bearer ..."}' rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json","Cookie": "token=token_number"}</textarea>
+                                    <label for="deleteRequestApiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                    <textarea name="apiBody" id="deleteRequestApiBody" placeholder='{"key": "value"}' rows="4" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"></textarea>
+                                    <label for="deleteRequestApiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                    <select name="apiMethod" id="deleteRequestApiMethod" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                        <option value="DELETE" selected>DELETE</option>
+                                    </select>
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                        <button type="submit" id="sendDeleteRequestBtn" style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert to cURL</button>
+                                    </div>
+                                </div>
+                                <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                    <label for="deleteRequestApiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <textarea name="apiResponse" id="deleteRequestApiResponse" readonly rows="13" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1875,6 +1979,30 @@
 
         // Azure DevOps PATCH - Update Test Case Outcome form handler
         document.getElementById('azurePatchTestCaseOutcomeForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+        // TOKEN Generation form handler
+        document.getElementById('tokenGenForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+        // PUT Request form handler
+        document.getElementById('putRequestForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+        // PATCH Request form handler
+        document.getElementById('patchRequestForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+        // DELETE Request form handler
+        document.getElementById('deleteRequestForm').onsubmit = function (e) {
             e.preventDefault();
             handleFormSubmit(this);
         };
