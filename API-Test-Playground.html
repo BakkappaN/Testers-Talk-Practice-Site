@@ -1201,6 +1201,234 @@
             font-family: monospace;
             font-size: 1em;
         }
+
+        /* Flex container for sidebar and latest section */
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            flex: 1 1 0;
+            min-width: 280px;
+            max-width: 100%;
+            margin: 32px 0 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* Latest section wrapper styles */
+        .latest-section-wrapper {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 260px;
+            z-index: 101;
+            background: transparent;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 0;
+        }
+
+        .latest-section-label-top {
+            background: transparent;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: none;
+        }
+
+        .latest-label-divider-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            min-width: 60px;
+        }
+
+        .latest-section {
+            display: none;
+        }
+
+        .latest-divider {
+            display: block;
+            width: 3px;
+            height: 100%;
+            background: #fff;
+            border-radius: 2px;
+            margin: 0 auto;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+        }
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: 240px;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .latest-videos-arrows {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .latest-arrow-btn {
+            background: #4b006e;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .latest-arrow-btn:disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        .video-part {
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px 8px 12px 8px;
+            min-width: 200px;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-part span {
+            color: #4b006e;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .video-part a {
+            color: #4b006e;
+            font-size: 0.98em;
+            margin-bottom: 6px;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .video-part a:hover {
+            color: #32004a;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+
+        /* API Test Form Styles */
+        form {
+            margin-top: 32px;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background: #4b006e;
+            color: #fff;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        #apiResponse {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #181828;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1em;
+        }
     </style>
 </head>
 
@@ -1297,13 +1525,7 @@
                                     <label for="apiMethod" style="font-weight:bold;">HTTP Method:</label>
                                     <select name="apiMethod"
                                         style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
-                                        <option value="POST">POST</option>
                                         <option value="GET" selected>GET</option>
-                                        <option value="PUT">PUT</option>
-                                        <option value="PATCH">PATCH</option>
-                                        <option value="DELETE">DELETE</option>
-                                        <option value="HEAD">HEAD</option>
-                                        <option value="OPTIONS">OPTIONS</option>
                                     </select>
                                     <div style="width:100%;display:flex;justify-content:center;align-items:center;">
                                         <button type="submit" id="sendApiBtn"
@@ -1354,6 +1576,74 @@
                         <div id="deleteRequestContent"
                             style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; min-width: 220px; max-width: 420px; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none;">
                             DELETE request details go here.</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" id="azureDevOpsDetailsLink"
+                style="color: #4b006e; background: #fff; padding: 12px 28px; border-radius: 8px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); display: block; font-size: 1.15em; margin-bottom: 0; text-align: left; margin-top: 18px;">Azure DevOps &#9660;</a>
+            <div id="azureDevOpsDetailsContent"
+                style="display: none; background: transparent; color: #222; border-radius: 0 0 12px 12px; box-shadow: none; padding: 0; margin-top: 0; min-width: 340px; width: 100%; font-size: 1em; text-align: left; box-sizing: border-box;">
+                <div style="margin-top: 0; margin-left: 0; padding: 0 0; width: 100%; box-sizing: border-box;">
+                    <!-- GET - Get Test Points Section -->
+                    <div style="margin-bottom: 18px; width: 100%; box-sizing: border-box;">
+                        <a href="#" class="expand-link" id="azureGetTestPointsLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none; width: 100%; box-sizing: border-box;">GET - Get Test Points &#9660;</a>
+                        <div id="azureGetTestPointsContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+                            <form id="azureGetTestPointsForm"
+                            style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                            <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <label for="azureGetTestPointsApiUrl" style="font-weight:bold;">API URL:</label>
+                                <input type="url" name="apiUrl" id="azureGetTestPointsApiUrl" placeholder="https://dev.azure.com/{organization}/{project}/_apis/test/Plans/{planId}/Suites/{suiteId}/Points?api-version=7.0" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;" value="https://dev.azure.com/Organization/Project1/_apis/testplan/Plans/6/Suites/8/TestPoint?testCaseId=2&api-version=7.2-preview.2">
+                                <label for="azureGetTestPointsApiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+                                <textarea name="apiHeaders" id="azureGetTestPointsApiHeaders" placeholder='{\"Authorization\": \"Bearer ...\"}' rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"></textarea>
+                                <label for="azureGetTestPointsApiBody" style="font-weight:bold;">Request Body (JSON):</label>
+                                <textarea name="apiBody" id="azureGetTestPointsApiBody" placeholder='{"key": "value"}' rows="4" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;"></textarea>
+                                <label for="azureGetTestPointsApiMethod" style="font-weight:bold;">HTTP Method:</label>
+                                <select name="apiMethod" id="azureGetTestPointsApiMethod" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+                                    <option value="GET" selected>GET</option>
+                                </select>
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                    <button type="submit" id="sendAzureGetTestPointsBtn" style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert to cURL</button>
+                                </div>
+                            </div>
+                            <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+                                <label for="azureGetTestPointsApiResponse" style="font-weight:bold;">cURL Command:</label>
+                                <textarea name="apiResponse" id="azureGetTestPointsApiResponse" readonly rows="13" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+                            </div>
+                        </form>                        </div>
+                    </div>
+                    <!-- PATCH - Update Test Case Outcome Section -->
+                    <div style="margin-bottom: 0; width: 100%; box-sizing: border-box;">
+                        <a href="#" class="expand-link" id="azurePatchTestCaseOutcomeLink"
+                            style="color: #4b006e; background: #fff; padding: 8px 20px; border-radius: 8px 8px 0 0; font-weight: 500; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block; margin-bottom: 0; margin-left: 0; margin-top: 0; text-align: left; border: 1px solid #e0d6f7; border-bottom: none; width: 100%; box-sizing: border-box;">PATCH - Update Test Case Outcome &#9660;</a>
+                        <div id="azurePatchTestCaseOutcomeContent"
+                            style="display: none; background: #fff; color: #222; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 12px 18px; margin-top: 0; width: 100%; font-size: 0.98em; margin-left: 0; text-align: left; border: 1px solid #e0d6f7; border-top: none; box-sizing: border-box;">
+<form id="azurePatchTestCaseOutcomeForm"
+    style="margin-top:0; text-align:left; display: flex; flex-direction: row; gap: 32px; align-items: flex-start; justify-content: flex-start; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+    <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+        <label for="azurePatchTestCaseOutcomeApiUrl" style="font-weight:bold;">API URL:</label>
+        <input type="url" name="apiUrl" id="azurePatchTestCaseOutcomeApiUrl" placeholder="https://dev.azure.com/{organization}/{project}/_apis/test/Plans/{planId}/Suites/{suiteId}/points/{pointId}?api-version=7.2-preview.2" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;" value="https://dev.azure.com/Organization/Project1/_apis/test/Plans/6/Suites/8/points/11?api-version=7.2-preview.2">
+        <label for="azurePatchTestCaseOutcomeApiHeaders" style="font-weight:bold;">Headers (JSON):</label>
+        <textarea name="apiHeaders" id="azurePatchTestCaseOutcomeApiHeaders" placeholder='{\"Authorization\": \"Bearer ...\"}' rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{"Content-Type": "application/json", "Authorization": "Bearer {{PAT}}"}</textarea>
+        <label for="azurePatchTestCaseOutcomeApiBody" style="font-weight:bold;">Request Body (JSON):</label>
+        <textarea name="apiBody" id="azurePatchTestCaseOutcomeApiBody" placeholder='{"key": "value"}' rows="4" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">{
+    "outcome": "Passed"
+}</textarea>
+        <label for="azurePatchTestCaseOutcomeApiMethod" style="font-weight:bold;">HTTP Method:</label>
+        <select name="apiMethod" id="azurePatchTestCaseOutcomeApiMethod" style="width:100%;padding:8px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc;">
+            <option value="PATCH" selected>PATCH</option>
+        </select>
+        <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+            <button type="submit" id="sendAzurePatchTestCaseOutcomeBtn" style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert to cURL</button>
+        </div>
+    </div>
+    <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
+        <label for="azurePatchTestCaseOutcomeApiResponse" style="font-weight:bold;">cURL Command:</label>
+        <textarea name="apiResponse" id="azurePatchTestCaseOutcomeApiResponse" readonly rows="13" style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
+    </div>
+</form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1537,6 +1827,21 @@
             setupExpand('patchRequestLink', 'patchRequestContent', 'PATCH Request');
             // DELETE Request
             setupExpand('deleteRequestLink', 'deleteRequestContent', 'DELETE Request');
+
+            // Azure DevOps Details
+            const azureLink = document.getElementById('azureDevOpsDetailsLink');
+            const azureContent = document.getElementById('azureDevOpsDetailsContent');
+            let azureExpanded = false;
+            azureLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                azureExpanded = !azureExpanded;
+                azureContent.style.display = azureExpanded ? 'block' : 'none';
+                azureLink.innerHTML = azureExpanded ? 'Azure DevOps &#9650;' : 'Azure DevOps &#9660;';
+            });
+            // Azure DevOps child expanders
+            setupExpand('azureGetTestPointsLink', 'azureGetTestPointsContent', 'GET - Get Test Points');
+            setupExpand('azurePatchTestCaseOutcomeLink', 'azurePatchTestCaseOutcomeContent', 'PATCH - Update Test Case Outcome');
+
             function setupExpand(linkId, contentId, label) {
                 const l = document.getElementById(linkId);
                 const c = document.getElementById(contentId);
@@ -1558,6 +1863,18 @@
 
         // GET Request form handler
         document.getElementById('getAPITestForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+        // Azure DevOps GET - Get Test Points form handler
+        document.getElementById('azureGetTestPointsForm').onsubmit = function (e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        };
+
+        // Azure DevOps PATCH - Update Test Case Outcome form handler
+        document.getElementById('azurePatchTestCaseOutcomeForm').onsubmit = function (e) {
             e.preventDefault();
             handleFormSubmit(this);
         };
