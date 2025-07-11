@@ -1487,14 +1487,17 @@
                                         <option value="HEAD">HEAD</option>
                                         <option value="OPTIONS">OPTIONS</option>
                                     </select>
-                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center;gap:12px;">
                                         <button type="submit" id="sendApiBtn"
                                             style="background:#4b006e;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert
                                             to cURL</button>
+                                        <button type="button" id="convertToPlaywrightBtn"
+                                            style="background:#2e7d32;color:#fff;padding:14px 36px;border:none;border-radius:6px;font-size:1.1em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:8px; margin-top: 8px;">Convert
+                                            to Playwright TS/JS</button>
                                     </div>
                                 </div>
                                 <div style="flex: 1 1 0; min-width: 0; max-width: 100%; box-sizing: border-box;">
-                                    <label for="apiResponse" style="font-weight:bold;">cURL Command:</label>
+                                    <label for="apiResponse" style="font-weight:bold;">Output:</label>
                                     <textarea name="apiResponse" readonly rows="13"
                                         style="width:100%;padding:8px;margin-top:8px;border-radius:6px;border:1px solid #ccc;background:#181828;color:#fff;font-family:monospace;font-size:1em;"></textarea>
                                 </div>
@@ -1773,6 +1776,7 @@
         </div>
     </div>
 
+    <script src="Convert-To-Playwright.js"></script>
     <script>
         // Video data for Playwright TypeScript Full Course
         const latestVideos = [
@@ -1963,6 +1967,10 @@
         document.getElementById('apiTestForm').onsubmit = function (e) {
             e.preventDefault();
             handleFormSubmit(this);
+        };
+        // Add Playwright button handler for POST form
+        document.getElementById('convertToPlaywrightBtn').onclick = function () {
+            handlePlaywrightConversion(document.getElementById('apiTestForm'));
         };
 
         // GET Request form handler
