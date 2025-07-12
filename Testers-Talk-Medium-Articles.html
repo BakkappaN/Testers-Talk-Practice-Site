@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testers Talk - Medium Articles</title>
     <link rel="stylesheet" href="style.css" />
     <style>
@@ -343,6 +344,191 @@
         .video-part iframe {
             border-radius: 6px;
             margin-top: 4px;
+        }
+
+        /* Mobile Responsive Styles - Following API-Test-Playground.html pattern */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px !important;
+                overflow-x: hidden !important;
+                margin: 0 !important;
+            }
+
+            .latest-section-wrapper {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                width: 100% !important;
+                margin: 20px 0 !important;
+                align-items: center !important;
+                z-index: 1 !important;
+                left: auto !important;
+                transform: none !important;
+            }
+
+            .latest-section-and-videos {
+                flex-direction: column !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+
+            .latest-label-divider-col {
+                height: auto !important;
+                min-width: auto !important;
+                margin-bottom: 15px !important;
+                width: 100% !important;
+            }
+
+            .latest-divider {
+                height: 3px !important;
+                width: 100% !important;
+                max-width: 200px !important;
+            }
+
+            .latest-videos-section {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .video-part {
+                min-width: auto !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .medium-articles-container {
+                padding: 10px !important;
+                margin-top: 20px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            .tab-navigation {
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+                justify-content: center !important;
+            }
+
+            .tab-button {
+                padding: 10px 16px !important;
+                font-size: 14px !important;
+                white-space: nowrap !important;
+            }
+
+            .article-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 10px !important;
+                padding: 15px !important;
+            }
+
+            .article-number {
+                min-width: auto !important;
+            }
+
+            .article-link {
+                font-size: 1.1em !important;
+                word-wrap: break-word !important;
+            }
+
+            .page-header h1 {
+                font-size: 2em !important;
+            }
+
+            .page-header p {
+                font-size: 1em !important;
+            }
+
+            .page-header {
+                margin-top: 20px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .back-button {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                margin-bottom: 15px !important;
+                display: inline-block !important;
+            }
+
+            .logout-link {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                margin-bottom: 15px !important;
+                display: inline-block !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px !important;
+                margin: 0 !important;
+            }
+
+            .latest-section-wrapper {
+                margin: 15px 0 !important;
+                margin-top: 30px !important;
+            }
+
+            .latest-section-label-top {
+                font-size: 0.9em !important;
+                padding: 6px 12px !important;
+            }
+
+            .video-part {
+                padding: 8px 6px 10px 6px !important;
+            }
+
+            .video-part iframe {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 280px !important;
+            }
+
+            .medium-articles-container {
+                padding: 8px !important;
+            }
+
+            .tab-button {
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+            }
+
+            .article-item {
+                padding: 12px !important;
+            }
+
+            .article-link {
+                font-size: 1em !important;
+            }
+
+            .page-header h1 {
+                font-size: 1.8em !important;
+            }
+
+            .page-header p {
+                font-size: 0.9em !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .tab-button {
+                padding: 6px 10px !important;
+                font-size: 12px !important;
+            }
+
+            .article-item {
+                padding: 10px !important;
+            }
+
+            .page-header h1 {
+                font-size: 1.6em !important;
+            }
         }
     </style>
 </head>
@@ -766,7 +952,7 @@
         ];
 
         let latestStartIdx = 0;
-        const latestVisibleCount = 5;
+        const latestVisibleCount = 7;
         let latestAutoScrollInterval;
 
         function renderLatestVideos() {

@@ -69,10 +69,10 @@
             top: 0;
             left: 0;
             text-align: center;
-            background: #2a003f;
+            background: transparent;
             z-index: 100;
             padding: 24px 0 12px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
         }
 
         header h1 {
@@ -1435,10 +1435,10 @@
 <body>
     <header>
         <button class="back-btn" onclick="window.location.href='index.html'">Back</button>
-        <h1>Test API's</h1>
     </header>
             <div style="display: flex; flex-direction: row; align-items: flex-start; width: 100%; box-sizing: border-box;">
-            <div style="flex: 1 1 auto; min-width: 400px; max-width: calc(100% - 300px); margin: 32px 0 0 48px; box-sizing: border-box;">
+            <div style="flex: 1 1 auto; min-width: 400px; max-width: calc(100% - 300px); margin: 32px 0 0 0; box-sizing: border-box;">
+            <h1 style="color: #fff; font-size: 2.4em; margin: 0 0 24px 0; font-weight: bold; letter-spacing: 1px; text-align: center;">Test API's</h1>
             <a href="#" id="bookingApiDetailsLink"
                 style="color: #4b006e; background: #fff; padding: 12px 28px; border-radius: 8px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); display: block; font-size: 1.15em; margin-bottom: 0; text-align: left;">Booking
                 API Details &#9660;</a>
@@ -1860,7 +1860,7 @@
         ];
 
         let latestStartIdx = 0;
-        const latestVisibleCount = 5;
+        const latestVisibleCount = 7;
         let latestAutoScrollInterval;
 
         function renderLatestVideos() {
