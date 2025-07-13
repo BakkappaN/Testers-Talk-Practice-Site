@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Banking Project Demo - Testers Talk</title>
+
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- jQuery and jQuery UI for drag and drop -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --background-color: transparent !important;
+    }
+    
+    html, body {
+      min-height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-family: 'Segoe UI', Arial, sans-serif !important;
+      position: relative !important;
+    }
+
+    .banking-container {
+      max-width: 1200px;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: left;
+    }
+
+    .banking-header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+
+    .banking-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .banking-header p {
+      font-size: 1.2em;
+      color: #fff;
+    }
+
+    .banking-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      border: 3px solid #4b006e;
+      margin-bottom: 40px;
+      margin-left: 0;
+      align-self: flex-start;
+    }
+
+    .banking-layout {
+      display: flex;
+      gap: 30px;
+      justify-content: flex-start;
+    }
+
+    .banking-sidebar {
+      width: 250px;
+      flex-shrink: 0;
+      margin-left: 0;
+    }
+
+    .banking-nav {
+      /* Simple text links - no background, border, or padding */
+    }
+
+    .nav-link {
+      display: block;
+      padding: 8px 0;
+      margin-bottom: 5px;
+      color: #4b006e;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      border: none;
+      background: none;
+    }
+
+    .nav-link:hover {
+      color: #6a1b9a;
+      background: none;
+      border: none;
+    }
+
+    .nav-link.active {
+      color: #6a1b9a;
+      font-weight: 600;
+      background: none;
+      border: none;
+    }
+
+    .banking-main-content {
+      flex: 1;
+    }
+
+    .content-section {
+      display: none;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border: 2px solid #4b006e;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    /* Tab System Styles */
+    .banking-tabs {
+      width: 100%;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab-button {
+      padding: 12px 24px;
+      background: #4b006e;
+      border: 2px solid #4b006e;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-button:hover {
+      background: #4CAF50;
+      border-color: #4CAF50;
+      color: white;
+    }
+
+    .tab-button.active {
+      background: white;
+      border-color: #4b006e;
+      color: #4b006e;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .banking-section h2 {
+      color: #4b006e;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    .banking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .banking-form label {
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .banking-form label.required::after {
+      content: " *";
+      color: #e74c3c;
+      font-weight: 700;
+    }
+
+    .banking-form input.error,
+    .banking-form select.error {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 4px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .banking-form input,
+    .banking-form select {
+      padding: 12px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      min-height: 44px;
+    }
+
+    .banking-form input:focus,
+    .banking-form select:focus {
+      outline: none;
+      border-color: #4b006e;
+      box-shadow: 0 0 0 3px rgba(75, 0, 110, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .banking-form input::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    .banking-form select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 12px center;
+      background-repeat: no-repeat;
+      background-size: 16px;
+      padding-right: 40px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      min-height: 48px;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .banking-form select option {
+      background-color: #fff;
+      color: #333;
+      padding: 12px 16px;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .banking-form select:focus option {
+      background-color: #f8f9fa;
+    }
+
+
+
+    .banking-button {
+      background: #4b006e;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 8px;
+    }
+
+    .banking-button:hover {
+      background: #6a1b9a;
+    }
+
+
+
+    .transaction-history {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .transaction-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 5px;
+    }
+
+    .transaction-item:last-child {
+      border-bottom: none;
+    }
+
+    .transaction-amount {
+      font-weight: 600;
+    }
+
+    .transaction-amount.credit {
+      color: #4caf50;
+    }
+
+    .transaction-amount.debit {
+      color: #f44336;
+    }
+
+    .balance-display {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #4b006e;
+      margin: 20px 0;
+    }
+
+
+
+    .logout-link {
+      position: fixed;
+      top: 18px;
+      right: 32px;
+      z-index: 10000;
+      font-weight: 600;
+      color: #fff;
+      background: #002171;
+      padding: 8px 18px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+      display: inline-block;
+      pointer-events: auto;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .logout-link.hidden {
+      display: none;
+    }
+
+    .logout-link.scrolled {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      pointer-events: none;
+    }
+
+    .logout-link:hover {
+      background: #0d47a1;
+      color: #fff;
+    }
+
+    /* Timer Display Styles */
+    .timer-display {
+      position: fixed;
+      top: 18px;
+      left: 32px;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .timer-display:hover {
+      background: rgba(0, 0, 0, 0.9);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Loading Overlay and Spinner Styles */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #4CAF50;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    .loading-text {
+      color: #4CAF50;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Confirmation Screen Styles */
+    .confirmation-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10001;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .confirmation-modal {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .confirmation-header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #4b006e;
+    }
+
+    .confirmation-header h2 {
+      color: #4b006e;
+      margin: 0 0 10px 0;
+      font-size: 1.8em;
+    }
+
+    .confirmation-header p {
+      color: #666;
+      margin: 0;
+      font-size: 1.1em;
+    }
+
+    .confirmation-details {
+      margin-bottom: 25px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #333;
+      flex: 1;
+    }
+
+    .detail-value {
+      color: #4b006e;
+      font-weight: 500;
+      text-align: right;
+      flex: 1;
+    }
+
+    .confirmation-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .btn-cancel {
+      background: #f44336;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-cancel:hover {
+      background: #d32f2f;
+    }
+
+    .btn-confirm {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-confirm:hover {
+      background: #45a049;
+    }
+
+    /* Custom Alert Modal Styles */
+    .custom-alert {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10003;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .alert-content {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.3s ease;
+    }
+
+    .alert-content span {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    .close-btn {
+      background: #4b006e;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background: #6a1b9a;
+    }
+
+    /* Success Message Styles */
+    .success-message {
+      margin-top: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      border-radius: 12px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+      animation: slideInSuccess 0.5s ease;
+    }
+
+    @keyframes slideInSuccess {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .success-icon {
+      font-size: 2em;
+      flex-shrink: 0;
+    }
+
+    .success-text h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.3em;
+      font-weight: 600;
+    }
+
+    .success-text p {
+      margin: 4px 0;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+
+    .reference-number {
+      font-family: monospace;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    /* Confirmation Form Styles */
+    .confirmation-form {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 25px;
+      border: 2px solid #4b006e;
+    }
+
+    .confirmation-details {
+      margin-bottom: 25px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #333;
+      flex: 1;
+    }
+
+    .detail-value {
+      color: #4b006e;
+      font-weight: 500;
+      text-align: right;
+      flex: 1;
+    }
+
+    .confirmation-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .btn-cancel {
+      background: #f44336;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-cancel:hover {
+      background: #d32f2f;
+    }
+
+    .btn-confirm {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-confirm:hover {
+      background: #45a049;
+    }
+
+    /* Success Form Styles */
+    .success-form {
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      border-radius: 16px;
+      padding: 30px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
+    }
+
+    .success-details {
+      margin-bottom: 30px;
+    }
+
+    .success-icon-large {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+
+    .success-info h3 {
+      margin: 0 0 20px 0;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    .success-detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .success-detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .success-label {
+      font-weight: 600;
+      flex: 1;
+      text-align: left;
+    }
+
+    .success-value {
+      font-weight: 500;
+      flex: 1;
+      text-align: right;
+    }
+
+    .reference-highlight {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-weight: 600;
+    }
+
+    .success-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #4CAF50;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 12px 24px;
+      border: 2px solid white;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .banking-layout {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .banking-sidebar {
+        width: 100%;
+      }
+      
+      .banking-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      
+      .nav-link {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        margin-bottom: 0;
+        padding: 5px 0;
+      }
+      
+      .banking-container {
+        padding: 20px 10px;
+      }
+      
+      .banking-header h1 {
+        font-size: 2em;
+      }
+      
+      .banking-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Timer Display -->
+  <div class="timer-display" id="timerDisplay">
+    <span id="currentDateTime">Loading...</span>
+  </div>
+
+  <!-- Logout Button -->
+  <a href="#" class="logout-link hidden" id="logoutLink">Logout</a>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading...</div>
+  </div>
+
+
+
+  <div class="banking-container">
+    <div class="banking-header">
+      <h1>🏦 Sample Banking Application</h1>
+      <p>Welcome to the Testers Talk Banking Application</p>
+    </div>
+
+    <div class="banking-tabs">
+      <div class="tab-buttons">
+        <button class="tab-button active" onclick="showTab('transfers')">Transfers</button>
+        <button class="tab-button" onclick="showTab('billpayments')">Bill Payments</button>
+      </div>
+
+      <!-- Transfers Tab Content -->
+      <div class="tab-content active" id="transfers-tab">
+        <div class="banking-section">
+          <div class="banking-layout">
+            <!-- Left Sidebar Navigation -->
+            <div class="banking-sidebar">
+              <nav class="banking-nav">
+                <a href="#" class="nav-link active" onclick="showSection('account')">💰 Account Management</a>
+                <a href="#" class="nav-link" onclick="showSection('transactions')">💳 Quick Transactions</a>
+                <a href="#" class="nav-link" onclick="showSection('history')">📊 Transaction History</a>
+              </nav>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="banking-main-content">
+              <!-- Account Management Section -->
+              <div class="content-section active" id="account-section">
+                <h2>💰 Account Management</h2>
+                <div class="balance-display">
+                  Balance: $<span id="accountBalance">10,000.00</span>
+                </div>
+                
+                <div class="banking-form">
+                  <label for="accountNumber">Account Number:</label>
+                  <input type="text" id="accountNumber" value="1234567890" readonly>
+                  
+                  <label for="accountHolder">Account Holder:</label>
+                  <input type="text" id="accountHolder" value="Testers Talk User" readonly>
+                  
+                  <label for="accountType">Account Type:</label>
+                  <select id="accountType">
+                    <option value="savings">Savings Account</option>
+                    <option value="checking">Checking Account</option>
+                    <option value="business">Business Account</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Transaction Section -->
+              <div class="content-section" id="transactions-section">
+                <h2>💳 Quick Transactions</h2>
+                <div class="banking-form">
+                  <label for="transactionType" class="required">Transaction Type:</label>
+                  <select id="transactionType">
+                    <option value="">Select transaction type</option>
+                    <option value="deposit">Deposit</option>
+                    <option value="withdrawal">Withdrawal</option>
+                    <option value="transfer">Transfer</option>
+                  </select>
+                  <div class="error-message" id="transactionTypeError">Please select a transaction type</div>
+                  
+                  <label for="transactionAmount" class="required">Amount ($):</label>
+                  <input type="number" id="transactionAmount" placeholder="Enter amount" min="0" step="0.01">
+                  <div class="error-message" id="transactionAmountError">Please enter a valid amount</div>
+                  
+                  <div id="transferAccountGroup" style="display: none;">
+                    <label for="transferAccount" class="required">Transfer to Account:</label>
+                    <input type="text" id="transferAccount" placeholder="Enter account number">
+                    <div class="error-message" id="transferAccountError">Please enter a valid account number</div>
+                  </div>
+                  
+                  <label for="transactionDescription" class="required">Description:</label>
+                  <input type="text" id="transactionDescription" placeholder="Transaction description">
+                  <div class="error-message" id="transactionDescriptionError">Please enter a description</div>
+                  
+                  <button class="banking-button" onclick="validateAndShowTransactionConfirmation()">Submit</button>
+                </div>
+              </div>
+
+              <!-- Transaction Confirmation Section -->
+              <div class="content-section" id="confirmation-section" style="display: none;">
+                <h2>🔍 Transaction Confirmation</h2>
+                <div class="confirmation-form">
+                  <div class="confirmation-details">
+                    <div class="detail-row">
+                      <span class="detail-label">Transaction Type:</span>
+                      <span class="detail-value" id="confirmType"></span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Amount:</span>
+                      <span class="detail-value" id="confirmAmount"></span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Description:</span>
+                      <span class="detail-value" id="confirmDescription"></span>
+                    </div>
+                    <div class="detail-row" id="confirmTransferRow" style="display: none;">
+                      <span class="detail-label">Transfer To Account:</span>
+                      <span class="detail-value" id="confirmTransferAccount"></span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Current Balance:</span>
+                      <span class="detail-value" id="confirmCurrentBalance"></span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">New Balance After Transaction:</span>
+                      <span class="detail-value" id="confirmNewBalance"></span>
+                    </div>
+                  </div>
+                  
+                  <div class="confirmation-actions">
+                    <button class="btn-cancel" onclick="backToTransactionForm()">Back</button>
+                    <button class="btn-confirm" onclick="confirmAndProcessTransaction()">Confirm</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transaction Success Section -->
+              <div class="content-section" id="success-section" style="display: none;">
+                <h2>✅ Transaction Successful</h2>
+                <div class="success-form">
+                  <div class="success-details">
+                    <div class="success-icon-large">✅</div>
+                    <div class="success-info">
+                      <h3 id="successTitle">Transaction Completed Successfully!</h3>
+                      <div class="success-detail-row">
+                        <span class="success-label">Transaction Type:</span>
+                        <span class="success-value" id="successType"></span>
+                      </div>
+                      <div class="success-detail-row">
+                        <span class="success-label">Amount:</span>
+                        <span class="success-value" id="successAmount"></span>
+                      </div>
+                      <div class="success-detail-row">
+                        <span class="success-label">Description:</span>
+                        <span class="success-value" id="successDescription"></span>
+                      </div>
+                      <div class="success-detail-row">
+                        <span class="success-label">Transaction Reference:</span>
+                        <span class="success-value reference-highlight" id="successReference"></span>
+                      </div>
+                      <div class="success-detail-row">
+                        <span class="success-label">Date & Time:</span>
+                        <span class="success-value" id="successDateTime"></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="success-actions">
+                    <button class="btn-primary" onclick="backToTransactionForm()">New Transaction</button>
+                    <button class="btn-secondary" onclick="viewTransactionHistory()">View History</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transaction History Section -->
+              <div class="content-section" id="history-section">
+                <h2>📊 Transaction History</h2>
+                <div class="transaction-history" id="transactionHistory">
+                  <div class="transaction-item">
+                    <div>
+                      <strong>Initial Balance</strong><br>
+                      <small>Account opened</small>
+                    </div>
+                    <div class="transaction-amount credit">+$10,000.00</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bill Payments Tab Content -->
+      <div class="tab-content" id="billpayments-tab">
+        <div class="banking-section">
+          <!-- Bill Payment Form -->
+          <div id="bill-form-section">
+            <h2>💳 Bill Payments</h2>
+            <div class="banking-form">
+              <label for="billType" class="required">Bill Type:</label>
+              <select id="billType">
+                <option value="">Select bill type</option>
+                <option value="electricity">Electricity</option>
+                <option value="water">Water</option>
+                <option value="gas">Gas</option>
+                <option value="internet">Internet</option>
+                <option value="phone">Phone</option>
+                <option value="creditcard">Credit Card</option>
+                <option value="insurance">Insurance</option>
+              </select>
+              <div class="error-message" id="billTypeError">Please select a bill type</div>
+              
+              <label for="billProvider" class="required">Service Provider:</label>
+              <input type="text" id="billProvider" placeholder="Enter service provider name">
+              <div class="error-message" id="billProviderError">Please enter service provider name</div>
+              
+              <label for="billAccountNumber" class="required">Account/Reference Number:</label>
+              <input type="text" id="billAccountNumber" placeholder="Enter account or reference number">
+              <div class="error-message" id="billAccountNumberError">Please enter account/reference number</div>
+              
+              <label for="billAmount" class="required">Amount ($):</label>
+              <input type="number" id="billAmount" placeholder="Enter bill amount" min="0" step="0.01">
+              <div class="error-message" id="billAmountError">Please enter a valid amount</div>
+              
+              <label for="paymentMethod" class="required">Payment Method:</label>
+              <select id="paymentMethod">
+                <option value="">Select payment method</option>
+                <option value="checking">Checking Account</option>
+                <option value="savings">Savings Account</option>
+                <option value="creditcard">Credit Card</option>
+              </select>
+              <div class="error-message" id="paymentMethodError">Please select a payment method</div>
+              
+              <button class="banking-button" onclick="validateAndShowBillConfirmation()">Submit</button>
+            </div>
+          </div>
+
+          <!-- Bill Payment Confirmation Section -->
+          <div id="bill-confirmation-section" style="display: none;">
+            <h2>🔍 Bill Payment Confirmation</h2>
+            <div class="confirmation-form">
+              <div class="confirmation-details">
+                <div class="detail-row">
+                  <span class="detail-label">Bill Type:</span>
+                  <span class="detail-value" id="billConfirmType"></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Service Provider:</span>
+                  <span class="detail-value" id="billConfirmProvider"></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Account/Reference Number:</span>
+                  <span class="detail-value" id="billConfirmAccount"></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Amount:</span>
+                  <span class="detail-value" id="billConfirmAmount"></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Payment Method:</span>
+                  <span class="detail-value" id="billConfirmPaymentMethod"></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Current Balance:</span>
+                  <span class="detail-value" id="billConfirmCurrentBalance"></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">New Balance After Payment:</span>
+                  <span class="detail-value" id="billConfirmNewBalance"></span>
+                </div>
+              </div>
+              
+              <div class="confirmation-actions">
+                <button class="btn-cancel" onclick="backToBillForm()">Back</button>
+                <button class="btn-confirm" onclick="confirmAndProcessBillPayment()">Confirm</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bill Payment Success Section -->
+          <div id="bill-success-section" style="display: none;">
+            <h2>✅ Bill Payment Successful</h2>
+            <div class="success-form">
+              <div class="success-details">
+                <div class="success-icon-large">✅</div>
+                <div class="success-info">
+                  <h3 id="billSuccessTitle">Bill Payment Completed Successfully!</h3>
+                  <div class="success-detail-row">
+                    <span class="success-label">Bill Type:</span>
+                    <span class="success-value" id="billSuccessType"></span>
+                  </div>
+                  <div class="success-detail-row">
+                    <span class="success-label">Service Provider:</span>
+                    <span class="success-value" id="billSuccessProvider"></span>
+                  </div>
+                  <div class="success-detail-row">
+                    <span class="success-label">Account Number:</span>
+                    <span class="success-value" id="billSuccessAccount"></span>
+                  </div>
+                  <div class="success-detail-row">
+                    <span class="success-label">Amount:</span>
+                    <span class="success-value" id="billSuccessAmount"></span>
+                  </div>
+                  <div class="success-detail-row">
+                    <span class="success-label">Payment Reference:</span>
+                    <span class="success-value reference-highlight" id="billSuccessReference"></span>
+                  </div>
+                  <div class="success-detail-row">
+                    <span class="success-label">Date & Time:</span>
+                    <span class="success-value" id="billSuccessDateTime"></span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="success-actions">
+                <button class="btn-primary" onclick="backToBillForm()">New Bill Payment</button>
+                <button class="btn-secondary" onclick="viewTransactionHistory()">View History</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Modal -->
+  <div id="customAlert" class="custom-alert">
+    <div class="alert-content">
+      <span id="alertMessage"></span>
+      <button class="close-btn" onclick="closeAlert()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    console.log('Banking script loaded successfully'); // Debug log
+    
+    let currentBalance = 10000.00;
+    let transactions = [
+      { type: 'credit', amount: 10000.00, description: 'Initial Balance', date: new Date().toLocaleDateString(), reference: 'INIT-001' }
+    ];
+
+    // Timer functionality
+    function updateTimer() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const dateTimeString = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+      
+      const timerElement = document.getElementById('currentDateTime');
+      if (timerElement) {
+        timerElement.textContent = dateTimeString;
+      }
+    }
+
+    // Initialize timer and update every second
+    function initializeTimer() {
+      updateTimer(); // Update immediately
+      setInterval(updateTimer, 1000); // Update every second
+    }
+
+    // Generate unique transaction reference number
+    function generateTransactionReference() {
+      const timestamp = Date.now();
+      const random = Math.floor(Math.random() * 1000);
+      const reference = `TXN-${timestamp}-${random.toString().padStart(3, '0')}`;
+      return reference;
+    }
+
+    // Show custom alert
+    function showAlert(message) {
+      console.log('Showing alert:', message); // Debug log
+      const customAlert = document.getElementById('customAlert');
+      const alertMessage = document.getElementById('alertMessage');
+      
+      console.log('customAlert element:', customAlert); // Debug log
+      console.log('alertMessage element:', alertMessage); // Debug log
+      
+      if (!customAlert || !alertMessage) {
+        console.error('Alert elements not found');
+        // Fallback to browser alert
+        alert(message);
+        return;
+      }
+      
+      // Ensure loading overlay is hidden
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      if (loadingOverlay) {
+        loadingOverlay.style.display = 'none';
+      }
+      
+      alertMessage.textContent = message;
+      customAlert.style.display = 'flex';
+      console.log('Alert should be visible now');
+      
+      // Force focus to ensure visibility
+      customAlert.focus();
+    }
+
+    // Close alert
+    function closeAlert() {
+      const customAlert = document.getElementById('customAlert');
+      customAlert.style.display = 'none';
+    }
+
+    // Validation functions
+    function clearAllErrors() {
+      // Remove error classes from all inputs and selects
+      const inputs = document.querySelectorAll('.banking-form input, .banking-form select');
+      inputs.forEach(input => {
+        input.classList.remove('error');
+      });
+      
+      // Hide all error messages
+      const errorMessages = document.querySelectorAll('.error-message');
+      errorMessages.forEach(error => {
+        error.classList.remove('show');
+      });
+    }
+
+    function showFieldError(fieldId, errorMessageId, message) {
+      const field = document.getElementById(fieldId);
+      const errorElement = document.getElementById(errorMessageId);
+      
+      if (field) field.classList.add('error');
+      if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+      }
+    }
+
+    function validateTransactionForm() {
+      clearAllErrors();
+      let isValid = true;
+      
+      // Validate Transaction Type
+      const transactionType = document.getElementById('transactionType').value;
+      if (!transactionType) {
+        showFieldError('transactionType', 'transactionTypeError', 'Please select a transaction type');
+        isValid = false;
+      }
+      
+      // Validate Amount
+      const amount = document.getElementById('transactionAmount').value;
+      if (!amount || parseFloat(amount) <= 0) {
+        showFieldError('transactionAmount', 'transactionAmountError', 'Please enter a valid amount');
+        isValid = false;
+      } else if (parseFloat(amount) > 999999) {
+        showFieldError('transactionAmount', 'transactionAmountError', 'Amount cannot exceed $999,999');
+        isValid = false;
+      }
+      
+      // Validate Transfer Account (only if transfer type is selected)
+      if (transactionType === 'transfer') {
+        const transferAccount = document.getElementById('transferAccount').value;
+        if (!transferAccount || transferAccount.trim().length < 5) {
+          showFieldError('transferAccount', 'transferAccountError', 'Please enter a valid account number (minimum 5 characters)');
+          isValid = false;
+        }
+      }
+      
+      // Validate Description
+      const description = document.getElementById('transactionDescription').value;
+      if (!description || description.trim().length < 3) {
+        showFieldError('transactionDescription', 'transactionDescriptionError', 'Please enter a description (minimum 3 characters)');
+        isValid = false;
+      }
+      
+      // Additional business logic validation
+      if (isValid && transactionType && amount) {
+        const numAmount = parseFloat(amount);
+        if ((transactionType === 'withdrawal' || transactionType === 'transfer') && numAmount > currentBalance) {
+          showFieldError('transactionAmount', 'transactionAmountError', 'Insufficient funds for this transaction');
+          isValid = false;
+        }
+      }
+      
+      return isValid;
+    }
+
+    function validateBillPaymentForm() {
+      clearAllErrors();
+      let isValid = true;
+      
+      // Validate Bill Type
+      const billType = document.getElementById('billType').value;
+      if (!billType) {
+        showFieldError('billType', 'billTypeError', 'Please select a bill type');
+        isValid = false;
+      }
+      
+      // Validate Service Provider
+      const provider = document.getElementById('billProvider').value;
+      if (!provider || provider.trim().length < 2) {
+        showFieldError('billProvider', 'billProviderError', 'Please enter service provider name (minimum 2 characters)');
+        isValid = false;
+      }
+      
+      // Validate Account/Reference Number
+      const accountNumber = document.getElementById('billAccountNumber').value;
+      if (!accountNumber || accountNumber.trim().length < 3) {
+        showFieldError('billAccountNumber', 'billAccountNumberError', 'Please enter account/reference number (minimum 3 characters)');
+        isValid = false;
+      }
+      
+      // Validate Amount
+      const amount = document.getElementById('billAmount').value;
+      if (!amount || parseFloat(amount) <= 0) {
+        showFieldError('billAmount', 'billAmountError', 'Please enter a valid amount');
+        isValid = false;
+      } else if (parseFloat(amount) > 999999) {
+        showFieldError('billAmount', 'billAmountError', 'Amount cannot exceed $999,999');
+        isValid = false;
+      }
+      
+      // Validate Payment Method
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      if (!paymentMethod) {
+        showFieldError('paymentMethod', 'paymentMethodError', 'Please select a payment method');
+        isValid = false;
+      }
+      
+      // Additional business logic validation
+      if (isValid && amount) {
+        const numAmount = parseFloat(amount);
+        if (numAmount > currentBalance) {
+          showFieldError('billAmount', 'billAmountError', 'Insufficient funds for this payment');
+          isValid = false;
+        }
+      }
+      
+      return isValid;
+    }
+
+    function validateAndShowTransactionConfirmation() {
+      if (validateTransactionForm()) {
+        showTransactionConfirmation();
+      }
+    }
+
+    function validateAndShowBillConfirmation() {
+      if (validateBillPaymentForm()) {
+        showBillConfirmation();
+      }
+    }
+
+    // Show transaction confirmation screen (Step 2)
+    function showTransactionConfirmation() {
+      console.log('showTransactionConfirmation function called'); // Debug log
+      
+      const type = document.getElementById('transactionType').value;
+      const amount = parseFloat(document.getElementById('transactionAmount').value);
+      const description = document.getElementById('transactionDescription').value;
+      const transferAccount = document.getElementById('transferAccount').value;
+      
+      // Validation is already handled by validateTransactionForm()
+      // Additional business logic checks if needed
+      
+      // Populate confirmation details
+      document.getElementById('confirmType').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+      document.getElementById('confirmAmount').textContent = `$${amount.toFixed(2)}`;
+      document.getElementById('confirmDescription').textContent = description || 'No description provided';
+      document.getElementById('confirmCurrentBalance').textContent = `$${currentBalance.toFixed(2)}`;
+      document.getElementById('confirmNewBalance').textContent = `$${(type === 'deposit' ? currentBalance + amount : currentBalance - amount).toFixed(2)}`;
+      
+      // Show/hide transfer account row
+      const transferRow = document.getElementById('confirmTransferRow');
+      const transferAccountSpan = document.getElementById('confirmTransferAccount');
+      if (type === 'transfer') {
+        transferRow.style.display = 'flex';
+        transferAccountSpan.textContent = transferAccount;
+      } else {
+        transferRow.style.display = 'none';
+      }
+      
+      // Hide transaction form and show confirmation
+      document.getElementById('transactions-section').style.display = 'none';
+      document.getElementById('confirmation-section').style.display = 'block';
+      
+      console.log('Confirmation section should be visible now'); // Debug log
+    }
+
+    // Clear Quick Transactions form
+    function clearQuickTransactionForm() {
+      // Reset form fields to default values
+      document.getElementById('transactionType').value = 'deposit';
+      document.getElementById('transactionAmount').value = '';
+      document.getElementById('transactionDescription').value = '';
+      document.getElementById('transferAccount').value = '';
+      document.getElementById('transferAccountGroup').style.display = 'none';
+    }
+
+    // Back to transaction form
+    function backToTransactionForm() {
+      // Hide all sections
+      document.getElementById('confirmation-section').style.display = 'none';
+      document.getElementById('success-section').style.display = 'none';
+      
+      // Show transaction form
+      document.getElementById('transactions-section').style.display = 'block';
+      
+      // Clear form data for fresh transaction
+      clearQuickTransactionForm();
+    }
+
+    // Confirm and process transaction (Step 3)
+    function confirmAndProcessTransaction() {
+      console.log('confirmAndProcessTransaction function called'); // Debug log
+      
+      const type = document.getElementById('transactionType').value;
+      const amount = parseFloat(document.getElementById('transactionAmount').value);
+      const description = document.getElementById('transactionDescription').value;
+      const transferAccount = document.getElementById('transferAccount').value;
+      
+      // Generate transaction reference
+      const referenceNumber = generateTransactionReference();
+      console.log('Generated reference:', referenceNumber); // Debug log
+      
+      // Process transaction
+      if (type === 'deposit') {
+        currentBalance += amount;
+        transactions.unshift({
+          type: 'credit',
+          amount: amount,
+          description: description || 'Deposit',
+          date: new Date().toLocaleDateString(),
+          reference: referenceNumber
+        });
+      } else if (type === 'withdrawal') {
+        currentBalance -= amount;
+        transactions.unshift({
+          type: 'debit',
+          amount: amount,
+          description: description || 'Withdrawal',
+          date: new Date().toLocaleDateString(),
+          reference: referenceNumber
+        });
+      } else if (type === 'transfer') {
+        currentBalance -= amount;
+        transactions.unshift({
+          type: 'debit',
+          amount: amount,
+          description: `Transfer to ${transferAccount}`,
+          date: new Date().toLocaleDateString(),
+          reference: referenceNumber
+        });
+      }
+      
+      // Update display
+      document.getElementById('accountBalance').textContent = currentBalance.toFixed(2);
+      updateTransactionHistory();
+      
+      // Show success screen
+      showSuccessScreen(type, amount, description, referenceNumber);
+    }
+
+    // Show success screen (Step 3)
+    function showSuccessScreen(type, amount, description, referenceNumber) {
+      // Populate success details
+      document.getElementById('successType').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+      document.getElementById('successAmount').textContent = `$${amount.toFixed(2)}`;
+      document.getElementById('successDescription').textContent = description || 'No description';
+      document.getElementById('successReference').textContent = referenceNumber;
+      document.getElementById('successDateTime').textContent = new Date().toLocaleString();
+      
+      // Hide confirmation and show success
+      document.getElementById('confirmation-section').style.display = 'none';
+      document.getElementById('success-section').style.display = 'block';
+      
+      console.log('Success screen should be visible now'); // Debug log
+    }
+
+    // View transaction history
+    function viewTransactionHistory() {
+      // Use the proper showSection function to navigate to history
+      showSection('history');
+    }
+
+
+
+
+
+    // Update transaction history
+    function updateTransactionHistory() {
+      const historyDiv = document.getElementById('transactionHistory');
+      historyDiv.innerHTML = '';
+      
+      transactions.forEach(transaction => {
+        const item = document.createElement('div');
+        item.className = 'transaction-item';
+        item.innerHTML = `
+          <div>
+            <strong>${transaction.description}</strong><br>
+            <small>${transaction.date}</small>
+            ${transaction.reference ? `<br><small style="color: #666; font-family: monospace;">Ref: ${transaction.reference}</small>` : ''}
+          </div>
+          <div class="transaction-amount ${transaction.type}">
+            ${transaction.type === 'credit' ? '+' : '-'}$${transaction.amount.toFixed(2)}
+          </div>
+        `;
+        historyDiv.appendChild(item);
+      });
+    }
+
+    // Show/hide transfer account field based on transaction type
+    document.getElementById('transactionType').addEventListener('change', function() {
+      const transferGroup = document.getElementById('transferAccountGroup');
+      if (this.value === 'transfer') {
+        transferGroup.style.display = 'block';
+      } else {
+        transferGroup.style.display = 'none';
+      }
+    });
+
+    // Navigation function to show different sections
+    function showSection(sectionName) {
+      console.log('showSection called with:', sectionName); // Debug log
+      
+      // Capture the clicked link before the timeout
+      const clickedLink = event.target;
+      
+      // First, ensure we're on the transfers tab for all sections
+      const transferTab = document.getElementById('transfers-tab');
+      const billPaymentsTab = document.getElementById('bill-payments-tab');
+      const transfersButton = document.querySelector('[onclick="showTab(\'transfers\')"]');
+      const billPaymentsButton = document.querySelector('[onclick="showTab(\'bill-payments\')"]');
+      
+      // Hide all tab contents first
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Remove active class from all tab buttons
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+      });
+      
+      // Show transfers tab
+      if (transferTab) transferTab.classList.add('active');
+      if (transfersButton) transfersButton.classList.add('active');
+      
+      // Wait a moment for the tab to be active, then handle sections
+      setTimeout(() => {
+        // COMPLETELY RESET ALL SECTIONS - Hide everything first
+        const allSections = document.querySelectorAll('.content-section');
+        allSections.forEach(section => {
+          section.classList.remove('active');
+          section.style.display = 'none';
+          console.log('Hidden section:', section.id); // Debug log
+        });
+        
+        // Remove active class from all nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Always hide transaction flow sections when switching between main sections
+        const confirmationSection = document.getElementById('confirmation-section');
+        const successSection = document.getElementById('success-section');
+        const billFormSection = document.getElementById('bill-form-section');
+        const billConfirmationSection = document.getElementById('bill-confirmation-section');
+        const billSuccessSection = document.getElementById('bill-success-section');
+        
+        if (confirmationSection) confirmationSection.style.display = 'none';
+        if (successSection) successSection.style.display = 'none';
+        if (billConfirmationSection) billConfirmationSection.style.display = 'none';
+        if (billSuccessSection) billSuccessSection.style.display = 'none';
+        
+        // Show bill form if switching to transactions
+        if (sectionName === 'transactions') {
+          console.log('Switching to transactions section'); // Debug log
+          if (billFormSection) billFormSection.style.display = 'block';
+          // Clear Quick Transactions form for fresh start
+          clearQuickTransactionForm();
+        }
+        
+        // Show ONLY the selected section
+        const selectedSection = document.getElementById(sectionName + '-section');
+        console.log('Looking for section:', sectionName + '-section'); // Debug log
+        console.log('Found section:', selectedSection); // Debug log
+        if (selectedSection) {
+          selectedSection.style.display = 'block';
+          selectedSection.classList.add('active');
+          console.log('Showed section:', selectedSection.id); // Debug log
+        } else {
+          console.error('Section not found:', sectionName + '-section'); // Debug log
+        }
+        
+        // Add active class to clicked nav link
+        clickedLink.classList.add('active');
+      }, 50); // Small delay to ensure tab is active
+    }
+
+    // Tab navigation function
+    function showTab(tabName) {
+      // Hide all tab contents
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Remove active class from all tab buttons
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+      });
+      
+      // Show selected tab content
+      const selectedTab = document.getElementById(tabName + '-tab');
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+      
+      // Add active class to clicked tab button
+      const clickedButton = event.target;
+      clickedButton.classList.add('active');
+      
+      // Clear bill payment form when switching to Bill Payments tab
+      if (tabName === 'billpayments') {
+        clearBillPaymentForm();
+      }
+    }
+
+    // Show bill payment confirmation (Step 2)
+    function showBillConfirmation() {
+      console.log('showBillConfirmation function called'); // Debug log
+      
+      const billType = document.getElementById('billType').value;
+      const provider = document.getElementById('billProvider').value;
+      const accountNumber = document.getElementById('billAccountNumber').value;
+      const amount = parseFloat(document.getElementById('billAmount').value);
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      
+      // Validation is already handled by validateBillPaymentForm()
+      // Additional business logic checks if needed
+      
+      // Populate confirmation details
+      document.getElementById('billConfirmType').textContent = billType.charAt(0).toUpperCase() + billType.slice(1);
+      document.getElementById('billConfirmProvider').textContent = provider;
+      document.getElementById('billConfirmAccount').textContent = accountNumber;
+      document.getElementById('billConfirmAmount').textContent = `$${amount.toFixed(2)}`;
+      document.getElementById('billConfirmPaymentMethod').textContent = paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1);
+      document.getElementById('billConfirmCurrentBalance').textContent = `$${currentBalance.toFixed(2)}`;
+      document.getElementById('billConfirmNewBalance').textContent = `$${(currentBalance - amount).toFixed(2)}`;
+      
+      // Hide bill form and show confirmation
+      document.getElementById('bill-form-section').style.display = 'none';
+      document.getElementById('bill-confirmation-section').style.display = 'block';
+      
+      console.log('Bill confirmation section should be visible now'); // Debug log
+    }
+
+    // Clear bill payment form
+    function clearBillPaymentForm() {
+      // Reset form fields to default values
+      document.getElementById('billType').value = 'electricity';
+      document.getElementById('billProvider').value = '';
+      document.getElementById('billAccountNumber').value = '';
+      document.getElementById('billAmount').value = '';
+      document.getElementById('paymentMethod').value = 'checking';
+      
+      // Hide all bill sections except the main form
+      const billFormSection = document.getElementById('bill-form-section');
+      const billConfirmationSection = document.getElementById('bill-confirmation-section');
+      const billSuccessSection = document.getElementById('bill-success-section');
+      
+      if (billFormSection) billFormSection.style.display = 'block';
+      if (billConfirmationSection) billConfirmationSection.style.display = 'none';
+      if (billSuccessSection) billSuccessSection.style.display = 'none';
+    }
+
+    // Back to bill form
+    function backToBillForm() {
+      // Hide all bill sections
+      document.getElementById('bill-form-section').style.display = 'none';
+      document.getElementById('bill-confirmation-section').style.display = 'none';
+      document.getElementById('bill-success-section').style.display = 'none';
+      
+      // Show bill form
+      document.getElementById('bill-form-section').style.display = 'block';
+      
+      // Clear form data for fresh bill payment
+      clearBillPaymentForm();
+    }
+
+    // Confirm and process bill payment (Step 3)
+    function confirmAndProcessBillPayment() {
+      console.log('confirmAndProcessBillPayment function called'); // Debug log
+      
+      const billType = document.getElementById('billType').value;
+      const provider = document.getElementById('billProvider').value;
+      const accountNumber = document.getElementById('billAccountNumber').value;
+      const amount = parseFloat(document.getElementById('billAmount').value);
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      
+      // Generate transaction reference
+      const referenceNumber = generateTransactionReference();
+      console.log('Generated bill payment reference:', referenceNumber); // Debug log
+      
+      // Process bill payment
+      currentBalance -= amount;
+      
+      // Add to transaction history
+      transactions.unshift({
+        type: 'debit',
+        amount: amount,
+        description: `${billType} payment to ${provider}`,
+        date: new Date().toLocaleDateString(),
+        reference: referenceNumber
+      });
+      
+      // Update display
+      document.getElementById('accountBalance').textContent = currentBalance.toFixed(2);
+      updateTransactionHistory();
+      
+      // Show success screen
+      showBillSuccessScreen(billType, provider, accountNumber, amount, referenceNumber);
+    }
+
+    // Show bill payment success screen (Step 3)
+    function showBillSuccessScreen(billType, provider, accountNumber, amount, referenceNumber) {
+      // Populate success details
+      document.getElementById('billSuccessType').textContent = billType.charAt(0).toUpperCase() + billType.slice(1);
+      document.getElementById('billSuccessProvider').textContent = provider;
+      document.getElementById('billSuccessAccount').textContent = accountNumber;
+      document.getElementById('billSuccessAmount').textContent = `$${amount.toFixed(2)}`;
+      document.getElementById('billSuccessReference').textContent = referenceNumber;
+      document.getElementById('billSuccessDateTime').textContent = new Date().toLocaleString();
+      
+      // Hide confirmation and show success
+      document.getElementById('bill-confirmation-section').style.display = 'none';
+      document.getElementById('bill-success-section').style.display = 'block';
+      
+      console.log('Bill success screen should be visible now'); // Debug log
+    }
+
+
+
+    // Check if user is logged in and set up logout functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize timer
+      initializeTimer();
+      
+      // Show loading spinner when page loads
+      var loadingOverlay = document.getElementById('loadingOverlay');
+      var loadingText = document.querySelector('.loading-text');
+      if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+        if (loadingText) {
+          loadingText.textContent = 'Loading Banking App...';
+        }
+      }
+      
+      // Add a small delay to ensure login state is properly set
+      setTimeout(() => {
+        if (localStorage.getItem('loggedIn') !== 'true') {
+          window.location.href = 'index.html';
+        } else {
+          // Show logout button
+          var logoutBtn = document.getElementById('logoutLink');
+          if (logoutBtn) logoutBtn.classList.remove('hidden');
+          
+          // Hide loading spinner after successful login
+          if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+          }
+        }
+      }, 1000); // 1 second delay to show loading spinner
+      
+      // Set up logout button click handler
+      document.getElementById('logoutLink').onclick = function (e) {
+        e.preventDefault();
+        localStorage.removeItem('loggedIn');
+        document.getElementById('logoutLink').classList.add('hidden'); // Hide logout button immediately
+        
+        // Show logout spinner
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          if (loadingText) {
+            loadingText.textContent = 'Logging out...';
+          }
+        }
+        
+        // Redirect after spinner delay
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500); // 1.5 second delay to show logout spinner
+      };
+
+      // Add scroll detection to hide/show logout button
+      let lastScrollTop = 0;
+      window.addEventListener('scroll', function() {
+        const logoutBtn = document.getElementById('logoutLink');
+        if (!logoutBtn || logoutBtn.classList.contains('hidden')) return;
+        
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Show logout button when at top (first 50px), hide when scrolling down
+        if (scrollTop <= 50) {
+          logoutBtn.classList.remove('scrolled');
+        } else {
+          logoutBtn.classList.add('scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+      });
+
+      // Add event listeners to clear errors when users interact with fields
+      const transactionFields = ['transactionType', 'transactionAmount', 'transactionDescription', 'transferAccount'];
+      const billFields = ['billType', 'billProvider', 'billAccountNumber', 'billAmount', 'paymentMethod'];
+      
+      // Clear errors for transaction fields
+      transactionFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.addEventListener('input', function() {
+            this.classList.remove('error');
+            const errorElement = document.getElementById(fieldId + 'Error');
+            if (errorElement) errorElement.classList.remove('show');
+          });
+          
+          field.addEventListener('change', function() {
+            this.classList.remove('error');
+            const errorElement = document.getElementById(fieldId + 'Error');
+            if (errorElement) errorElement.classList.remove('show');
+          });
+        }
+      });
+      
+      // Clear errors for bill payment fields
+      billFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.addEventListener('input', function() {
+            this.classList.remove('error');
+            const errorElement = document.getElementById(fieldId + 'Error');
+            if (errorElement) errorElement.classList.remove('show');
+          });
+          
+          field.addEventListener('change', function() {
+            this.classList.remove('error');
+            const errorElement = document.getElementById(fieldId + 'Error');
+            if (errorElement) errorElement.classList.remove('show');
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html> 

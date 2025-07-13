@@ -112,7 +112,8 @@
     }
 
     #loginDiv input[type="text"],
-    #loginDiv input[type="password"] {
+    #loginDiv input[type="password"],
+    #loginDiv select {
       width: 100%;
       max-width: 260px;
       padding: 10px 12px;
@@ -696,6 +697,13 @@
         <div style="flex:1 1 0%; display:flex; flex-direction:column; justify-content:center;">
           <input type="text" id="username" placeholder="Username" />
           <input type="password" id="password" placeholder="Password" />
+          <div style="display: flex; align-items: center; width: 100%; max-width: 260px; margin: 0 auto 14px auto;">
+            <label for="appName" style="text-align: left; color: #333; font-weight: 600; margin-right: 10px; white-space: nowrap; min-width: 80px;">App Name:</label>
+            <select id="appName" style="flex: 1; padding: 10px 12px; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+              <option value="default">Default</option>
+              <option value="banking">Banking</option>
+            </select>
+          </div>
           <button type="button" onclick="login()">Login</button>
           <div class="remember-me-row">
             <input type="checkbox" id="rememberMe" />

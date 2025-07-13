@@ -1,11 +1,17 @@
 const DUMMY_USER = "TestersTalk";
 const DUMMY_PASS = "TestersTalk";
 
+
+
 function login() {
   const user = document.getElementById("username").value;
   const pass = document.getElementById("password").value;
+  const appNameElement = document.getElementById("appName");
+  const appName = appNameElement ? appNameElement.value : 'default';
   const rememberMe = document.getElementById("rememberMe").checked;
+  
   if (user === DUMMY_USER && pass === DUMMY_PASS) {
+    
     // Save credentials if rememberMe is checked
     if (rememberMe) {
       localStorage.setItem('savedUsername', user);
@@ -16,6 +22,33 @@ function login() {
       localStorage.removeItem('savedPassword');
       localStorage.removeItem('rememberMe');
     }
+    
+    // Handle app selection
+    if (appName === 'banking') {
+      // Set login state before redirecting
+      localStorage.setItem('loggedIn', 'true');
+      
+      // Show loading overlay for banking redirect
+      document.getElementById("loadingOverlay").style.display = "flex";
+      var loadingText = document.querySelector('.loading-text');
+      if (loadingText) {
+        loadingText.textContent = 'Redirecting to Banking App...';
+      }
+      
+      // Add a delay to show spinner before redirecting
+      setTimeout(() => {
+        // Navigate to Banking-Project-Demo page
+        try {
+          window.location.replace('./Banking-Project-Demo.html');
+        } catch (error) {
+          console.error('Redirect failed:', error);
+          window.location.href = './Banking-Project-Demo.html';
+        }
+      }, 1500); // 1.5 second delay to show spinner
+      
+      return;
+    }
+    
     // Show loading overlay
     document.getElementById("loadingOverlay").style.display = "flex";
     
