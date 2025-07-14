@@ -26,6 +26,8 @@
       padding: 0 !important;
       font-family: 'Segoe UI', Arial, sans-serif !important;
       position: relative !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
     }
 
     .banking-container {
@@ -205,6 +207,213 @@
 
     .error-message.show {
       display: block;
+    }
+
+    /* Session timeout warning styles */
+    .session-warning {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      z-index: 10001;
+      text-align: center;
+      max-width: 400px;
+      display: none;
+    }
+
+    .session-warning.show {
+      display: block;
+    }
+
+    .session-warning h3 {
+      color: #856404;
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .session-warning p {
+      color: #856404;
+      margin: 0 0 15px 0;
+      font-size: 14px;
+    }
+
+    .session-warning button {
+      background: #ffc107;
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      margin: 0 5px;
+    }
+
+    .session-warning button:hover {
+      background: #e0a800;
+    }
+
+    /* Latest from Testers Talk Section Styles */
+    .latest-section-wrapper {
+      position: fixed;
+      top: 70px;
+      right: 32px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 260px;
+      z-index: 101;
+      background: transparent;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+      padding: 0;
+    }
+
+    .latest-section-label-top {
+      background: transparent;
+      color: #fff;
+      border-radius: 6px 6px 0 0;
+      padding: 8px 18px;
+      font-size: 1em;
+      font-weight: bold;
+      box-shadow: none;
+      letter-spacing: 0.5px;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .latest-section-and-videos {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      text-align: left;
+      width: 100%;
+      height: 100%;
+      background: none;
+    }
+
+    .latest-label-divider-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: calc(100vh - 70px);
+      min-width: 60px;
+    }
+
+    .latest-section {
+      display: none;
+    }
+
+    .latest-divider {
+      display: block;
+      width: 3px;
+      height: 100%;
+      background: #fff;
+      border-radius: 2px;
+      margin: 0 auto;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+    }
+
+    .latest-videos-section {
+      margin: 0;
+      max-width: 240px;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+      /* Remove any height or overflow restrictions */
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    .latest-videos-title {
+      color: #4b006e;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .latest-videos-arrows {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .latest-arrow-btn {
+      background: #4b006e;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .latest-arrow-btn:disabled {
+      background: #ccc;
+      color: #fff;
+      cursor: not-allowed;
+    }
+
+    .video-part {
+      background: #fff;
+      color: #222;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 10px 8px 12px 8px;
+      min-width: 200px;
+      max-width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .video-part span {
+      color: #4b006e;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .video-part a {
+      color: #4b006e;
+      font-size: 0.98em;
+      margin-bottom: 6px;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .video-part a:hover {
+      color: #32004a;
+    }
+
+    .video-part iframe {
+      border-radius: 6px;
+      margin-top: 4px;
+      border: 2px solid #fff;
     }
 
     .banking-form input,
@@ -863,6 +1072,110 @@
       .banking-section {
         padding: 20px;
       }
+
+      /* Mobile styles for Latest from Testers Talk section */
+      .latest-section-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin: 20px 0;
+        align-items: center;
+        z-index: 1;
+      }
+
+      .latest-section-and-videos {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .latest-label-divider-col {
+        height: auto;
+        min-width: auto;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .latest-divider {
+        height: 3px;
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .latest-videos-section {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .video-part {
+        min-width: auto;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    #latestVideosList {
+      /* Remove any height or overflow restrictions */
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    @media (max-width: 480px) {
+      .latest-section-wrapper {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        margin: 10px 0 !important;
+        align-items: center !important;
+        z-index: 1 !important;
+      }
+      .latest-section-and-videos {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+      }
+      .latest-label-divider-col {
+        height: auto !important;
+        min-width: auto !important;
+        margin-bottom: 10px !important;
+        width: 100% !important;
+      }
+      .latest-divider {
+        height: 3px !important;
+        width: 100% !important;
+        max-width: 200px !important;
+      }
+      .latest-videos-section {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 2px !important;
+      }
+      .latest-videos-arrows {
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        margin-bottom: 8px !important;
+      }
+      .latest-arrow-btn {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.3em !important;
+      }
+      .video-part {
+        min-width: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 6px 2px 10px 2px !important;
+        margin-bottom: 10px !important;
+      }
+      .video-part iframe {
+        width: 100% !important;
+        height: 180px !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
     }
   </style>
 </head>
@@ -875,6 +1188,26 @@
 
   <!-- Logout Button -->
   <a href="#" class="logout-link hidden" id="logoutLink">Logout</a>
+
+  <!-- Latest from Testers Talk Section -->
+  <div class="latest-section-wrapper">
+    <div class="latest-section-label-top">Latest from Testers Talk : </div>
+    <div class="latest-section-and-videos">
+      <div class="latest-label-divider-col">
+        <div class="latest-section">Latest from Testers Talk</div>
+        <div class="latest-divider"></div>
+      </div>
+      <div class="latest-videos-section">
+        <div class="latest-videos-arrows">
+          <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
+          <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
+        </div>
+        <div class="latest-videos-list" id="latestVideosList">
+          <!-- Videos will be rendered here by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Loading Overlay -->
   <div class="loading-overlay" id="loadingOverlay">
@@ -1200,6 +1533,14 @@
     </div>
   </div>
 
+  <!-- Session Timeout Warning -->
+  <div id="sessionWarning" class="session-warning">
+    <h3>⚠️ Session Timeout Warning</h3>
+    <p>Your session will expire in <span id="countdown">30</span> seconds due to inactivity.</p>
+    <button onclick="extendSession()">Stay Logged In</button>
+    <button onclick="logoutNow()">Logout Now</button>
+  </div>
+
   <script>
     console.log('Banking script loaded successfully'); // Debug log
     
@@ -1207,6 +1548,163 @@
     let transactions = [
       { type: 'credit', amount: 10000.00, description: 'Initial Balance', date: new Date().toLocaleDateString(), reference: 'INIT-001' }
     ];
+
+    // Auto-logout functionality
+    let inactivityTimer;
+    let warningTimer;
+    let countdownTimer;
+    const INACTIVITY_TIMEOUT = 2 * 60 * 1000; // 2 minutes in milliseconds
+    const WARNING_TIME = 30 * 1000; // 30 seconds warning
+    let isLoggedOut = false;
+
+    function resetInactivityTimer() {
+      if (isLoggedOut) return; // Don't reset if already logged out
+      
+      // Clear existing timers
+      clearTimeout(inactivityTimer);
+      clearTimeout(warningTimer);
+      clearInterval(countdownTimer);
+      
+      // Hide warning if it's showing
+      const sessionWarning = document.getElementById('sessionWarning');
+      if (sessionWarning) {
+        sessionWarning.classList.remove('show');
+      }
+      
+      // Set warning timer (1.5 minutes)
+      warningTimer = setTimeout(() => {
+        showSessionWarning();
+      }, INACTIVITY_TIMEOUT - WARNING_TIME);
+      
+      // Set main logout timer (2 minutes)
+      inactivityTimer = setTimeout(() => {
+        autoLogout();
+      }, INACTIVITY_TIMEOUT);
+    }
+
+    function showSessionWarning() {
+      if (isLoggedOut) return;
+      
+      const sessionWarning = document.getElementById('sessionWarning');
+      const countdownElement = document.getElementById('countdown');
+      
+      if (sessionWarning && countdownElement) {
+        sessionWarning.classList.add('show');
+        
+        let countdown = 30;
+        countdownElement.textContent = countdown;
+        
+        countdownTimer = setInterval(() => {
+          countdown--;
+          countdownElement.textContent = countdown;
+          
+          if (countdown <= 0) {
+            clearInterval(countdownTimer);
+            autoLogout();
+          }
+        }, 1000);
+      }
+    }
+
+    function extendSession() {
+      // Clear all timers and reset
+      clearTimeout(inactivityTimer);
+      clearTimeout(warningTimer);
+      clearInterval(countdownTimer);
+      
+      // Hide warning
+      const sessionWarning = document.getElementById('sessionWarning');
+      if (sessionWarning) {
+        sessionWarning.classList.remove('show');
+      }
+      
+      // Reset the inactivity timer
+      resetInactivityTimer();
+      
+      console.log('Session extended by user activity');
+    }
+
+    function logoutNow() {
+      isLoggedOut = true;
+      clearTimeout(inactivityTimer);
+      clearTimeout(warningTimer);
+      clearInterval(countdownTimer);
+      
+      // Hide warning
+      const sessionWarning = document.getElementById('sessionWarning');
+      if (sessionWarning) {
+        sessionWarning.classList.remove('show');
+      }
+      
+      // Perform logout
+      localStorage.removeItem('loggedIn');
+      
+      // Show logout spinner
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const loadingText = document.querySelector('.loading-text');
+      if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+        if (loadingText) {
+          loadingText.textContent = 'Logging out...';
+        }
+      }
+      
+      // Redirect to login page
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    }
+
+    function autoLogout() {
+      if (isLoggedOut) return; // Prevent multiple logout calls
+      
+      isLoggedOut = true;
+      console.log('Auto-logout triggered due to inactivity');
+      
+      // Clear all timers
+      clearTimeout(inactivityTimer);
+      clearTimeout(warningTimer);
+      clearInterval(countdownTimer);
+      
+      // Hide warning if showing
+      const sessionWarning = document.getElementById('sessionWarning');
+      if (sessionWarning) {
+        sessionWarning.classList.remove('show');
+      }
+      
+      // Show logout spinner
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const loadingText = document.querySelector('.loading-text');
+      if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+        if (loadingText) {
+          loadingText.textContent = 'Session expired. Logging out...';
+        }
+      }
+      
+      // Clear login state
+      localStorage.removeItem('loggedIn');
+      
+      // Redirect to login page after a short delay
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    }
+
+    function setupActivityListeners() {
+      // List of events that indicate user activity
+      const activityEvents = [
+        'mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'
+      ];
+      
+      // Add event listeners for user activity
+      activityEvents.forEach(event => {
+        document.addEventListener(event, resetInactivityTimer, true);
+      });
+      
+      // Start the inactivity timer
+      resetInactivityTimer();
+    }
 
     // Timer functionality
     function updateTimer() {
@@ -1238,6 +1736,154 @@
       const random = Math.floor(Math.random() * 1000);
       const reference = `TXN-${timestamp}-${random.toString().padStart(3, '0')}`;
       return reference;
+    }
+
+    // Video data for Latest from Testers Talk
+    const latestVideos = [
+      // Playwright TypeScript Full Course
+      {
+        part: 'Playwright TypeScript Course PART-01',
+        link: 'https://youtu.be/788GvvcfwTY?feature=shared',
+        embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1',
+        title: 'Playwright TypeScript Full Course PART-01'
+      },
+      {
+        part: 'Playwright TypeScript Course PART-02',
+        link: 'https://youtu.be/YfRazDhi9Fw?feature=shared',
+        embed: 'https://www.youtube.com/embed/YfRazDhi9Fw?autoplay=1&mute=1',
+        title: 'Playwright TypeScript Full Course PART-02'
+      },
+      {
+        part: 'Playwright TypeScript Course PART-03',
+        link: 'https://youtu.be/iGQ-qTLEPLw?feature=shared',
+        embed: 'https://www.youtube.com/embed/iGQ-qTLEPLw?autoplay=1&mute=1',
+        title: 'Playwright TypeScript Full Course PART-03'
+      },
+      {
+        part: 'Playwright TypeScript Course PART-04',
+        link: 'https://youtu.be/D44k45N6S58?feature=shared',
+        embed: 'https://www.youtube.com/embed/D44k45N6S58?autoplay=1&mute=1',
+        title: 'Playwright TypeScript Full Course PART-04'
+      },
+      // Playwright JavaScript Full Course (3 parts)
+      {
+        part: 'Playwright JavaScript Course PART-01',
+        link: 'https://youtu.be/2poXBtifpzA?feature=shared',
+        embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1',
+        title: 'Playwright JavaScript Full Course PART-01'
+      },
+      {
+        part: 'Playwright JavaScript Course PART-02',
+        link: 'https://youtu.be/lM-lqPun9P8?feature=shared',
+        embed: 'https://www.youtube.com/embed/lM-lqPun9P8?autoplay=1&mute=1',
+        title: 'Playwright JavaScript Full Course PART-02'
+      },
+      {
+        part: 'Playwright JavaScript Course PART-03',
+        link: 'https://youtu.be/Exx2M5Pz06g?feature=shared',
+        embed: 'https://www.youtube.com/embed/Exx2M5Pz06g?autoplay=1&mute=1',
+        title: 'Playwright JavaScript Full Course PART-03'
+      },
+      // Cypress Tutorial Full Course
+      {
+        part: 'Cypress Tutorial Full Course',
+        link: 'https://youtu.be/oJV5whmzfZI?feature=shared',
+        embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1',
+        title: 'Cypress Tutorial Full Course PART-01'
+      },
+      // JavaScript For Beginners
+      {
+        part: 'JavaScript For Beginners',
+        link: 'https://youtu.be/ACUMZ3OkExQ?feature=shared',
+        embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1',
+        title: 'JavaScript For Beginners PART-01'
+      },
+      // API Testing (Manual + Automation) Full Course (3 parts)
+      {
+        part: 'API Testing Course PART-01',
+        link: 'https://youtu.be/QKBa8lt5Wfo?feature=shared',
+        embed: 'https://www.youtube.com/embed/QKBa8lt5Wfo?autoplay=1&mute=1',
+        title: 'API Testing (Manual + Automation) Full Course PART-01'
+      },
+      {
+        part: 'API Testing Course PART-02',
+        link: 'https://youtu.be/o9KJhGHl49M?feature=shared',
+        embed: 'https://www.youtube.com/embed/o9KJhGHl49M?autoplay=1&mute=1',
+        title: 'API Testing (Manual + Automation) Full Course PART-02'
+      },
+      {
+        part: 'API Testing Course PART-03',
+        link: 'https://youtu.be/kay86__5eTg?feature=shared',
+        embed: 'https://www.youtube.com/embed/kay86__5eTg?autoplay=1&mute=1',
+        title: 'API Testing (Manual + Automation) Full Course PART-03'
+      }
+    ];
+
+    let latestStartIdx = 0;
+    const latestVisibleCount = 3;
+    let latestAutoScrollInterval;
+
+    function renderLatestVideos() {
+      const list = document.getElementById('latestVideosList');
+      if (!list) return;
+      list.innerHTML = '';
+      // Show only a subset of videos (pagination)
+      for (let i = latestStartIdx; i < Math.min(latestStartIdx + latestVisibleCount, latestVideos.length); i++) {
+        const v = latestVideos[i];
+        const div = document.createElement('div');
+        div.className = 'video-part';
+        div.innerHTML = `
+          <span style="font-weight:600; color:#333;">${v.part}:</span>
+          <a class="playlist-link" href="${v.link}" target="_blank">Watch on YouTube</a>
+          <iframe width="220" height="124" src="${v.embed}" title="${v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `;
+        list.appendChild(div);
+      }
+      // Enable/disable navigation buttons
+      const upBtn = document.getElementById('latestUpBtn');
+      const downBtn = document.getElementById('latestDownBtn');
+      if (upBtn) upBtn.disabled = latestStartIdx === 0;
+      if (downBtn) downBtn.disabled = latestStartIdx + latestVisibleCount >= latestVideos.length;
+      if (upBtn) upBtn.style.display = 'flex';
+      if (downBtn) downBtn.style.display = 'flex';
+    }
+
+    function startLatestAutoScroll() {
+      if (latestAutoScrollInterval) clearInterval(latestAutoScrollInterval);
+      latestAutoScrollInterval = setInterval(() => {
+        if (latestStartIdx + latestVisibleCount < latestVideos.length) {
+          latestStartIdx += latestVisibleCount;
+          if (latestStartIdx >= latestVideos.length) latestStartIdx = 0;
+        } else {
+          latestStartIdx = 0;
+        }
+        renderLatestVideos();
+      }, 30000);
+    }
+
+    // Initialize video section
+    function initializeVideoSection() {
+      renderLatestVideos();
+      startLatestAutoScroll();
+      // Add navigation button handlers
+      const upBtn = document.getElementById('latestUpBtn');
+      const downBtn = document.getElementById('latestDownBtn');
+      if (upBtn) {
+        upBtn.onclick = function () {
+          if (latestStartIdx > 0) {
+            latestStartIdx--;
+            renderLatestVideos();
+          }
+        };
+      }
+      if (downBtn) {
+        downBtn.onclick = function () {
+          if (latestStartIdx + latestVisibleCount < latestVideos.length) {
+            latestStartIdx++;
+            renderLatestVideos();
+          }
+        };
+      }
     }
 
     // Show custom alert
@@ -1817,6 +2463,12 @@
       // Initialize timer
       initializeTimer();
       
+      // Setup auto-logout functionality
+      setupActivityListeners();
+      
+      // Initialize video section
+      initializeVideoSection();
+      
       // Show loading spinner when page loads
       var loadingOverlay = document.getElementById('loadingOverlay');
       var loadingText = document.querySelector('.loading-text');
@@ -1846,6 +2498,7 @@
       // Set up logout button click handler
       document.getElementById('logoutLink').onclick = function (e) {
         e.preventDefault();
+        isLoggedOut = true; // Set flag to prevent auto-logout conflicts
         localStorage.removeItem('loggedIn');
         document.getElementById('logoutLink').classList.add('hidden'); // Hide logout button immediately
         

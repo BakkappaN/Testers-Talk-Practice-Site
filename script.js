@@ -467,7 +467,7 @@ function openVideo(course) {
         localStorage.removeItem('loggedIn');
         // Show alert and set flag, defer UI hiding to closeAlert
         window._autoLoggedOut = true;
-        showCustomAlert('You have been automatically logged out due to 3 minute of inactivity. Please log in again to continue.');
+        showCustomAlert('You have been automatically logged out due to inactivity. Please log in again to continue.');
       }, LOGOUT_TIME);
     }
   }
