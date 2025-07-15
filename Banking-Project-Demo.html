@@ -1181,7 +1181,7 @@
 <body>
   <!-- Logout and Latest from Testers Talk Section (Top Right) -->
   <div style="position: absolute; top: 24px; right: 32px; z-index: 101; display: flex; flex-direction: row; align-items: flex-start; gap: 12px;">
-    <a href="#" class="logout-link hidden" id="logoutLink">Logout</a>
+
     <div class="latest-section-wrapper" style="position: static; box-shadow: none;">
       <div class="latest-section-label-top">Latest from Testers Talk : </div>
       <div class="latest-section-and-videos">
@@ -1223,9 +1223,12 @@
     </div>
 
     <div class="banking-tabs">
-      <div class="tab-buttons">
-        <button class="tab-button active" onclick="showTab('transfers')">Transfers</button>
-        <button class="tab-button" onclick="showTab('billpayments')">Bill Payments</button>
+      <div style="display: flex; justify-content: space-between; align-items: center; position: relative;">
+        <div class="tab-buttons">
+          <button class="tab-button active" onclick="showTab('transfers')">Transfers</button>
+          <button class="tab-button" onclick="showTab('billpayments')">Bill Payments</button>
+        </div>
+        <a href="#" class="logout-link hidden" id="logoutLink" style="position: static; margin-left: auto;">Logout</a>
       </div>
 
       <!-- Transfers Tab Content -->
