@@ -1076,9 +1076,13 @@ h4.highlighted-header {
   display: inline-block;
 }
 
+.logout-link {
+  background: #fff !important;
+  color: #4b006e !important;
+}
 .logout-link:hover {
-  background: #f5f5f5 !important;
-  color: #111 !important;
+  background: #e0e0e0 !important;
+  color: #4b006e !important;
 }
 
 @media (max-width: 600px) {
@@ -1333,4 +1337,16 @@ body.login-bg .course-container a {
     min-width: 400px;
     max-width: 600px;
   }
+}
+
+.latest-section-label-top,
+.latest-videos-section,
+.latest-videos-section * {
+  color: #fff !important;
+}
+.latest-arrow-btn {
+  color: #fff !important;
+}
+.latest-videos-section a {
+  color: #fff !important;
 }

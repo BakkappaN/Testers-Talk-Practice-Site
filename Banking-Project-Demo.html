@@ -259,8 +259,8 @@
 
     /* Latest from Testers Talk Section Styles */
     .latest-section-wrapper {
-      position: fixed;
-      top: 70px;
+      position: absolute;
+      top: 24px;
       right: 32px;
       margin: 0;
       display: flex;
@@ -328,7 +328,7 @@
       border-radius: 0;
       box-shadow: none;
       padding: 0;
-      color: #fff;
+      color: #1a0daa;
       text-align: center;
       width: 100%;
       /* Remove any height or overflow restrictions */
@@ -379,8 +379,8 @@
     }
 
     .video-part {
-      background: #fff;
-      color: #222;
+      background: #0841b3 !important; /* sky blue */
+      color: #f5f0f0;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       padding: 10px 8px 12px 8px;
@@ -536,10 +536,8 @@
 
 
     .logout-link {
-      position: fixed;
-      top: 18px;
-      right: 32px;
-      z-index: 10000;
+      position: static !important;
+      margin: 0;
       font-weight: 600;
       color: #fff;
       background: #002171;
@@ -1181,42 +1179,43 @@
 </head>
 
 <body>
-  <!-- Timer Display -->
-  <div class="timer-display" id="timerDisplay">
-    <span id="currentDateTime">Loading...</span>
+  <!-- Logout and Latest from Testers Talk Section (Top Right) -->
+  <div style="position: absolute; top: 24px; right: 32px; z-index: 101; display: flex; flex-direction: row; align-items: flex-start; gap: 12px;">
+    <a href="#" class="logout-link hidden" id="logoutLink">Logout</a>
+    <div class="latest-section-wrapper" style="position: static; box-shadow: none;">
+      <div class="latest-section-label-top">Latest from Testers Talk : </div>
+      <div class="latest-section-and-videos">
+        <div class="latest-label-divider-col">
+          <div class="latest-section">Latest from Testers Talk</div>
+          <div class="latest-divider"></div>
+        </div>
+        <div class="latest-videos-section">
+          <div class="latest-videos-arrows">
+            <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
+            <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
+          </div>
+          <div class="latest-videos-list" id="latestVideosList">
+            <!-- Videos will be rendered here by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Logout Button -->
-  <a href="#" class="logout-link hidden" id="logoutLink">Logout</a>
-
-  <!-- Latest from Testers Talk Section -->
-  <div class="latest-section-wrapper">
-    <div class="latest-section-label-top">Latest from Testers Talk : </div>
-    <div class="latest-section-and-videos">
-      <div class="latest-label-divider-col">
-        <div class="latest-section">Latest from Testers Talk</div>
-        <div class="latest-divider"></div>
-      </div>
-      <div class="latest-videos-section">
-        <div class="latest-videos-arrows">
-          <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
-          <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
-        </div>
-        <div class="latest-videos-list" id="latestVideosList">
-          <!-- Videos will be rendered here by JS -->
-        </div>
-      </div>
+  <!-- Timer Row (remains unchanged) -->
+  <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 12px; padding: 0 32px; position: relative;">
+    <div class="timer-display" id="timerDisplay">
+      <span id="currentDateTime">Loading...</span>
     </div>
   </div>
 
   <!-- Loading Overlay -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="spinner"></div>
-    <div class="loading-text">Loading...</div>
+    <div class="loading-text">Loading Banking App...</div>
   </div>
 
-
-
+  <!-- Latest from Testers Talk Section (videos, etc.) remains in original place -->
   <div class="banking-container">
     <div class="banking-header">
       <h1>🏦 Sample Banking Application</h1>
@@ -1820,7 +1819,7 @@
     ];
 
     let latestStartIdx = 0;
-    const latestVisibleCount = 3;
+    const latestVisibleCount = 7;
     let latestAutoScrollInterval;
 
     function renderLatestVideos() {
