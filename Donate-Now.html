@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Now - Testers Talk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #f6f8fa !important;
+            background-image: none !important;
+            min-width: 100vw !important;
+            min-height: 100vh !important;
+            width: 100vw !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+            z-index: 0 !important;
+        }
+
+        /* Override any GitHub background styles */
+        body:not(.login-bg) {
+            background: #f6f8fa !important;
+            background-image: none !important;
+        }
+
+        .donate-container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .donate-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .donate-header h1 {
+            font-size: 3.5em;
+            color: #4b006e;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .donate-header p {
+            font-size: 1.3em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-align: center;
+            word-wrap: break-word;
+            hyphens: auto;
+            padding: 0 20px;
+        }
+
+        .donate-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .donate-methods {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 48px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            font-size: 1.13em;
+        }
+
+        .donate-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 32px 24px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #4b006e;
+            width: 100%;
+        }
+
+        .donate-info h2 {
+            color: #4b006e;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .donate-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .donate-info li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.98em;
+            color: #555;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .donate-info li:last-child {
+            border-bottom: none;
+        }
+
+        .donate-info li i {
+            color: #4b006e;
+            margin-right: 15px;
+            font-size: 1.2em;
+            width: 25px;
+        }
+
+        .donation-option {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #4b006e;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .donation-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(75, 0, 110, 0.2);
+            border-color: #6a0dad;
+        }
+
+        .donation-option h3 {
+            color: #4b006e;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .donation-option h3 i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .donation-option p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .donation-option .amount-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .amount-btn {
+            background: #4b006e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .amount-btn:hover {
+            background: #6a0dad;
+            transform: scale(1.05);
+        }
+
+        .amount-btn.active {
+            background: #6a0dad;
+            box-shadow: 0 4px 15px rgba(75, 0, 110, 0.3);
+        }
+
+        .custom-amount {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #4b006e;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .donate-btn {
+            background: linear-gradient(135deg, #4b006e 0%, #6a0dad 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(75, 0, 110, 0.3);
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-link a {
+            color: #4b006e;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid #4b006e;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-link a:hover {
+            color: #6a0dad;
+            background: #4b006e;
+            color: #f6f8fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(75, 0, 110, 0.3);
+        }
+
+        .back-link a i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .donate-content {
+                gap: 30px;
+            }
+            .donate-methods, .donate-info {
+                padding: 24px 16px;
+            }
+            .donate-header p {
+                font-size: 1.1em;
+                max-width: 95vw;
+                padding: 0 10px;
+            }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+
+        /* UPI QR Code Styling */
+        .upi-qr-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .qr-container {
+            display: inline-block;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 3px solid #4b006e;
+        }
+
+        .upi-qr-code {
+            width: 200px;
+            height: 200px;
+            display: block;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .qr-container:hover .upi-qr-code {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(75, 0, 110, 0.3);
+        }
+
+        .upi-details {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #4b006e;
+        }
+
+        .upi-details p {
+            margin: 8px 0;
+            color: #333;
+            font-size: 1em;
+        }
+
+        .upi-details strong {
+            color: #4b006e;
+        }
+
+        /* Mobile responsive for UPI */
+        @media (max-width: 768px) {
+            .upi-qr-code {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .qr-overlay i {
+                font-size: 1.5em;
+            }
+            
+            .qr-overlay span {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="donate-container">
+        <div class="donate-header">
+            <h1><i class="fas fa-heart"></i> Donate Now</h1>
+            <p>Support Testers Talk and help us continue creating quality content for the testing community. Your contribution makes a difference!</p>
+        </div>
+
+        <div class="donate-content">
+            <div class="donate-methods">
+                <h2><i class="fas fa-credit-card"></i> Choose Your Donation</h2>
+                
+                <div class="donation-option">
+                    <h3><i class="fas fa-mobile-alt"></i> UPI Payment (India)</h3>
+                    <p>Scan QR code to donate instantly using any UPI app</p>
+                    <div class="upi-qr-section">
+                        <div class="qr-container">
+                            <img src="UPI.jpg" alt="UPI QR Code" class="upi-qr-code" id="upiQRCode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donation-option">
+                    <h3><i class="fab fa-paypal"></i> PayPal(Outside India)</h3>
+                                         <h2 style="color: #dc3545;">Coming soon...</h2>
+                    <!-- <p>Quick and secure donation through PayPal</p> -->
+                   
+                    <!-- <input type="number" class="custom-amount" placeholder="Or enter custom amount" min="1" step="1">
+                    <button class="donate-btn" onclick="donatePayPal()">
+                        <i class="fab fa-paypal"></i> Donate with PayPal
+                    </button> -->
+                </div>
+            </div>
+
+            <div class="donate-info">
+                <h2><i class="fas fa-info-circle"></i> Why Donate?</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Support free educational content creation</li>
+                    <li><i class="fas fa-check-circle"></i> Help maintain and improve our testing tools</li>
+                    <li><i class="fas fa-check-circle"></i> Enable us to create more comprehensive courses</li>
+                    <li><i class="fas fa-check-circle"></i> Keep our platforms ad-free and accessible</li>
+                    <li><i class="fas fa-check-circle"></i> Support the testing community growth</li>
+                    <li><i class="fas fa-check-circle"></i> Help us invest in better equipment and software</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back</a>
+        </div>
+    </div>
+
+    <script>
+        // Handle amount button clicks
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons in the same donation option
+                const donationOption = this.closest('.donation-option');
+                donationOption.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Set the custom amount input value
+                const customAmount = donationOption.querySelector('.custom-amount');
+                customAmount.value = this.dataset.amount;
+            });
+        });
+
+        // Handle custom amount input
+        document.querySelectorAll('.custom-amount').forEach(input => {
+            input.addEventListener('input', function() {
+                // Remove active class from amount buttons when custom amount is entered
+                const donationOption = this.closest('.donation-option');
+                donationOption.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
+            });
+        });
+
+        function donatePayPal() {
+            const amount = getSelectedAmount();
+            if (!amount) {
+                alert('Please select or enter an amount');
+                return;
+            }
+            
+            // In a real implementation, this would redirect to PayPal
+            alert(`Thank you for your $${amount} donation! Redirecting to PayPal...`);
+            // window.open(`https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID&amount=${amount}`, '_blank');
+        }
+
+
+
+        function getSelectedAmount() {
+            const activeBtn = document.querySelector('.amount-btn.active');
+            if (activeBtn) {
+                return activeBtn.dataset.amount;
+            }
+            
+            const customAmounts = document.querySelectorAll('.custom-amount');
+            for (let input of customAmounts) {
+                if (input.value && input.value > 0) {
+                    return input.value;
+                }
+            }
+            
+            return null;
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('.donation-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            option.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+
+    </script>
+</body>
+</html> 

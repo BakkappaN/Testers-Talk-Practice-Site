@@ -534,3 +534,40 @@ function initializeClearRowsBtn() {
 }
 
 // Removed duplicate scroll event listener to fix logout button visibility
+
+// Donate Now button color animation
+(function() {
+  const donateButton = document.querySelector('.api-playground-link[href="Donate-Now.html"]');
+  if (!donateButton) return;
+
+  const colorTriplets = [
+    { bg1: '#f6f8fa', bg2: '#4b006e', bg3: '#ff6b6b', text: '#4b006e', border: '#4b006e' }, // Original + Purple + Coral
+    { bg1: '#ff6b6b', bg2: '#ff9ff3', bg3: '#5f27cd', text: 'white', border: '#ff6b6b' },   // Coral + Pink + Purple
+    { bg1: '#4ecdc4', bg2: '#00d2d3', bg3: '#54a0ff', text: 'white', border: '#4ecdc4' },   // Turquoise + Cyan + Ocean Blue
+    { bg1: '#45b7d1', bg2: '#54a0ff', bg3: '#96ceb4', text: 'white', border: '#45b7d1' },   // Sky Blue + Ocean + Mint
+    { bg1: '#96ceb4', bg2: '#4ecdc4', bg3: '#feca57', text: 'white', border: '#96ceb4' },   // Mint + Turquoise + Golden
+    { bg1: '#feca57', bg2: '#ff6b6b', bg3: '#ff9ff3', text: '#333', border: '#feca57' },    // Golden + Coral + Pink
+    { bg1: '#ff9ff3', bg2: '#5f27cd', bg3: '#00d2d3', text: 'white', border: '#ff9ff3' },   // Pink + Purple + Cyan
+    { bg1: '#54a0ff', bg2: '#00d2d3', bg3: '#feca57', text: 'white', border: '#54a0ff' },   // Ocean + Cyan + Golden
+    { bg1: '#5f27cd', bg2: '#ff6b6b', bg3: '#4ecdc4', text: 'white', border: '#5f27cd' },   // Purple + Coral + Turquoise
+    { bg1: '#00d2d3', bg2: '#feca57', bg3: '#45b7d1', text: 'white', border: '#00d2d3' }    // Cyan + Golden + Sky Blue
+  ];
+
+  let currentColorIndex = 0;
+
+  function changeColor() {
+    const colorTriplet = colorTriplets[currentColorIndex];
+    const gradient = `linear-gradient(135deg, ${colorTriplet.bg1} 0%, ${colorTriplet.bg2} 50%, ${colorTriplet.bg3} 100%)`;
+    donateButton.style.setProperty('background', gradient, 'important');
+    donateButton.style.setProperty('color', colorTriplet.text, 'important');
+    donateButton.style.setProperty('border-color', colorTriplet.border, 'important');
+    
+    currentColorIndex = (currentColorIndex + 1) % colorTriplets.length;
+  }
+
+  // Start the animation immediately
+  changeColor();
+  
+  // Change color every 2 seconds
+  setInterval(changeColor, 2000);
+})();

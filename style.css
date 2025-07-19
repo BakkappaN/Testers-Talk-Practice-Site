@@ -1140,6 +1140,28 @@ body {
   color: #4b006e !important;
 }
 
+/* Donate Now button styling */
+.api-playground-link[href="Donate-Now.html"] {
+  background: #f6f8fa !important;
+  color: #4b006e !important;
+  text-decoration: none !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  border: 2px solid #4b006e !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease !important;
+  display: inline-block !important;
+  margin: 0 5px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.api-playground-link[href="Donate-Now.html"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(75, 0, 110, 0.3) !important;
+}
+
+/* Donate Now button color animation - will be handled by JavaScript */
+
 /* Add this at the end of the file for specificity */
 body.login-bg {
   background: #f6f8fa !important;
