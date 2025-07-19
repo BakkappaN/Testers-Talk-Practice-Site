@@ -343,6 +343,176 @@
                 font-size: 0.9em;
             }
         }
+
+        /* Latest from Testers Talk Section Styles */
+        .latest-section-wrapper {
+            position: static;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            background: transparent;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+            padding: 20px;
+        }
+
+        .latest-section-label-top {
+            background: #4b006e;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+            padding: 12px 18px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .latest-section-and-videos {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-align: left;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+
+
+        .latest-videos-section {
+            margin: 0;
+            max-width: none;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            color: #333;
+            text-align: center;
+            width: 100%;
+        }
+
+        .latest-videos-title {
+            color: #4b006e;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+
+
+        .video-part {
+            background: #f8f9fa;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 15px;
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .video-part:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(75, 0, 110, 0.2);
+        }
+
+        .video-part span {
+            color: #000000 !important;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .video-part a {
+            color: #0066cc !important;
+            font-size: 0.98em;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .video-part a:hover {
+            color: #004499 !important;
+        }
+
+        /* Additional specific selectors to ensure colors are applied */
+        .latest-videos-list .video-part span {
+            color: #000000 !important;
+        }
+
+        .latest-videos-list .video-part a {
+            color: #0066cc !important;
+        }
+
+        .latest-videos-list .video-part a:hover {
+            color: #004499 !important;
+        }
+
+        .latest-section-wrapper .video-part span {
+            color: #000000 !important;
+        }
+
+        .latest-section-wrapper .video-part a {
+            color: #0066cc !important;
+        }
+
+        .latest-section-wrapper .video-part a:hover {
+            color: #004499 !important;
+        }
+
+        .video-part iframe {
+            border-radius: 6px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .latest-videos-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            width: 100%;
+            justify-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .latest-section-wrapper {
+                margin: 20px auto;
+                padding: 10px;
+            }
+            
+            .latest-section-and-videos {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .latest-videos-list {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .latest-videos-section {
+                max-width: 100%;
+            }
+            
+            .video-part {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -388,6 +558,18 @@
                     <li><i class="fas fa-check-circle"></i> Support the testing community growth</li>
                     <li><i class="fas fa-check-circle"></i> Help us invest in better equipment and software</li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Latest from Testers Talk Section -->
+        <div class="latest-section-wrapper">
+            <div class="latest-section-label-top">Latest from Testers Talk : </div>
+            <div class="latest-section-and-videos">
+                <div class="latest-videos-section">
+                    <div class="latest-videos-list" id="latestVideosList">
+                        <!-- Videos will be rendered here by JS -->
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -461,6 +643,110 @@
             option.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
+        });
+
+        // Latest from Testers Talk Video Functionality
+        const latestVideos = [
+            // Playwright TypeScript Full Course
+            {
+                part: 'Playwright TypeScript Course PART-01',
+                link: 'https://youtu.be/788GvvcfwTY?feature=shared',
+                embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-01'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-02',
+                link: 'https://youtu.be/YfRazDhi9Fw?feature=shared',
+                embed: 'https://www.youtube.com/embed/YfRazDhi9Fw?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-02'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-03',
+                link: 'https://youtu.be/iGQ-qTLEPLw?feature=shared',
+                embed: 'https://www.youtube.com/embed/iGQ-qTLEPLw?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-03'
+            },
+            {
+                part: 'Playwright TypeScript Course PART-04',
+                link: 'https://youtu.be/D44k45N6S58?feature=shared',
+                embed: 'https://www.youtube.com/embed/D44k45N6S58?autoplay=1&mute=1',
+                title: 'Playwright TypeScript Full Course PART-04'
+            },
+            // Playwright JavaScript Full Course (3 parts)
+            {
+                part: 'Playwright JavaScript Course PART-01',
+                link: 'https://youtu.be/2poXBtifpzA?feature=shared',
+                embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-01'
+            },
+            {
+                part: 'Playwright JavaScript Course PART-02',
+                link: 'https://youtu.be/lM-lqPun9P8?feature=shared',
+                embed: 'https://www.youtube.com/embed/lM-lqPun9P8?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-02'
+            },
+            {
+                part: 'Playwright JavaScript Course PART-03',
+                link: 'https://youtu.be/Exx2M5Pz06g?feature=shared',
+                embed: 'https://www.youtube.com/embed/Exx2M5Pz06g?autoplay=1&mute=1',
+                title: 'Playwright JavaScript Full Course PART-03'
+            },
+            // Cypress Tutorial Full Course
+            {
+                part: 'Cypress Tutorial Full Course',
+                link: 'https://youtu.be/oJV5whmzfZI?feature=shared',
+                embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1',
+                title: 'Cypress Tutorial Full Course PART-01'
+            },
+            // JavaScript For Beginners
+            {
+                part: 'JavaScript For Beginners',
+                link: 'https://youtu.be/ACUMZ3OkExQ?feature=shared',
+                embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1',
+                title: 'JavaScript For Beginners PART-01'
+            },
+            // API Testing (Manual + Automation) Full Course (3 parts)
+            {
+                part: 'API Testing Course PART-01',
+                link: 'https://youtu.be/QKBa8lt5Wfo?feature=shared',
+                embed: 'https://www.youtube.com/embed/QKBa8lt5Wfo?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-01'
+            },
+            {
+                part: 'API Testing Course PART-02',
+                link: 'https://youtu.be/o9KJhGHl49M?feature=shared',
+                embed: 'https://www.youtube.com/embed/o9KJhGHl49M?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-02'
+            },
+            {
+                part: 'API Testing Course PART-03',
+                link: 'https://youtu.be/kay86__5eTg?feature=shared',
+                embed: 'https://www.youtube.com/embed/kay86__5eTg?autoplay=1&mute=1',
+                title: 'API Testing (Manual + Automation) Full Course PART-03'
+            }
+        ];
+
+        function renderLatestVideos() {
+            const list = document.getElementById('latestVideosList');
+            if (!list) return;
+            
+            list.innerHTML = '';
+            for (let i = 0; i < latestVideos.length; i++) {
+                const v = latestVideos[i];
+                const div = document.createElement('div');
+                div.className = 'video-part';
+                div.innerHTML = `
+                    <span style="font-weight:600; color:#333;">${v.part}:</span>
+                    <a class="playlist-link" href="${v.link}" target="_blank">Watch on YouTube</a>
+                    <iframe width="220" height="124" src="${v.embed}" title="${v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `;
+                list.appendChild(div);
+            }
+        }
+
+        // Initialize video functionality when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            renderLatestVideos();
         });
 
 
