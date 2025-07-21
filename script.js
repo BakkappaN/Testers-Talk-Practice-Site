@@ -9,9 +9,9 @@ function login() {
   const appNameElement = document.getElementById("appName");
   const appName = appNameElement ? appNameElement.value : 'default';
   const rememberMe = document.getElementById("rememberMe").checked;
-  
+
   if (user === DUMMY_USER && pass === DUMMY_PASS) {
-    
+
     // Save credentials if rememberMe is checked
     if (rememberMe) {
       localStorage.setItem('savedUsername', user);
@@ -22,19 +22,19 @@ function login() {
       localStorage.removeItem('savedPassword');
       localStorage.removeItem('rememberMe');
     }
-    
+
     // Handle app selection
     if (appName === 'banking') {
       // Set login state before redirecting
       localStorage.setItem('loggedIn', 'true');
-      
+
       // Show loading overlay for banking redirect
       document.getElementById("loadingOverlay").style.display = "flex";
       var loadingText = document.querySelector('.loading-text');
       if (loadingText) {
         loadingText.textContent = 'Redirecting to Banking App...';
       }
-      
+
       // Add a delay to show spinner before redirecting
       setTimeout(() => {
         // Navigate to Banking-Project-Demo page
@@ -45,13 +45,13 @@ function login() {
           window.location.href = './Banking-Project-Demo.html';
         }
       }, 1500); // 1.5 second delay to show spinner
-      
+
       return;
     }
-    
+
     // Show loading overlay
     document.getElementById("loadingOverlay").style.display = "flex";
-    
+
     // Wait for 1 second then proceed with login
     setTimeout(() => {
       document.getElementById("loadingOverlay").style.display = "none";
@@ -76,81 +76,81 @@ function login() {
       loadEmployees();
     }, 1000);
   } else {
-    document.getElementById("loginError").innerText = "Invalid login! "+"try entering 'TestersTalk' as username and password.";
+    document.getElementById("loginError").innerText = "Invalid login! " + "try entering 'TestersTalk' as username and password.";
   }
 }
 
 function showCustomAlert(message) {
-    const customAlert = document.getElementById('customAlert');
-    const alertMessage = document.getElementById('alertMessage');
-    alertMessage.textContent = message;
-    customAlert.style.display = 'flex';
+  const customAlert = document.getElementById('customAlert');
+  const alertMessage = document.getElementById('alertMessage');
+  alertMessage.textContent = message;
+  customAlert.style.display = 'flex';
 }
 
 function closeAlert() {
-    const customAlert = document.getElementById('customAlert');
-    customAlert.style.display = 'none';
-    // Handle post-auto-logout UI
-    if (window._autoLoggedOut) {
-        window._autoLoggedOut = false;
-        var appDiv = document.getElementById('appDiv');
-        if (appDiv) appDiv.style.display = 'none';
-        var loginSection = document.getElementById('loginSection');
-        if (loginSection) loginSection.style.display = '';
-        var siteHeader = document.getElementById('siteHeader');
-        if (siteHeader) siteHeader.style.display = '';
-        var logoutBtn = document.getElementById('logoutLink');
-        if (logoutBtn) logoutBtn.classList.remove('show');
-        var welcomeMsg = document.getElementById('welcomeMsg');
-        if (welcomeMsg) welcomeMsg.style.display = 'none';
-    }
+  const customAlert = document.getElementById('customAlert');
+  customAlert.style.display = 'none';
+  // Handle post-auto-logout UI
+  if (window._autoLoggedOut) {
+    window._autoLoggedOut = false;
+    var appDiv = document.getElementById('appDiv');
+    if (appDiv) appDiv.style.display = 'none';
+    var loginSection = document.getElementById('loginSection');
+    if (loginSection) loginSection.style.display = '';
+    var siteHeader = document.getElementById('siteHeader');
+    if (siteHeader) siteHeader.style.display = '';
+    var logoutBtn = document.getElementById('logoutLink');
+    if (logoutBtn) logoutBtn.classList.remove('show');
+    var welcomeMsg = document.getElementById('welcomeMsg');
+    if (welcomeMsg) welcomeMsg.style.display = 'none';
+  }
 }
 
 function saveEmployee() {
-    // Get mandatory field values
-    const name = document.getElementById('empName').value.trim();
-    const department = document.getElementById('empDept').value.trim();
-    const dob = document.getElementById('empDob').value;
-    const gender = document.getElementById('empGender').value;
-    
-    // Check if mandatory fields are empty
-    if (!name || !department || !dob || !gender) {
-        showCustomAlert("Please fill in all mandatory fields marked with *");
-        return false;
-    }
-    
-    // Get selected technologies
-    const technologies = [];
-    document.querySelectorAll('.techCheck:checked').forEach(checkbox => {
-        technologies.push(checkbox.value);
-    });
+  // Get mandatory field values
+  const name = document.getElementById('empName').value.trim();
+  const department = document.getElementById('empDept').value.trim();
+  const dob = document.getElementById('empDob').value;
+  const gender = document.getElementById('empGender').value;
 
-    // Get selected country
-    const country = document.querySelector('input[name="country"]:checked').value;
+  // Check if mandatory fields are empty
+  if (!name || !department || !dob || !gender) {
+    showCustomAlert("Please fill in all mandatory fields marked with *");
+    return false;
+  }
 
-    // Create table row
-    const tr = document.createElement('tr');
-    // Save to localStorage for edit functionality
-    let employees = JSON.parse(localStorage.getItem('employees')) || [];
-    employees.unshift({ name, dept: department, dob, gender, technologies, country });
-    // Keep only latest 10
-    employees = employees.slice(0, 10);
-    localStorage.setItem('employees', JSON.stringify(employees));
-    // Always fetch fresh from localStorage for rendering
-    renderEmployeeTable(JSON.parse(localStorage.getItem('employees')) || []);
-    // Clear form
-    document.getElementById('empName').value = '';
-    document.getElementById('empDept').value = '';
-    document.getElementById('empDob').value = '';
-    document.getElementById('empGender').value = 'Male';
-    document.querySelectorAll('.techCheck:checked').forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    document.querySelector('input[name="country"][value="India"]').checked = true;
-    // Show success message
-    showCustomAlert("Record saved successfully!");
-    hideHeaderIfNotLogin();
-    return true;
+  // Get selected technologies
+  const technologies = [];
+  document.querySelectorAll('.techCheck:checked').forEach(checkbox => {
+    technologies.push(checkbox.value);
+  });
+
+  // Get selected country
+  const country = document.querySelector('input[name="country"]:checked').value;
+
+  // Create table row
+  const tr = document.createElement('tr');
+  // Save to localStorage for edit functionality
+  let employees = JSON.parse(localStorage.getItem('employees')) || [];
+  employees.unshift({ name, dept: department, dob, gender, technologies, country });
+  // Keep only latest 10
+  employees = employees.slice(0, 10);
+  localStorage.setItem('employees', JSON.stringify(employees));
+  // Always fetch fresh from localStorage for rendering
+  renderEmployeeTable(JSON.parse(localStorage.getItem('employees')) || []);
+  // Clear form
+  document.getElementById('empName').value = '';
+  document.getElementById('empDept').value = '';
+  document.getElementById('empDob').value = '';
+  document.getElementById('empGender').value = 'Male';
+  document.querySelectorAll('.techCheck:checked').forEach(checkbox => {
+    checkbox.checked = false;
+  });
+  document.querySelector('input[name="country"][value="India"]').checked = true;
+  // Show success message
+  showCustomAlert("Record saved successfully!");
+  hideHeaderIfNotLogin();
+  return true;
 }
 
 function renderEmployeeTable(employees) {
@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loadEmployees(); // Refresh table from localStorage
         showCustomAlert('All employee records have been cleared!');
         // Edge fallback: if table not cleared, force reload
-        setTimeout(function() {
+        setTimeout(function () {
           const employees = JSON.parse(localStorage.getItem('employees')) || [];
           if (employees.length !== 0 || (tbody && tbody.children.length !== 0)) {
             location.reload();
@@ -348,10 +348,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Show/hide last column in scrollable-courses-table on horizontal scroll
-  (function() {
+  (function () {
     const section = document.querySelector('.scrollable-courses-section');
     if (!section) return;
-    section.addEventListener('scroll', function() {
+    section.addEventListener('scroll', function () {
       if (section.scrollLeft > 0) { // Lowered threshold for instant feedback
         section.classList.add('scrolled');
       } else {
@@ -361,10 +361,10 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   // Hide/show Logout button on scroll: only show when at top
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', function () {
     var logoutBtn = document.getElementById('logoutLink');
     if (!logoutBtn) return;
-    
+
     // Only apply scroll hiding if the logout button should be shown (user is logged in)
     if (logoutBtn.classList.contains('show')) {
       if (window.scrollY < 20) {
@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-  
+
   // Ensure logout button is visible immediately after login
   function ensureLogoutButtonVisible() {
     var logoutBtn = document.getElementById('logoutLink');
@@ -385,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
       logoutBtn.style.pointerEvents = 'auto';
     }
   }
-  
+
   // Call this function after login to ensure button is visible
   setTimeout(ensureLogoutButtonVisible, 100);
 
@@ -422,23 +422,23 @@ function closeAlert() {
   customAlert.style.display = 'none';
   // Handle post-auto-logout UI
   if (window._autoLoggedOut) {
-      window._autoLoggedOut = false;
-      var appDiv = document.getElementById('appDiv');
-      if (appDiv) appDiv.style.display = 'none';
-      var loginSection = document.getElementById('loginSection');
-      if (loginSection) loginSection.style.display = '';
-      var siteHeader = document.getElementById('siteHeader');
-      if (siteHeader) siteHeader.style.display = '';
-      var logoutBtn = document.getElementById('logoutLink');
-      if (logoutBtn) logoutBtn.classList.remove('show');
-      var welcomeMsg = document.getElementById('welcomeMsg');
-      if (welcomeMsg) welcomeMsg.style.display = 'none';
+    window._autoLoggedOut = false;
+    var appDiv = document.getElementById('appDiv');
+    if (appDiv) appDiv.style.display = 'none';
+    var loginSection = document.getElementById('loginSection');
+    if (loginSection) loginSection.style.display = '';
+    var siteHeader = document.getElementById('siteHeader');
+    if (siteHeader) siteHeader.style.display = '';
+    var logoutBtn = document.getElementById('logoutLink');
+    if (logoutBtn) logoutBtn.classList.remove('show');
+    var welcomeMsg = document.getElementById('welcomeMsg');
+    if (welcomeMsg) welcomeMsg.style.display = 'none';
   }
 }
 
 function openVideo(course) {
   let videoUrl = '';
-  
+
   if (course === 'js') {
     videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THEgPRVJRqZRS8uw8hhVNQCM';
   } else if (course === 'ts') {
@@ -450,12 +450,12 @@ function openVideo(course) {
   } else if (course === 'api') {
     videoUrl = 'https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5';
   }
-  
+
   window.open(videoUrl, '_blank');
 }
 
 // --- Auto Logout on Inactivity (3 minute) ---
-(function() {
+(function () {
   let logoutTimer;
   const LOGOUT_TIME = 1800000; // 3 minute
 
@@ -473,7 +473,7 @@ function openVideo(course) {
   }
 
   // Listen for user activity
-  ['mousemove','keydown','mousedown','touchstart','scroll'].forEach(evt => {
+  ['mousemove', 'keydown', 'mousedown', 'touchstart', 'scroll'].forEach(evt => {
     window.addEventListener(evt, resetLogoutTimer, true);
   });
 
@@ -522,7 +522,7 @@ function initializeClearRowsBtn() {
         loadEmployees(); // Refresh table from localStorage
         showCustomAlert('All employee records have been cleared!');
         // Edge fallback: if table not cleared, force reload
-        setTimeout(function() {
+        setTimeout(function () {
           const employees = JSON.parse(localStorage.getItem('employees')) || [];
           if (employees.length !== 0 || (tbody && tbody.children.length !== 0)) {
             location.reload();
@@ -536,21 +536,26 @@ function initializeClearRowsBtn() {
 // Removed duplicate scroll event listener to fix logout button visibility
 
 // Donate Now button color animation
-(function() {
+(function () {
   const donateButton = document.querySelector('.api-playground-link[href="Donate-Now.html"]');
   if (!donateButton) return;
 
   const colorTriplets = [
-    { bg1: '#f6f8fa', bg2: '#4b006e', bg3: '#ff6b6b', text: '#4b006e', border: '#4b006e' }, // Original + Purple + Coral
     { bg1: '#ff6b6b', bg2: '#ff9ff3', bg3: '#5f27cd', text: 'white', border: '#ff6b6b' },   // Coral + Pink + Purple
-    { bg1: '#4ecdc4', bg2: '#00d2d3', bg3: '#54a0ff', text: 'white', border: '#4ecdc4' },   // Turquoise + Cyan + Ocean Blue
-    { bg1: '#45b7d1', bg2: '#54a0ff', bg3: '#96ceb4', text: 'white', border: '#45b7d1' },   // Sky Blue + Ocean + Mint
-    { bg1: '#96ceb4', bg2: '#4ecdc4', bg3: '#feca57', text: 'white', border: '#96ceb4' },   // Mint + Turquoise + Golden
     { bg1: '#feca57', bg2: '#ff6b6b', bg3: '#ff9ff3', text: '#333', border: '#feca57' },    // Golden + Coral + Pink
     { bg1: '#ff9ff3', bg2: '#5f27cd', bg3: '#00d2d3', text: 'white', border: '#ff9ff3' },   // Pink + Purple + Cyan
-    { bg1: '#54a0ff', bg2: '#00d2d3', bg3: '#feca57', text: 'white', border: '#54a0ff' },   // Ocean + Cyan + Golden
     { bg1: '#5f27cd', bg2: '#ff6b6b', bg3: '#4ecdc4', text: 'white', border: '#5f27cd' },   // Purple + Coral + Turquoise
-    { bg1: '#00d2d3', bg2: '#feca57', bg3: '#45b7d1', text: 'white', border: '#00d2d3' }    // Cyan + Golden + Sky Blue
+    
+    { bg1: '#ffea00', bg2: '#ff3d00', bg3: '#00e676', text: '#222', border: '#ffea00' }, // Yellow, Orange, Green
+    { bg1: '#00b8d4', bg2: '#ff4081', bg3: '#ffd600', text: '#fff', border: '#00b8d4' }, // Cyan, Pink, Bright Yellow
+    { bg1: '#ff1744', bg2: '#00e5ff', bg3: '#76ff03', text: '#fff', border: '#ff1744' }, // Red, Aqua, Lime
+    { bg1: '#f50057', bg2: '#00bfae', bg3: '#ffea00', text: '#fff', border: '#f50057' }, // Pink, Teal, Yellow
+    { bg1: '#ff6d00', bg2: '#00e676', bg3: '#2979ff', text: '#fff', border: '#ff6d00' }, // Orange, Green, Blue
+    { bg1: '#d500f9', bg2: '#00b8d4', bg3: '#ffea00', text: '#fff', border: '#d500f9' }, // Purple, Cyan, Yellow
+    { bg1: '#00e676', bg2: '#ff1744', bg3: '#ffd600', text: '#fff', border: '#00e676' }, // Green, Red, Yellow
+    { bg1: '#2979ff', bg2: '#ffea00', bg3: '#f50057', text: '#fff', border: '#2979ff' }, // Blue, Yellow, Pink
+    { bg1: '#ffd600', bg2: '#00bfae', bg3: '#ff3d00', text: '#222', border: '#ffd600' }, // Bright Yellow, Teal, Orange
+    { bg1: '#00bfae', bg2: '#f50057', bg3: '#76ff03', text: '#fff', border: '#00bfae' }  // Teal, Pink, Lime
   ];
 
   let currentColorIndex = 0;
@@ -561,13 +566,52 @@ function initializeClearRowsBtn() {
     donateButton.style.setProperty('background', gradient, 'important');
     donateButton.style.setProperty('color', colorTriplet.text, 'important');
     donateButton.style.setProperty('border-color', colorTriplet.border, 'important');
-    
+
     currentColorIndex = (currentColorIndex + 1) % colorTriplets.length;
   }
 
   // Start the animation immediately
   changeColor();
-  
+
   // Change color every 2 seconds
+  setInterval(changeColor, 2000);
+})();
+
+// UPI App button color animation (Donate-Now.html)
+(function () {
+  var upiButton = document.querySelector('a[href^="upi://pay"]');
+  if (!upiButton) return;
+
+  // Brighter, more vibrant color palette
+  const colorTriplets = [
+    { bg1: '#ff6b6b', bg2: '#ff9ff3', bg3: '#5f27cd', text: 'white', border: '#ff6b6b' },   // Coral + Pink + Purple
+    { bg1: '#feca57', bg2: '#ff6b6b', bg3: '#ff9ff3', text: '#333', border: '#feca57' },    // Golden + Coral + Pink
+    { bg1: '#ff9ff3', bg2: '#5f27cd', bg3: '#00d2d3', text: 'white', border: '#ff9ff3' },   // Pink + Purple + Cyan
+    { bg1: '#5f27cd', bg2: '#ff6b6b', bg3: '#4ecdc4', text: 'white', border: '#5f27cd' },   // Purple + Coral + Turquoise
+
+    { bg1: '#ffea00', bg2: '#ff3d00', bg3: '#00e676', text: '#222', border: '#ffea00' }, // Yellow, Orange, Green
+    { bg1: '#00b8d4', bg2: '#ff4081', bg3: '#ffd600', text: '#fff', border: '#00b8d4' }, // Cyan, Pink, Bright Yellow
+    { bg1: '#ff1744', bg2: '#00e5ff', bg3: '#76ff03', text: '#fff', border: '#ff1744' }, // Red, Aqua, Lime
+    { bg1: '#f50057', bg2: '#00bfae', bg3: '#ffea00', text: '#fff', border: '#f50057' }, // Pink, Teal, Yellow
+    { bg1: '#ff6d00', bg2: '#00e676', bg3: '#2979ff', text: '#fff', border: '#ff6d00' }, // Orange, Green, Blue
+    { bg1: '#d500f9', bg2: '#00b8d4', bg3: '#ffea00', text: '#fff', border: '#d500f9' }, // Purple, Cyan, Yellow
+    { bg1: '#00e676', bg2: '#ff1744', bg3: '#ffd600', text: '#fff', border: '#00e676' }, // Green, Red, Yellow
+    { bg1: '#2979ff', bg2: '#ffea00', bg3: '#f50057', text: '#fff', border: '#2979ff' }, // Blue, Yellow, Pink
+    { bg1: '#ffd600', bg2: '#00bfae', bg3: '#ff3d00', text: '#222', border: '#ffd600' }, // Bright Yellow, Teal, Orange
+    { bg1: '#00bfae', bg2: '#f50057', bg3: '#76ff03', text: '#fff', border: '#00bfae' }  // Teal, Pink, Lime
+  ];
+
+  let currentColorIndex = 0;
+
+  function changeColor() {
+    const colorTriplet = colorTriplets[currentColorIndex];
+    const gradient = `linear-gradient(135deg, ${colorTriplet.bg1} 0%, ${colorTriplet.bg2} 50%, ${colorTriplet.bg3} 100%)`;
+    upiButton.style.setProperty('background', gradient, 'important');
+    upiButton.style.setProperty('color', colorTriplet.text, 'important');
+    upiButton.style.setProperty('border-color', colorTriplet.border, 'important');
+    currentColorIndex = (currentColorIndex + 1) % colorTriplets.length;
+  }
+
+  changeColor();
   setInterval(changeColor, 2000);
 })();
