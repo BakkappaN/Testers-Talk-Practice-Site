@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Banking Project Demo - Testers Talk</title>
 
   <!-- Font Awesome for social icons -->
@@ -28,13 +29,20 @@
       position: relative !important;
       overflow-x: hidden !important;
       overflow-y: auto !important;
+      box-sizing: border-box !important;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box !important;
     }
 
     .banking-container {
       max-width: 1200px;
-      margin: 0;
+      margin: 0 auto;
       padding: 40px 20px;
       text-align: left;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .banking-header {
@@ -298,14 +306,7 @@
       background: none;
     }
 
-    .latest-label-divider-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: calc(100vh - 70px);
-      min-width: 60px;
-    }
+
 
     .latest-section {
       display: none;
@@ -323,7 +324,7 @@
 
     .latest-videos-section {
       margin: 0;
-      max-width: 240px;
+      max-width: 100%;
       background: transparent;
       border-radius: 0;
       box-shadow: none;
@@ -383,13 +384,14 @@
       color: #f5f0f0;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      padding: 10px 8px 12px 8px;
-      min-width: 200px;
-      max-width: 220px;
+      padding: 12px 10px 15px 10px;
+      width: 100%;
+      max-width: 300px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
     }
 
     .video-part span {
@@ -412,8 +414,12 @@
 
     .video-part iframe {
       border-radius: 6px;
-      margin-top: 4px;
+      margin-top: 6px;
       border: 2px solid #fff;
+      width: 100%;
+      max-width: 280px;
+      height: 157px;
+      box-sizing: border-box;
     }
 
     .banking-form input,
@@ -1088,12 +1094,7 @@
         width: 100%;
       }
 
-      .latest-label-divider-col {
-        height: auto;
-        min-width: auto;
-        margin-bottom: 15px;
-        width: 100%;
-      }
+
 
       .latest-divider {
         height: 3px;
@@ -1110,6 +1111,41 @@
         min-width: auto;
         max-width: 100%;
         width: 100%;
+        padding: 10px 8px 12px 8px;
+        margin-bottom: 10px;
+      }
+
+      .video-part iframe {
+        max-width: 100%;
+        height: auto;
+        min-height: 140px;
+      }
+
+      /* Improve form responsiveness */
+      .banking-form input,
+      .banking-form select {
+        font-size: 16px; /* Prevent zoom on iOS */
+        padding: 10px 12px;
+      }
+
+      .tab-buttons {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tab-button {
+        padding: 10px 16px;
+        font-size: 14px;
+        flex: 1;
+        min-width: 120px;
+      }
+
+      /* Adjust timer display for mobile */
+      .timer-display {
+        font-size: 12px;
+        padding: 6px 12px;
+        top: 10px;
+        left: 10px;
       }
     }
     #latestVideosList {
@@ -1117,6 +1153,11 @@
       height: auto !important;
       max-height: none !important;
       overflow: visible !important;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
 
     @media (max-width: 480px) {
@@ -1134,12 +1175,7 @@
         align-items: center !important;
         width: 100% !important;
       }
-      .latest-label-divider-col {
-        height: auto !important;
-        min-width: auto !important;
-        margin-bottom: 10px !important;
-        width: 100% !important;
-      }
+
       .latest-divider {
         height: 3px !important;
         width: 100% !important;
@@ -1165,43 +1201,104 @@
         min-width: auto !important;
         max-width: 100% !important;
         width: 100% !important;
-        padding: 6px 2px 10px 2px !important;
-        margin-bottom: 10px !important;
+        padding: 8px 5px 12px 5px !important;
+        margin-bottom: 12px !important;
+        box-sizing: border-box !important;
       }
       .video-part iframe {
         width: 100% !important;
         height: 180px !important;
         min-width: 0 !important;
         max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Additional mobile optimizations */
+      .banking-container {
+        padding: 10px 5px;
+      }
+
+      .banking-header h1 {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+      }
+
+      .banking-header p {
+        font-size: 1em;
+      }
+
+      .banking-section {
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .content-section {
+        padding: 15px;
+      }
+
+      .balance-display {
+        font-size: 1.5em;
+        margin: 15px 0;
+      }
+
+      .banking-form {
+        gap: 12px;
+      }
+
+      .banking-form input,
+      .banking-form select {
+        padding: 8px 10px;
+        font-size: 16px;
+      }
+
+      .banking-button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .tab-buttons {
+        gap: 5px;
+      }
+
+      .tab-button {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 100px;
+      }
+
+      /* Timer display adjustments for very small screens */
+      .timer-display {
+        font-size: 11px;
+        padding: 4px 8px;
+        top: 5px;
+        left: 5px;
+      }
+
+      /* Confirmation and success modals */
+      .confirmation-modal,
+      .alert-content {
+        padding: 20px;
+        margin: 10px;
+      }
+
+      .confirmation-actions,
+      .success-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn-cancel,
+      .btn-confirm,
+      .btn-primary,
+      .btn-secondary {
+        padding: 10px 16px;
+        font-size: 14px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Logout and Latest from Testers Talk Section (Top Right) -->
-  <div style="position: absolute; top: 24px; right: 32px; z-index: 101; display: flex; flex-direction: row; align-items: flex-start; gap: 12px;">
-
-    <div class="latest-section-wrapper" style="position: static; box-shadow: none;">
-      <div class="latest-section-label-top">Latest from Testers Talk : </div>
-      <div class="latest-section-and-videos">
-        <div class="latest-label-divider-col">
-          <div class="latest-section">Latest from Testers Talk</div>
-          <div class="latest-divider"></div>
-        </div>
-        <div class="latest-videos-section">
-          <div class="latest-videos-arrows">
-            <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
-            <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
-          </div>
-          <div class="latest-videos-list" id="latestVideosList">
-            <!-- Videos will be rendered here by JS -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Timer Row (remains unchanged) -->
   <div style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 12px; padding: 0 32px; position: relative;">
     <div class="timer-display" id="timerDisplay">
@@ -1215,7 +1312,6 @@
     <div class="loading-text">Loading Banking App...</div>
   </div>
 
-  <!-- Latest from Testers Talk Section (videos, etc.) remains in original place -->
   <div class="banking-container">
     <div class="banking-header">
       <h1>🏦 Sample Banking Application</h1>
@@ -1521,6 +1617,24 @@
                 <button class="btn-secondary" onclick="viewTransactionHistory()">View History</button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Latest from Testers Talk Section -->
+  <div style="display: flex; justify-content: center; margin: 40px 0; padding: 0 20px; box-sizing: border-box;">
+    <div class="latest-section-wrapper" style="position: static; box-shadow: none; width: 100%; max-width: 800px; box-sizing: border-box;">
+      <div class="latest-section-label-top" style="text-align: center; margin-bottom: 20px; font-size: 1.2em; color: #4b006e; font-weight: bold;">Latest from Testers Talk : </div>
+      <div class="latest-section-and-videos" style="justify-content: center; width: 100%;">
+        <div class="latest-videos-section" style="width: 100%; max-width: 100%;">
+          <div class="latest-videos-arrows">
+            <button class="latest-arrow-btn" id="latestUpBtn" aria-label="Previous Video">&#9650;</button>
+            <button class="latest-arrow-btn" id="latestDownBtn" aria-label="Next Video">&#9660;</button>
+          </div>
+          <div class="latest-videos-list" id="latestVideosList">
+            <!-- Videos will be rendered here by JS -->
           </div>
         </div>
       </div>
@@ -1837,7 +1951,7 @@
         div.innerHTML = `
           <span style="font-weight:600; color:#333;">${v.part}:</span>
           <a class="playlist-link" href="${v.link}" target="_blank">Watch on YouTube</a>
-          <iframe width="220" height="124" src="${v.embed}" title="${v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="280" height="157" src="${v.embed}" title="${v.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
         list.appendChild(div);
       }
