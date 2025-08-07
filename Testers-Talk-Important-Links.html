@@ -101,6 +101,10 @@
             display: block;
             margin-bottom: 8px;
         }
+
+        .control-btn:hover {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+        }
     </style>
 </head>
 
@@ -336,7 +340,13 @@
             </div>
             <div class="tab-content" id="PlaywrightMCPServer" style="display:none;">
                 <h2>Playwright MCP Prompts</h2>
-                <div contenteditable="true" style="width:100%;min-height:50vh;max-height:70vh;font-size:1.1em;padding:15px;border-radius:8px;border:2px solid #ddd;resize:vertical;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;line-height:1.5;background-color:#fff;overflow-y:auto;outline:none;" placeholder="Enter your Playwright MCP prompts here...">
+                <div style="position: relative;">
+                    <div id="promptEditor" contenteditable="true" style="width:100%;height:calc(100vh - 200px);font-size:1.1em;padding:15px;border-radius:8px;border:2px solid #ddd;resize:vertical;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;line-height:1.5;background-color:#fff;overflow-y:auto;outline:none;transition: all 0.3s ease;position:relative;" placeholder="Enter your Playwright MCP prompts here...">
+                        <div class="prompt-controls" style="position: absolute; top: 10px; right: 10px; z-index: 10; pointer-events: auto;">
+                            <button id="maximizeBtn" class="control-btn" style="background: none; border: none; cursor: pointer; font-size: 18px; color: #666; padding: 5px; border-radius: 4px; transition: background-color 0.2s;">
+                                <span id="maximizeIcon">⛶</span>
+                            </button>
+                        </div>
                     <strong>Prompt1 - Playwright Project setup</strong><br>
                     Create a Playwright TypeScript test project using "npm init playwright@latest" command in the current folder<br><br>
                     Can you please make sure that tests are running successfully?<br><br>
@@ -1084,6 +1094,50 @@
         tabContents.forEach((sec, idx) => {
             sec.style.display = idx === 0 ? 'block' : 'none';
         });
+
+        // Maximize/Minimize functionality for Playwright MCP prompts
+        const maximizeBtn = document.getElementById('maximizeBtn');
+        const maximizeIcon = document.getElementById('maximizeIcon');
+        const promptEditor = document.getElementById('promptEditor');
+        let isMaximized = false;
+
+        if (maximizeBtn && promptEditor) {
+            // Prevent button clicks from affecting contenteditable
+            maximizeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (isMaximized) {
+                    // Minimize
+                    promptEditor.style.position = 'static';
+                    promptEditor.style.width = '100%';
+                    promptEditor.style.height = 'calc(100vh - 200px)';
+                    promptEditor.style.top = 'auto';
+                    promptEditor.style.left = 'auto';
+                    promptEditor.style.zIndex = 'auto';
+                    promptEditor.style.borderRadius = '8px';
+                    maximizeIcon.textContent = '⛶';
+                    isMaximized = false;
+                } else {
+                    // Maximize
+                    promptEditor.style.position = 'fixed';
+                    promptEditor.style.top = '0';
+                    promptEditor.style.left = '0';
+                    promptEditor.style.width = '100vw';
+                    promptEditor.style.height = '100vh';
+                    promptEditor.style.zIndex = '9999';
+                    promptEditor.style.borderRadius = '0';
+                    maximizeIcon.textContent = '⛶';
+                    isMaximized = true;
+                }
+            });
+
+            // Prevent contenteditable from being triggered when clicking the button
+            maximizeBtn.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        }
     </script>
 </body>
 
