@@ -110,6 +110,7 @@
         <div class="tab-container">
             <div class="tab-buttons">
                 <button class="tab-button active" data-tab="ImpLinks">Important Links</button>
+                <button class="tab-button" data-tab="PlaywrightMCPServer">Playwright MCP Server</button>
                 <button class="tab-button" data-tab="PlaywrightTypeScriptCourse">Playwright TypeScript Course
                 </button>
                 <button class="tab-button" data-tab="PlaywrightJavaScriptCourse">Playwright JavaScript Course</button>
@@ -331,6 +332,78 @@
                                 allowfullscreen></iframe>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="tab-content" id="PlaywrightMCPServer" style="display:none;">
+                <h2>Playwright MCP Prompts</h2>
+                <div contenteditable="true" style="width:100%;min-height:50vh;max-height:70vh;font-size:1.1em;padding:15px;border-radius:8px;border:2px solid #ddd;resize:vertical;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;line-height:1.5;background-color:#fff;overflow-y:auto;outline:none;" placeholder="Enter your Playwright MCP prompts here...">
+                    <strong>Prompt1 - Playwright Project setup</strong><br>
+                    Create a Playwright TypeScript test project using "npm init playwright@latest" command in the current folder<br><br>
+                    Can you please make sure that tests are running successfully?<br><br>
+                    
+                    <strong>Prompt2 - End-to-end test creation for banking application</strong><br>
+                    Generate a playwright typescript test for the following scenarios:<br>
+                    - You are a playwright test generator.<br>
+                    - You are given a scenario and you need to generate a playwright test for it.<br>
+                    - DO NOT generate test code based on the scenario alone.<br>
+                    - Use Playwright MCP to open the browser and interact with the site<br>
+                    - Discover selectors and flows by live exploration, not by static code generation<br>
+                    - Navigate to https://bakkappan.github.io/Testers-Talk-Practice-Site/<br>
+                    - Enter username & password as TestersTalk<br>
+                    - Select App Name as Banking and Login into the application<br>
+                    - After login, verify:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; - URL contains "Banking-Project-Demo.html"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; - The page header shows "🏦 Sample Banking Application"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; - Verify text as "Welcome to the Testers Talk Banking Application"<br>
+                    - Click on Quick Transactions link<br>
+                    - Select Transition Type as Transfer<br>
+                    - Enter all other mandatory fields then click on Submit button<br>
+                    - Click on Confirm button<br>
+                    - Note down Transaction Reference: number<br>
+                    - Verify Transaction Reference: number in the Transaction History<br>
+                    - Save generated test file as banking-test.spec.ts & test name as "Verify Quick Transactions Flow" in the tests directory<br>
+                    - Execute the test file and iterate until the test passes<br>
+                    - Include appropriate assertions to verify the expected behaviour<br>
+                    - Structure tests properly with descriptive test titles and comments<br><br>
+                    
+                    <strong>Technical details:</strong><br>
+                    - Use role-based selectors wherever possible(getByRole)<br>
+                    - Add appropriate waiting for navigation after login<br>
+                    - Add appropriate timeouts for assertions<br><br>
+                    
+                    <strong>Prompt3 - Page Object Model refactoring</strong><br>
+                    - Let's convert test into page object model design pattern<br>
+                    - Create a pages folder under root directory & add pages under this folder only<br>
+                    - Create 4 pages - LoginPage, HomePage, QuickTransactionPage & TransactionHistoryPage then add abstractions methods in the respective pages<br>
+                    - Create one BasePage which contains common actions for all the pages<br>
+                    - Finally update the test with respect page object methods<br><br>
+                    
+                    <strong>Prompt4 - Configuration management</strong><br>
+                    - Create a config.json file under root directory<br>
+                    - Add URL, username, password & app name key-value pairs in the config.json file<br>
+                    - Finally access all the property values in the test wherever it is required<br><br>
+                    
+                    <strong>Prompt5 - Test data management </strong><br>
+                    - Create a test-data folder under root directory<br>
+                    - Create a Transfer_TestData.json file under test-data folder<br>
+                    - Keep all the transfer details in the Transfer_TestData.json in the key-values pairs<br>
+                    - Finally access Transfer_TestData.json test data in test file<br><br>
+                    
+                    <strong>Prompt6 - Advanced test generation using Playwright MCP Server without using application url, username/password etc.</strong><br>
+                    Write a Playwright typescript test using playwright mcp.<br>
+                    1. You are a playwright test generator.<br>
+                    3. DO NOT generate test code based on the scenario alone.<br>
+                    4. Use Playwright MCP to open the browser and interact with the site<br>
+                    5. Discover selectors and flows by live exploration, not by static code generation<br>
+                    6. Add a new test as verify tab names in the homepage in the banking-test.spec.ts file<br>
+                    7. Instantiate the LoginPage and HomePage page objects.<br>
+                    8. Navigate to the login page using the URL from the config.<br>
+                    9. Log in using credentials from the config.<br>
+                    10. Verify that the home page loads successfully.<br>
+                    11. Check that the Transfers & Bill Payment tabs are visible<br>
+                    12. Save newly generated test under banking-test.spec.ts file<br>
+                    13. Execute the test file and iterate until the test passes<br>
+                    14. Make sure to use Playwright's best practices and page object model.<br><br><br>
                 </div>
             </div>
             <div class="tab-content" id="PlaywrightTypeScriptCourse" style="display:none;">
