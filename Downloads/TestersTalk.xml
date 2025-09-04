@@ -1,0 +1,55 @@
+<testersTalk>
+    <channel name="Testers Talk">
+        <url>https://www.youtube.com/@testerstalk</url>
+        <description>
+            Testers Talk is a YouTube channel that provides free tutorials for software testing and automation.
+        </description>
+        <playlists>
+            <playlist>
+                <title>Playwright TypeScript by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THEXmQxNvKmdDxAVloGTHXMr&amp;feature=shared</url>
+            </playlist>
+            <playlist>
+                <title>Playwright JavaScript by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THFSOUcVo_Cfam8I_IO483mV&amp;feature=shared</url>
+            </playlist>
+            <playlist>
+                <title>Cypress by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THEbdE2jWyBBxkWqjk4JmHHq&amp;feature=shared</url>
+            </playlist>
+            <playlist>
+                <title>JavaScript by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THFLrS29tJnP9yz-QKhn4mdB&amp;feature=shared</url>
+            </playlist>
+            <playlist>
+                <title>Postman by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THGcgNP3_Ocb_I_l4ITai5QT&amp;feature=shared</url>
+            </playlist>
+            <playlist>
+                <title>Rest Assured by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THGL7lQXQwxsV9re_i0U2b0Q&amp;feature=shared</url>
+            </playlist>
+            <playlist>
+                <title>API Testing by Testers Talk</title>
+                <url>https://youtube.com/playlist?list=PLUeDIlio4THGaSQ_s5WFc2Mo7Ikne2kA5&amp;feature=shared</url>
+            </playlist>
+        </playlists>
+        <subscribe>
+            <message>Subscribe for daily updates</message>
+            <url>https://www.youtube.com/@testerstalk?sub_confirmation=1</url>
+        </subscribe>
+        <community>
+            <linkedinGroup>
+                <url>https://www.linkedin.com/groups/10393547/</url>
+            </linkedinGroup>
+            <facebookGroup>
+                <url>https://www.facebook.com/groups/247868358996762</url>
+            </facebookGroup>
+        </community>
+        <connect>
+            <linkedinProfile>
+                <url>https://www.linkedin.com/in/bakkappa-n</url>
+            </linkedinProfile>
+        </connect>
+    </channel>
+</testersTalk>

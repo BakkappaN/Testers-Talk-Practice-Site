@@ -777,6 +777,16 @@ h4.highlighted-header {
   cursor: pointer;
 }
 
+/* Allow drag-style buttons to grow/shrink based on text */
+.drag-style-button.auto-width {
+  width: auto;
+  min-width: 0;
+  height: auto;
+  padding: 10px 20px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
 .drag-style-button.iframe-button {
   width: auto;
   min-width: 200px;
