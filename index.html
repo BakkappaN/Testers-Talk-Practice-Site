@@ -2022,6 +2022,14 @@
             html += `<p>📄 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.pdf" download>Download PDF Document</a></p>`;
             html += `<p>📝 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download>Download Word Document</a></p>`;
           }
+          // Add downloadable links for Playwright JavaScript Course
+          if (opt.label === 'Playwright JavaScript Course') {
+            html += `<p>📝 <a href="FullCourseDocuments/Playwright_JavaScript_Course_by_Testers_Talk_Document.docx" download>Download Word Document</a></p>`;
+          }
+          // Add downloadable links for JavaScript Course
+          if (opt.label === 'JavaScript Course') {
+            html += `<p>📝 <a href="FullCourseDocuments/JavaScript_Beginners_Course_by_Testers_Talk_Document.docx" download>Download Word Document</a></p>`;
+          }
           html += '</div>';
           appendMessage(html, 'bot');
         }
