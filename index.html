@@ -173,6 +173,10 @@
       color: #0000ff !important;
     }
 
+    #courseLink + a[download] {
+      color: #0000ff !important;
+    }
+
     .course-video {
       width: 100%;
       max-width: 100%;
@@ -738,8 +742,12 @@
       </div>
       <div class="course-container">
         <h2 class="login-label-style" id="courseTitle" style="margin-bottom: 12px; text-align: center;">YouTube FREE Courses</h2>
-        <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
-          style="margin-bottom: 15px; text-decoration:underline; text-align: center; display: block;">Playwright TypeScript Course</a>
+        <div style="text-align: center; margin-bottom: 15px;">
+          <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
+            style="text-decoration:underline; display: inline-block; margin-right: 15px;">Playwright TypeScript Course</a>
+          <a href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download
+            style="color: #0000ff; text-decoration: underline;">Download Document</a>
+        </div>
         <br><br>
         <div class="video-nav-controls" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:30px; margin-top: 20px; margin-bottom: 0; height: 300px;">
           <button id="prevVideo" class="video-nav-btn" aria-label="Previous Video">&lt;</button>
