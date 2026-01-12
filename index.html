@@ -19,9 +19,10 @@
     :root {
       --background-color: transparent !important;
     }
-    
+
     /* Removed html, body background so CSS takes effect */
-    html, body {
+    html,
+    body {
       min-height: 100vh !important;
       margin: 0 !important;
       padding: 0 !important;
@@ -69,7 +70,7 @@
       position: relative !important;
       background: transparent !important;
       border-radius: 16px !important;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
       border: 3px solid #4b006e;
       padding: 32px 28px !important;
       box-sizing: border-box !important;
@@ -173,7 +174,7 @@
       color: #0000ff !important;
     }
 
-    #courseLink + a[download] {
+    #courseLink+a[download] {
       color: #0000ff !important;
     }
 
@@ -198,6 +199,7 @@
         margin: 32px auto 24px auto;
         padding: 0;
       }
+
       #loginDiv,
       .course-container {
         width: 100%;
@@ -206,6 +208,7 @@
         flex: unset;
         align-items: center;
       }
+
       .playground-section {
         padding: 0 16px 24px 16px;
       }
@@ -706,8 +709,11 @@
           <input type="text" id="username" placeholder="Username" />
           <input type="password" id="password" placeholder="Password" />
           <div style="display: flex; align-items: center; width: 100%; max-width: 260px; margin: 0 auto 14px auto;">
-            <label for="appName" style="text-align: left; color: #333; font-weight: 600; margin-right: 10px; white-space: nowrap; min-width: 80px;">App Name:</label>
-            <select id="appName" style="flex: 1; padding: 10px 12px; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <label for="appName"
+              style="text-align: left; color: #333; font-weight: 600; margin-right: 10px; white-space: nowrap; min-width: 80px;">App
+              Name:</label>
+            <select id="appName"
+              style="flex: 1; padding: 10px 12px; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
               <option value="default">Default</option>
               <option value="banking">Banking</option>
             </select>
@@ -736,20 +742,24 @@
             </a>
           </div>
           <!-- Update the link to use the new class -->
-                          <a href="Testers-Talk-Important-Links.html" class="main-link-dark-purple">YouTube Playlist + GitHub Repo. + Documents</a>
+          <a href="Testers-Talk-Important-Links.html" class="main-link-dark-purple">YouTube Playlist + GitHub Repo. +
+            Documents</a>
           <br><br>
         </div>
       </div>
       <div class="course-container">
-        <h2 class="login-label-style" id="courseTitle" style="margin-bottom: 12px; text-align: center;">YouTube FREE Courses</h2>
+        <h2 class="login-label-style" id="courseTitle" style="margin-bottom: 12px; text-align: center;">YouTube FREE
+          Courses</h2>
         <div style="text-align: center; margin-bottom: 15px;">
           <a id="courseLink" class="course-link" href="https://youtu.be/788GvvcfwTY?feature=shared" target="_blank"
-            style="text-decoration:underline; display: inline-block; margin-right: 15px;">Playwright TypeScript Course</a>
-          <a href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download
+            style="text-decoration:underline; display: inline-block; margin-right: 15px;">Playwright TypeScript
+            Course</a>
+          <a id="courseDownload" href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download
             style="color: #0000ff; text-decoration: underline;">Download Document</a>
         </div>
         <br><br>
-        <div class="video-nav-controls" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:30px; margin-top: 20px; margin-bottom: 0; height: 300px;">
+        <div class="video-nav-controls"
+          style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:30px; margin-top: 20px; margin-bottom: 0; height: 300px;">
           <button id="prevVideo" class="video-nav-btn" aria-label="Previous Video">&lt;</button>
           <iframe id="courseVideo" class="course-video" src="https://www.youtube.com/embed/788GvvcfwTY"
             title="Playwright TypeScript Course" allowfullscreen></iframe>
@@ -968,10 +978,14 @@
             <div class="form-group">
               <label>Downloads:</label>
               <div class="button-wrapper" style="display: flex; gap: var(--spacing-xl); margin-top: var(--spacing-md);">
-                <a href="Downloads/TestersTalk_Excel.xlsx" download="TestersTalk.xlsx" class="drag-style-button auto-width">Download Excel</a>
-                <a href="Downloads/TestersTalk_WordDoc.docx" download="TestersTalk.docx" class="drag-style-button auto-width">Download Word</a>
-                <a href="Downloads/TestersTalk_XML.xml" download="TestersTalk.xml" class="drag-style-button auto-width">Download XML</a>
-                <a href="Downloads/TestersTalk_PDF.pdf" download="TestersTalk.pdf" class="drag-style-button auto-width">Download PDF</a>
+                <a href="Downloads/TestersTalk_Excel.xlsx" download="TestersTalk.xlsx"
+                  class="drag-style-button auto-width">Download Excel</a>
+                <a href="Downloads/TestersTalk_WordDoc.docx" download="TestersTalk.docx"
+                  class="drag-style-button auto-width">Download Word</a>
+                <a href="Downloads/TestersTalk_XML.xml" download="TestersTalk.xml"
+                  class="drag-style-button auto-width">Download XML</a>
+                <a href="Downloads/TestersTalk_PDF.pdf" download="TestersTalk.pdf"
+                  class="drag-style-button auto-width">Download PDF</a>
               </div>
             </div>
 
@@ -1102,12 +1116,12 @@
         </p>
 
         <p>
-          📄 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.pdf" download>
+          📄 <a href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.pdf" download>
             Playwright TypeScript Full Course PDF Document
           </a>
         </p>
         <p>
-          📝 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download>
+          📝 <a href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download>
             Playwright with TypeScript Full Course Word Document
           </a>
         </p>
@@ -2031,8 +2045,8 @@
           });
           // Add downloadable links for Playwright TypeScript Course
           if (opt.label === 'Playwright TypeScript Course') {
-            html += `<p>📄 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.pdf" download>Download PDF Document</a></p>`;
-            html += `<p>📝 <a href="Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download>Download Word Document</a></p>`;
+            html += `<p>📄 <a href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.pdf" download>Download PDF Document</a></p>`;
+            html += `<p>📝 <a href="FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.docx" download>Download Word Document</a></p>`;
           }
           // Add downloadable links for Playwright JavaScript Course
           if (opt.label === 'Playwright JavaScript Course') {
@@ -2096,7 +2110,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       // Debug: log login state
       console.log('DOMContentLoaded: loggedIn =', localStorage.getItem('loggedIn'));
-      
+
       // Check if this is a true browser refresh (not navigation from edit page)
       let isRefresh = false;
       if (performance.getEntriesByType && performance.getEntriesByType("navigation").length > 0) {
@@ -2104,7 +2118,7 @@
       } else if (performance.navigation) {
         isRefresh = performance.navigation.type === 1;
       }
-      
+
       // Show refresh spinner if this is a refresh and user was logged in
       if (isRefresh && localStorage.getItem('loggedIn') === 'true') {
         var loadingOverlay = document.getElementById('loadingOverlay');
@@ -2115,10 +2129,10 @@
             loadingText.textContent = 'Refreshing... Logging you out. Please wait...';
           }
         }
-        
+
         // Clear login state and show spinner for 2 seconds
         localStorage.removeItem('loggedIn');
-        
+
         setTimeout(() => {
           if (loadingOverlay) {
             loadingOverlay.style.display = 'none';
@@ -2133,14 +2147,14 @@
           var logoutBtn = document.getElementById('logoutLink');
           if (logoutBtn) logoutBtn.classList.remove('show');
         }, 2000);
-        
+
         return; // Exit early to prevent other logic from running
       }
-      
+
       // Always hide logout button first
       var logoutBtn = document.getElementById('logoutLink');
       if (logoutBtn) logoutBtn.classList.remove('show');
-      
+
       // Check if user is logged in
       if (localStorage.getItem('loggedIn') === 'true') {
         // User is logged in - show app content and logout button
@@ -2160,13 +2174,13 @@
         var welcomeMsg = document.getElementById('welcomeMsg');
         if (welcomeMsg) welcomeMsg.style.display = 'none';
       }
-      
+
       // Set up logout button click handler
       document.getElementById('logoutLink').onclick = function (e) {
         e.preventDefault();
         localStorage.removeItem('loggedIn');
         document.getElementById('logoutLink').classList.remove('show'); // Hide logout button immediately
-        
+
         // Show logout spinner
         var loadingOverlay = document.getElementById('loadingOverlay');
         var loadingText = document.querySelector('.loading-text');
@@ -2176,7 +2190,7 @@
             loadingText.textContent = 'Logging out...';
           }
         }
-        
+
         // Redirect after spinner delay
         setTimeout(() => {
           window.location.href = 'index.html';
@@ -2240,22 +2254,26 @@
       {
         title: 'Playwright TypeScript Course',
         link: 'https://youtu.be/788GvvcfwTY?feature=shared',
-        embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1'
+        embed: 'https://www.youtube.com/embed/788GvvcfwTY?autoplay=1&mute=1',
+        doc: 'FullCourseDocuments/Playwright_TypeScript_FullCourse_By_TestersTalk.docx'
       },
       {
         title: 'Playwright JavaScript Course',
         link: 'https://youtu.be/2poXBtifpzA?feature=shared',
-        embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1'
+        embed: 'https://www.youtube.com/embed/2poXBtifpzA?autoplay=1&mute=1',
+        doc: 'FullCourseDocuments/Playwright_JavaScript_Course_by_Testers_Talk_Document.docx'
       },
       {
         title: 'Cypress Course',
         link: 'https://youtu.be/oJV5whmzfZI?feature=shared',
-        embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1'
+        embed: 'https://www.youtube.com/embed/oJV5whmzfZI?autoplay=1&mute=1',
+        doc: 'FullCourseDocuments/Cypress_FullCourse_by_Testers_Talk_Document.docx'
       },
       {
         title: 'JavaScript For Beginners',
         link: 'https://youtu.be/ACUMZ3OkExQ?feature=shared',
-        embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1'
+        embed: 'https://www.youtube.com/embed/ACUMZ3OkExQ?autoplay=1&mute=1',
+        doc: 'FullCourseDocuments/JavaScript_Beginners_Course_by_Testers_Talk_Document.docx'
       },
       {
         title: 'Postman Course',
@@ -2280,10 +2298,21 @@
       // Reload iframe with autoplay and mute
       const iframe = document.getElementById('courseVideo');
       iframe.src = videos[current].embed;
+      // Update download link if available
+      const dl = document.getElementById('courseDownload');
+      if (dl) {
+        if (videos[current].doc) {
+          dl.href = videos[current].doc;
+          dl.style.display = '';
+        } else {
+          dl.href = '#';
+          dl.style.display = 'none';
+        }
+      }
     }
-    // Ensure first video autoplays by resetting src on load
+    // Ensure first video autoplays and download link is set on load
     window.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('courseVideo').src = videos[0].embed;
+      updateVideo();
     });
     document.getElementById('prevVideo').onclick = function () {
       current = (current - 1 + videos.length) % videos.length;
