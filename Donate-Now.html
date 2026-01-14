@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +48,7 @@
             color: #4b006e;
             margin-bottom: 20px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .donate-header p {
@@ -74,7 +75,7 @@
             background: rgba(255, 255, 255, 0.95);
             padding: 48px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
             font-size: 1.13em;
         }
@@ -83,7 +84,7 @@
             background: rgba(255, 255, 255, 0.95);
             padding: 32px 24px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: 2px solid #4b006e;
             width: 100%;
         }
@@ -233,7 +234,7 @@
             border-radius: 20px;
             border: 2px solid #4b006e;
             display: inline-block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .back-link a:hover {
@@ -252,9 +253,12 @@
             .donate-content {
                 gap: 30px;
             }
-            .donate-methods, .donate-info {
+
+            .donate-methods,
+            .donate-info {
                 padding: 24px 16px;
             }
+
             .donate-header p {
                 font-size: 1.1em;
                 max-width: 95vw;
@@ -293,7 +297,7 @@
             margin-bottom: 15px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             border: 3px solid #4b006e;
         }
 
@@ -334,11 +338,11 @@
                 width: 150px;
                 height: 150px;
             }
-            
+
             .qr-overlay i {
                 font-size: 1.5em;
             }
-            
+
             .qr-overlay span {
                 font-size: 0.9em;
             }
@@ -494,38 +498,40 @@
                 margin: 20px auto;
                 padding: 10px;
             }
-            
+
             .latest-section-and-videos {
                 flex-direction: column;
                 padding: 15px;
             }
-            
+
             .latest-videos-list {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
-            
+
             .latest-videos-section {
                 max-width: 100%;
             }
-            
+
             .video-part {
                 max-width: 100%;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="donate-container">
         <div class="donate-header">
             <h1><i class="fas fa-heart"></i> Donate Now</h1>
-            <p>Support Testers Talk and help us continue creating quality content for the testing community. Your contribution makes a difference!</p>
+            <p>Support Testers Talk and help us continue creating quality content for the testing community. Your
+                contribution makes a difference!</p>
         </div>
 
         <div class="donate-content">
             <div class="donate-methods">
                 <h2><i class="fas fa-credit-card"></i> Choose Your Donation</h2>
-                
+
                 <div class="donation-option">
                     <h3><i class="fas fa-mobile-alt"></i> UPI Payment (India)</h3>
                     <p>Scan QR code to donate instantly using any UPI app</p>
@@ -534,14 +540,16 @@
                             <img src="UPI.jpg" alt="UPI QR Code" class="upi-qr-code" id="upiQRCode">
                         </div>
                     </div>
-                    <a href="upi://pay?pa=bakkappa.ns4u@ybl" style="display:inline-block;margin-top:10px;color:#fff;background:#4b006e;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;" target="_blank">Or Click here to pay using any UPI app</a>
+                    <a href="upi://pay?pa=bakkappa.ns4u@ybl"
+                        style="display:inline-block;margin-top:10px;color:#fff;background:#4b006e;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;"
+                        target="_blank">Or Click here to pay using any UPI app</a>
                 </div>
 
                 <div class="donation-option">
                     <h3><i class="fab fa-paypal"></i> PayPal(Outside India)</h3>
-                                         <h2 style="color: #dc3545;">Coming soon...</h2>
+                    <h2 style="color: #dc3545;">Coming soon...</h2>
                     <!-- <p>Quick and secure donation through PayPal</p> -->
-                   
+
                     <!-- <input type="number" class="custom-amount" placeholder="Or enter custom amount" min="1" step="1">
                     <button class="donate-btn" onclick="donatePayPal()">
                         <i class="fab fa-paypal"></i> Donate with PayPal
@@ -582,14 +590,14 @@
     <script>
         // Handle amount button clicks
         document.querySelectorAll('.amount-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 // Remove active class from all buttons in the same donation option
                 const donationOption = this.closest('.donation-option');
                 donationOption.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
-                
+
                 // Add active class to clicked button
                 this.classList.add('active');
-                
+
                 // Set the custom amount input value
                 const customAmount = donationOption.querySelector('.custom-amount');
                 customAmount.value = this.dataset.amount;
@@ -598,7 +606,7 @@
 
         // Handle custom amount input
         document.querySelectorAll('.custom-amount').forEach(input => {
-            input.addEventListener('input', function() {
+            input.addEventListener('input', function () {
                 // Remove active class from amount buttons when custom amount is entered
                 const donationOption = this.closest('.donation-option');
                 donationOption.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
@@ -611,7 +619,7 @@
                 alert('Please select or enter an amount');
                 return;
             }
-            
+
             // In a real implementation, this would redirect to PayPal
             alert(`Thank you for your $${amount} donation! Redirecting to PayPal...`);
             // window.open(`https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID&amount=${amount}`, '_blank');
@@ -624,24 +632,24 @@
             if (activeBtn) {
                 return activeBtn.dataset.amount;
             }
-            
+
             const customAmounts = document.querySelectorAll('.custom-amount');
             for (let input of customAmounts) {
                 if (input.value && input.value > 0) {
                     return input.value;
                 }
             }
-            
+
             return null;
         }
 
         // Add some interactive effects
         document.querySelectorAll('.donation-option').forEach(option => {
-            option.addEventListener('mouseenter', function() {
+            option.addEventListener('mouseenter', function () {
                 this.style.transform = 'translateY(-5px)';
             });
-            
-            option.addEventListener('mouseleave', function() {
+
+            option.addEventListener('mouseleave', function () {
                 this.style.transform = 'translateY(0)';
             });
         });
@@ -730,7 +738,7 @@
         function renderLatestVideos() {
             const list = document.getElementById('latestVideosList');
             if (!list) return;
-            
+
             list.innerHTML = '';
             for (let i = 0; i < latestVideos.length; i++) {
                 const v = latestVideos[i];
@@ -753,5 +761,6 @@
 
     </script>
     <script src="script.js"></script>
-  </body>
-</html> 
+</body>
+
+</html>
